@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="pic_shop.com.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,13 +23,30 @@
 	flex-wrap: nowrap;
 	justify-content: center;
 }
-
 .btn-outline-dark:hover {
 	/* 등록, 정렬 hover시 폰트색상 강제 지정 */
 	color:white !important
 }
 </style>
+<%
+	List<MemberVo> mem_list=(List<MemberVo>)request.getAttribute("mem_list");
+%>
 <body>
+<!-- member 테이블 확인용 주석입니다.
++----------------+--------------+------+-----+-------------------+-------------------+
+| Field          | Type         | Null | Key | Default           | Extra             |
++----------------+--------------+------+-----+-------------------+-------------------+
+| id             | varchar(255) | NO   | PRI | NULL              |                   |
+| pw             | varchar(255) | NO   |     | NULL              |                   |
+| phone          | varchar(255) | NO   | UNI | NULL              |                   |
+| email          | varchar(255) | NO   | UNI | NULL              |                   |
+| name           | varchar(255) | NO   |     | NULL              |                   |
+| address        | varchar(255) | YES  |     | NULL              |                   |
+| address_detail | varchar(255) | YES  |     | NULL              |                   |
+| signup_time    | datetime     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| birth          | date         | NO   |     | NULL              |                   |
+| grade          | tinyint      | NO   |     | 0                 |                   |
++----------------+--------------+------+-----+-------------------+-------------------+ -->
 	<h1 class="h1Cl">멤버 관리 페이지</h1>
 	<div class="memDiv">
 		<div class="memHeader">
@@ -56,29 +75,46 @@
 		<table class="table table-dark table-striped">	
 			<thead>
 				<tr>
-					<th class="col-1">id</th>     
-					<th class="col-2">phone</th>        
-					<th class="col-2">email</th>       
-					<th class="col-1">name</th>       
-					<th class="col-2">address</th>       
-					<th class="col-2">address_detail</th>
-					<th class="col-2">signup_time</th>   
-					<th class="col-2">birth</th>
-					<th class="col-1">grade</th>      
-				</tr>
+					<th class="col">id</th>   
+					<th class="col">pw</th>   
+					<th class="col">phone</th>        
+					<th class="col">email</th>       
+					<th class="col">name</th>       
+					<th class="col">address</th>       
+					<th class="col">address_detail</th>
+					<th class="col">signup_time</th>   
+					<th class="col">birth</th>
+					<th class="col">grade</th>
+					<th class="col">수정</th>
+					<th class="col">삭제</th>        
+				</tr>	
 			</thead>
-			<tbody id="itemList">
-				<tr id="itemClone">
-					<td class="item_num"></td>  
-					<td class="name"></td>       
-					<td class="count"></td>    
-					<td class="price"></td>    
-					<td class="color"></td>
-					<td class="model_num"></td>
-					<td class="member_id"></td>
-					<td class="state"></td>     
-					<td class="cate_num"></td> 
+			<tbody>
+				<%for(MemberVo mem : mem_list){%>
+				<tr>
+					<td><%=mem.getId() %></td>
+					<td><%=mem.getPw() %></td>
+					<td><%=mem.getPhone() %></td>
+					<td><%=mem.getEmail() %></td>
+					<td><%=mem.getName() %></td>
+					<td><%=mem.getAddress() %></td>
+					<td><%=mem.getAddress_detail() %></td>
+					<td><%=mem.getSignup_time()%></td>
+					<td><%=mem.getBirth() %></td>
+					<td><%=mem.getGrade()%></td>
+					<td>
+						<a href="./modify.do?id=<%=mem.getId()%>">
+							수정
+						</a>
+					</td>
+					<td>
+						<!-- a태그는 get방식으로 전달한다 post 변경 필요 -->
+						<a href="javascript:postDel('<%=mem.getId()%>')">
+							삭제
+						</a>
+					</td>
 				</tr>
+				<%}; %>
 			</tbody>
 		</table>
 	</div>
