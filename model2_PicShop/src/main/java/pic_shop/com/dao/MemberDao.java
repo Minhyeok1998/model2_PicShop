@@ -40,14 +40,6 @@ public class MemberDao implements MemberDaoAble{
 		return null;
 	}
 	@Override
-	public MemberVo detail_email(String email) throws ClassNotFoundException, SQLException {
-		return null;
-	}
-	@Override
-	public MemberVo detail_phone(String phone) throws ClassNotFoundException, SQLException {
-		return null;
-	}
-	@Override
 	public boolean insert(MemberVo mem) throws ClassNotFoundException, SQLException {
 		return false;
 	}
