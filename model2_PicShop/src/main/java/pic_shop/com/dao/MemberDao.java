@@ -69,5 +69,15 @@ public class MemberDao implements MemberDaoAble{
 	public boolean delete(String id) throws ClassNotFoundException, SQLException {
 		return false;
 	}
+	@Override
+	public MemberVo detail_email(String email) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public MemberVo detail_phone(String phone) throws ClassNotFoundException, SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
