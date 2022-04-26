@@ -16,6 +16,7 @@
 <style>
 .h1Cl{
 	width:500px;
+	text-align : center;
 	margin: 0 auto;
 }
 #memDivHeader{

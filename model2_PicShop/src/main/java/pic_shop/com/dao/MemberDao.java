@@ -37,7 +37,25 @@ public class MemberDao implements MemberDaoAble{
 	}
 	@Override
 	public MemberVo detail(String id) throws ClassNotFoundException, SQLException {
-		return null;
+		Connection conn=SqlConnection.getConnection();
+		PreparedStatement ps=conn.prepareStatement("SELECT * FROM MEMBER WHERE id=?");
+		ps.setString(1, id);
+		ResultSet rs=ps.executeQuery();
+		MemberVo mem=new MemberVo();
+		while(rs.next()) {
+			mem.setId(rs.getString("id"));
+			mem.setPw(rs.getString("pw"));
+			mem.setName(rs.getString("name"));
+			mem.setEmail(rs.getString("email"));
+			mem.setPhone(rs.getString("phone"));
+			mem.setAddress(rs.getString("address"));
+			mem.setAddress_detail(rs.getString("address_detail"));
+			mem.setBirth(rs.getDate("birth"));
+			mem.setGrade(rs.getByte("grade"));
+			mem.setSignup_time(rs.getDate("signup_time"));
+			System.out.println(mem.toString());
+		}
+		return mem;
 	}
 	@Override
 	public boolean insert(MemberVo mem) throws ClassNotFoundException, SQLException {
