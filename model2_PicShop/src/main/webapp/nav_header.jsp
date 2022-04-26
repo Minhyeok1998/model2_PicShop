@@ -11,6 +11,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2><a href="<%=request.getContextPath()%>/mem/insert.do">회원가입</a></h2>
+<h2><a href="<%=request.getContextPath()%>/mem/update.do">회원수정</a></h2>
 </body>
 </html>
