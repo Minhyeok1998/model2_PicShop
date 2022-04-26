@@ -23,7 +23,7 @@ public class MemberModify extends HttpServlet{
 		String id=req.getParameter("id");
 		MemberVo mem=new MemberVo();
 		try {
-			mem=memDao.detail(id);
+			mem=memDao.detail_id(id);
 		} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
 		}
