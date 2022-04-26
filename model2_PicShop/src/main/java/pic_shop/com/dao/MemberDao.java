@@ -176,9 +176,4 @@ public class MemberDao implements MemberDaoAble{
 	}
 	
 
-	
-
-
-
-
 }
