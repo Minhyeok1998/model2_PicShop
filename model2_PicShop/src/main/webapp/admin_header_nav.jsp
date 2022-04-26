@@ -97,7 +97,7 @@
 </style>
 </head>
 <body>
-	<div class="fixed-top">
+	<!-- <div class="fixed-top"> -->
 	<nav  >
 		<ul id="top_first_nav" class="nav justify-content-space-evenly align-items-center" style="padding:10px;">
 			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link">Draw</a></li>
@@ -123,6 +123,6 @@
 			<li class="nav-item"><a class="nav-link" href="#">Board 관리</a></li>
 		</ul>
 	</nav>
-	</div>
+<!-- 	</div> -->
 </body>
 </html>
