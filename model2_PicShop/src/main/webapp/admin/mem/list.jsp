@@ -102,15 +102,14 @@
 					<td><%=mem.getAddress_detail() %></td>
 					<td><%=mem.getSignup_time()%></td>
 					<td><%=mem.getBirth() %></td>
-					<td><%=mem.getGrade()%></td>
+					<td><%=(mem.getGrade()==1)?"관리자":"일반사용자"%></td>
 					<td>
 						<a href="./modify.do?id=<%=mem.getId()%>">
 							수정
 						</a>
 					</td>
 					<td>
-						<!-- a태그는 get방식으로 전달한다 post 변경 필요 -->
-						<a href="javascript:postDel('<%=mem.getId()%>')">
+						<a href="javascript:postDel('<%=mem.getId()%>')"> <!-- a태그는 get방식으로 전달하므로 post방식으로 변경 -->
 							삭제
 						</a>
 					</td>
@@ -120,4 +119,21 @@
 		</table>
 	</div>
 </body>
+<script>
+	function postDel(id){
+		//삭제를 누르면 폼과 인풋생성후 내부에 id를 담아서 post방식으로 전송
+		let f = document.createElement('form');
+	    let obj;
+	    obj = document.createElement('input');
+	    obj.setAttribute('type', 'hidden');
+	    obj.setAttribute('name', 'id');
+	    obj.setAttribute('value', id);
+	    
+	    f.appendChild(obj);
+	    f.setAttribute('method', 'post');
+	    f.setAttribute('action', 'delete2.do');
+	    document.body.appendChild(f);
+	    f.submit();
+	}
+</script>
 </html>
