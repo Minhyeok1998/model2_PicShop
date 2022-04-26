@@ -5,11 +5,14 @@ import java.util.List;
 
 import pic_shop.com.vo.MemberVo;
 
-public interface MemberDaoAble {
 
-	public List<MemberVo> list(int page) throws ClassNotFoundException, SQLException ; 
-	public MemberVo detail(String id) throws ClassNotFoundException, SQLException ; 
-	public boolean insert(MemberVo mem) throws ClassNotFoundException, SQLException ; 
-	public boolean update(MemberVo mem) throws ClassNotFoundException, SQLException ; 
+public interface MemberDaoAble {
+	public List<MemberVo> list(int page) throws ClassNotFoundException, SQLException ;
+	public MemberVo detail(String id) throws ClassNotFoundException, SQLException ;
+	public MemberVo detail_email(String email) throws ClassNotFoundException, SQLException ;
+	public MemberVo detail_phone(String phone) throws ClassNotFoundException, SQLException ;
+	public boolean insert(MemberVo mem) throws ClassNotFoundException, SQLException ;
+	public boolean update(MemberVo mem) throws ClassNotFoundException, SQLException ;
 	public boolean delete(String id) throws ClassNotFoundException, SQLException ; 
+
 }
