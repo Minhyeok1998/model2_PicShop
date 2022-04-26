@@ -44,7 +44,7 @@ public class PicList extends HttpServlet{
 			e.getStackTrace();
 		}
 		
-		System.out.println(pic_list);
+		/* System.out.println(pic_list); */
 		resp.getWriter().append(pic_list.toString());
 	}
 }
