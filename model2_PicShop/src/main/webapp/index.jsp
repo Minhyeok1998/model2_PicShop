@@ -9,5 +9,6 @@
 <body>
 	<%@ include file="nav_header.jsp" %>
 	<h1>Main 페이지</h1>
+	<h2>하이하이</h2>
 </body>
 </html>
