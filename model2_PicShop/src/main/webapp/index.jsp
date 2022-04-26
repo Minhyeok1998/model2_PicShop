@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%@ include file="nav_header.jsp" %>
-	<h1>Main 페이지</h1>
+	<h1>Main 병합 테스트</h1>
 	
 	<h2>병합 테스트입니다.</h2>
 </body>
