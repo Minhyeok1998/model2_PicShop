@@ -16,7 +16,7 @@ import pic_shop.com.vo.MemberVo;
 
 
 
-@WebServlet("/admin/member/modify.do")
+@WebServlet("/admin/mem/modify.do")
 public class MemberModify extends HttpServlet{
 	private MemberDao memDao=new MemberDao();
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
