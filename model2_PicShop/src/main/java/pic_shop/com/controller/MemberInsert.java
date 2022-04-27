@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import pic_shop.com.dao.MemberDao;
 import pic_shop.com.vo.MemberVo;
 
-@WebServlet("/mem/insert.do")
+@WebServlet("/user/mem/insert.do")
 public class MemberInsert extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 

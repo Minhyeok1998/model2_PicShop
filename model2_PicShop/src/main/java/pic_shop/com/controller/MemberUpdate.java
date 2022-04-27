@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import pic_shop.com.vo.MemberVo;
 import pic_shop.com.dao.MemberDao;
 
-@WebServlet("/mem/update.do")
+@WebServlet("/user/mem/update.do")
 public class MemberUpdate extends HttpServlet{
 	MemberDao memDao= new MemberDao();
 	@Override
