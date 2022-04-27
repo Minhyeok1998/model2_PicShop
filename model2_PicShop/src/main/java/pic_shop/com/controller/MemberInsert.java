@@ -55,9 +55,9 @@ public class MemberInsert extends HttpServlet{
 		
 		req.getSession().setAttribute("insert", insert);
 		if(insert) {
-			resp.sendRedirect("./list.do");
+			resp.sendRedirect(req.getContextPath());	
 		}else {
-			resp.sendRedirect("./insert.do");
+			resp.sendRedirect(req.getContextPath());
 		}
 	}
 }

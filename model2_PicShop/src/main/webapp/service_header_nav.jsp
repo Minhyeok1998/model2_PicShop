@@ -10,7 +10,19 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script defer src="<%=request.getContextPath()%>/public/js/service_header_nav.js"></script>
-
+<%
+if(session.getAttribute("insert")!=null){
+	boolean insert=(boolean)session.getAttribute("insert");
+	String msg="";
+	if(insert){ 
+		msg="<script>alert(\"등록 성공\");</script>";
+	}else{ 
+		msg="<script>alert(\"등록 실패\");</script>";
+	} 
+	out.append(msg);
+	session.removeAttribute("insert");
+}
+%>
 <style>
 	
 
@@ -186,8 +198,7 @@
 		      </div>
 		      <div class="modal-body">
 		      <!-- joinFORM 시작 -->
-		      	<form name="join_form">
-		      		 
+		      	<form action="./user/mem/insert.do" method="post" name="join_form">
     					<div class="col-md-5 mb-3">
       						<label for="id">ID</label>
       						
@@ -213,7 +224,7 @@
     				
     				<div class="col-md-6 mb-3">
       					<label for="name">Name</label>
-        					<input name="NAME" type="text" class="form-control is-invalid" id="name" placeholder="Name" required>
+        					<input name="name" type="text" class="form-control is-invalid" id="name" placeholder="Name" required>
     						<div class="valid-feedback">
 				       			오~ 이름이 멋있네요
 				      		</div>
@@ -222,8 +233,8 @@
 				      		</div>
     				</div>
     				<div class="col-md-6 mb-3">
-      					<label for="name">PHONE</label>
-        					<input name="phone" type="text" class="form-control is-invalid" id="name" placeholder="PHONE" required>
+      					<label for="phone">PHONE</label>
+        					<input name="phone" type="text" class="form-control is-invalid" id="phone" placeholder="PHONE" required>
     						<div class="valid-feedback">
 				       			사용 가능
 				      		</div>
@@ -268,13 +279,15 @@
 				      </div>
 				    </div>
 				  </div>
-  				<button class="btn btn-primary" type="submit">Submit form</button>
+				  
+  				<button class="btn btn-primary" type="submit">제출</button>
 			</form>
 
 					
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sign up</button>
+
+		        <button type="button" class="btn btn-secondary submit" data-bs-dismiss="modal">Sign up</button>
 		        <button type="button" class="btn btn-primary">login</button>
 		      </div>
 		    </div>

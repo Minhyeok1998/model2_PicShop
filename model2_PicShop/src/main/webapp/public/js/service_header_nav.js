@@ -2,10 +2,12 @@
 
 const join_form = document.forms.join_form;
 
+/*
 join_form.addEventListener("submit",(e)=>{
 	e.preventDefault();
 	alert("들어옴");
 });
+*/
 
 function valueIn(input){
 	/*alert(input.value);*/
