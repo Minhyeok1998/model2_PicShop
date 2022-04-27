@@ -10,7 +10,9 @@
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script defer src="<%=request.getContextPath()%>/public/js/service_header_nav.js"></script>
+
 <style>
+	
 
 	*{
 		margin:0;
@@ -116,8 +118,8 @@
 				<ul class="nav justify-content-space-evenly align-items-center">
 <!-- 					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li> -->
 					<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals("null"))?"로그인해주세요":login_id%></span></li>
-					<li class="nav-item"><a class="  btn btn-primary" href="javascript:void(0)" id="login_btn" data-bs-toggle="modal" data-bs-target="#LoginModal">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
-					<li class="nav-item"><a class="  btn btn-primary" href="javascript:void(0)" id="join_btn" data-bs-toggle="modal" data-bs-target="#JoinModal">회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
+					<li class="nav-item"><a class="  btn btn-primary" href="javacript:void(0)" id="login_btn" data-bs-toggle="modal" data-bs-target="#LoginModal">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
+					<li class="nav-item"><a class="  btn btn-primary" href="javascript:void(0)" id="join_btn" data-bs-toggle="modal" data-bs-target="#JoinModal" >회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
 					<li id="user_info" class='nav-item display_None'> <!--로그인 되어있을때 display_None을 지워준다.-->
 						<ul class="nav">
 							<li class="nav-item"><a class="nav-link" href="#" id="user_write_Atg">내가 작성한 글</a></li>
@@ -138,7 +140,9 @@
 	</nav>
 	
 
-	<div class="modal" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
+
+
+		<div class="modal" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
   		<div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
@@ -146,6 +150,7 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body">
+		      <!-- loging form 시작 -->
 		      <form action="">
 					  <div class="form-group">
 					    <label for="InputID1">ID</label>
@@ -171,80 +176,101 @@
   		</div>
 	</div>
 
+
 <div class="modal" id="JoinModal" tabindex="-1" aria-labelledby="JoinModalLabel" aria-hidden="true">
-  		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xL">
+  		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="JoinModalLabel">로그인 해주세요</h5>
+		        <h5 class="modal-title" id="JoinModalLabel">회원가입</h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body">
-		     
-			<form>
-			  <div class="form-row">
-			    <div class="col-md-4 mb-3">
-			      <label for="validationServer01">First name</label>
-			      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
-			      <div class="valid-feedback">
-			        Looks good!
-			      </div>
-			    </div>
-			    <div class="col-md-4 mb-3">
-			      <label for="validationServer02">Last name</label>
-			      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required>
-			      <div class="valid-feedback">
-			        Looks good!
-			      </div>
-			    </div>
-			    <div class="col-md-4 mb-3">
-			      <label for="validationServerUsername">Username</label>
-			      <div class="input-group">
-			        <div class="input-group-prepend">
-			          <span class="input-group-text" id="inputGroupPrepend3">@</span>
-			        </div>
-			        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
-			        <div class="invalid-feedback">
-			          Please choose a username.
-			        </div>
-			      </div>
-			    </div>
-			  </div>
-			  <div class="form-row">
-			    <div class="col-md-6 mb-3">
-			      <label for="validationServer03">City</label>
-			      <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="City" required>
-			      <div class="invalid-feedback">
-			        Please provide a valid city.
-			      </div>
-			    </div>
-			    <div class="col-md-3 mb-3">
-			      <label for="validationServer04">State</label>
-			      <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
-			      <div class="invalid-feedback">
-			        Please provide a valid state.
-			      </div>
-			    </div>
-			    <div class="col-md-3 mb-3">
-			      <label for="validationServer05">Zip</label>
-			      <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
-			      <div class="invalid-feedback">
-			        Please provide a valid zip.
-			      </div>
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <div class="form-check">
-			      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
-			      <label class="form-check-label" for="invalidCheck3">
-			        Agree to terms and conditions
-			      </label>
-			      <div class="invalid-feedback">
-			        You must agree before submitting.
-			      </div>
-			    </div>
-			  </div>
-			  <button class="btn btn-primary" type="submit">Submit form</button>
+		      <!-- joinFORM 시작 -->
+		      	<form name="join_form">
+		      		 
+    					<div class="col-md-5 mb-3">
+      						<label for="id">ID</label>
+      						
+      						<input name="id" type="text" class="form-control is-invalid" id="id" placeholder="ID" value="min123" required>
+      						<div class="invalid-feedback">
+      							사용 불가!
+      						</div>
+      						<div id="idCheck" class="valid-feedback">
+       						 	멋진 아이디인걸요~
+      						</div>
+    					</div>
+   					
+    				<div class="col-md-6 mb-3">
+      					<label for="pw">PassWord</label>
+      					<input name="pw" type="password" class="form-control is-invalid" id="pw" placeholder="Password" value="1234" required>
+	      				<div id="pwCheck" class="invalid-feedback">
+	       					사용할 수 없는 비밀번호
+	      				</div>
+	      				<div id="pwCheck" class="valid-feedback">
+	       					멋진 패스워드 인걸요~
+	      				</div>
+    				</div>
+    				
+    				<div class="col-md-6 mb-3">
+      					<label for="name">Name</label>
+        					<input name="NAME" type="text" class="form-control is-invalid" id="name" placeholder="Name" required>
+    						<div class="valid-feedback">
+				       			오~ 이름이 멋있네요
+				      		</div>
+				      		<div class="invalid-feedback">
+				       			이름 입력
+				      		</div>
+    				</div>
+    				<div class="col-md-6 mb-3">
+      					<label for="name">PHONE</label>
+        					<input name="phone" type="text" class="form-control is-invalid" id="name" placeholder="PHONE" required>
+    						<div class="valid-feedback">
+				       			사용 가능
+				      		</div>
+				      		<div class="invalid-feedback">
+				       			사용 불가능
+				      		</div>
+    				</div>
+
+				    <div class="col-md-6 mb-3">
+				      <label for="email">email</label>
+				      <input name="email" type="email" class="form-control is-invalid" id="email" placeholder="email" required>
+				      <div class="valid-feedback">
+				       	사용 가능!
+				      </div>
+				      <div class="invalid-feedback">
+				       	사용 불가능!
+				      </div>
+				    </div>
+				    <div class="col-md-6 mb-3">
+				      <label for="address">Address</label>
+				      <input name="address" type="text" class="form-control is-invalid" id="address" placeholder="address(생략 가능)" required>
+				    </div>
+				    
+				    <div class="col-md-6 mb-3">
+				      <label for="address_detail">Address Detail</label>
+				      <input name="address_detail" type="text" class="form-control is-invalid" id="address_detail" placeholder="address_detail" required>
+				    </div>
+				    
+				     <div class="col-md-6 mb-3">
+				      <label for="birth">Birth</label>
+				      <input name="birth" type="date" class="form-control is-invalid" id="birth" required>
+				    </div>
+	  		
+				  <div class="form-group">
+				    <div class="form-check">
+				      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+				      <label class="form-check-label" for="invalidCheck3">
+				        Agree to terms and conditions
+				      </label>
+				      <div class="invalid-feedback">
+				        You must agree before submitting.
+				      </div>
+				    </div>
+				  </div>
+  				<button class="btn btn-primary" type="submit">Submit form</button>
 			</form>
+
 					
 		      </div>
 		      <div class="modal-footer">
