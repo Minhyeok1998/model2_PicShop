@@ -30,7 +30,7 @@ join_form.birth.addEventListener("blur",(e)=>{
 
 	valueIn(e.target);
 });
-join_form.NAME.addEventListener("blur",(e)=>{
+join_form.name.addEventListener("blur",(e)=>{
 
 	valueIn(e.target);
 });
