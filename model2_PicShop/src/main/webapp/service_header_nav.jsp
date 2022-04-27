@@ -270,7 +270,6 @@
 				  </div>
   				<button class="btn btn-primary" type="submit">Submit form</button>
 			</form>
-					
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sign up</button>
