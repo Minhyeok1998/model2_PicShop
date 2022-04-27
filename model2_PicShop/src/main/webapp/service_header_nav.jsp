@@ -279,6 +279,19 @@ if(session.getAttribute("insert")!=null){
 				      </div>
 				    </div>
 				  </div>
+				   <ul class="container">
+                    <li class="item center">
+                        등급
+                    </li>
+                    <li class="item">
+                      	<select size="1" name="grade">
+							<option value="0" selected>사용자(0)</option>
+						</select>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
 				  
   				<button class="btn btn-primary" type="submit">제출</button>
 			</form>
