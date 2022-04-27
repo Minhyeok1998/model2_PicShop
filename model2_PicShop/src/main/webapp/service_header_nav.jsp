@@ -116,8 +116,8 @@
 				<ul class="nav justify-content-space-evenly align-items-center">
 <!-- 					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li> -->
 					<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals("null"))?"로그인해주세요":login_id%></span></li>
-					<li class="nav-item"><a class="  btn btn-primary" href="#" id="login_value" data-bs-toggle="modal" data-bs-target="#exampleModal">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
-					<li class="nav-item"><a class="  btn btn-primary" href="#">회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
+					<li class="nav-item"><a class="  btn btn-primary" href="javascript:void(0)" id="login_btn" data-bs-toggle="modal" data-bs-target="#LoginModal">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
+					<li class="nav-item"><a class="  btn btn-primary" href="javascript:void(0)" id="join_btn" data-bs-toggle="modal" data-bs-target="#JoinModal">회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
 					<li id="user_info" class='nav-item display_None'> <!--로그인 되어있을때 display_None을 지워준다.-->
 						<ul class="nav">
 							<li class="nav-item"><a class="nav-link" href="#" id="user_write_Atg">내가 작성한 글</a></li>
@@ -137,17 +137,12 @@
 		</ul>
 	</nav>
 	
-	
-	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button>
 
-
-	<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
   		<div class="modal-dialog modal-dialog-centered">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">로그인 해주세요</h5>
+		        <h5 class="modal-title" id="LoginModalLabel">로그인 해주세요</h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body">
@@ -162,8 +157,8 @@
 					    <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
 					  </div>
 					  <div class="form-check">
-					    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-					    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+					    <input type="checkbox" class="form-check-input" id="LoginCheck1">
+					    <label class="form-check-label" for="LoginCheck1">Check me out</label>
 					  </div>
 					</form>
 					
@@ -176,29 +171,80 @@
   		</div>
 	</div>
 
-<div class="modal" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal" id="JoinModal" tabindex="-1" aria-labelledby="JoinModalLabel" aria-hidden="true">
+  		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xL">
 		    <div class="modal-content">
 		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">로그인 해주세요</h5>
+		        <h5 class="modal-title" id="JoinModalLabel">로그인 해주세요</h5>
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body">
-		      <form action="">
-					  <div class="form-group">
-					    <label for="InputID1">ID</label>
-					    <input type="id" class="form-control" id="InputID2" aria-describedby="idHelp" placeholder="Enter ID">
-					    <small id="idHelp" class="form-text text-muted">아이디를 입력해주세요</small>
-					  </div>
-					  <div class="form-group">
-					    <label for="InputPassword2">Password</label>
-					    <input type="password" class="form-control" id="InputPassword2" placeholder="Password">
-					  </div>
-					  <div class="form-check">
-					    <input type="checkbox" class="form-check-input" id="exampleCheck2">
-					    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-					  </div>
-					</form>
+		     
+			<form>
+			  <div class="form-row">
+			    <div class="col-md-4 mb-3">
+			      <label for="validationServer01">First name</label>
+			      <input type="text" class="form-control is-valid" id="validationServer01" placeholder="First name" value="Mark" required>
+			      <div class="valid-feedback">
+			        Looks good!
+			      </div>
+			    </div>
+			    <div class="col-md-4 mb-3">
+			      <label for="validationServer02">Last name</label>
+			      <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Last name" value="Otto" required>
+			      <div class="valid-feedback">
+			        Looks good!
+			      </div>
+			    </div>
+			    <div class="col-md-4 mb-3">
+			      <label for="validationServerUsername">Username</label>
+			      <div class="input-group">
+			        <div class="input-group-prepend">
+			          <span class="input-group-text" id="inputGroupPrepend3">@</span>
+			        </div>
+			        <input type="text" class="form-control is-invalid" id="validationServerUsername" placeholder="Username" aria-describedby="inputGroupPrepend3" required>
+			        <div class="invalid-feedback">
+			          Please choose a username.
+			        </div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="form-row">
+			    <div class="col-md-6 mb-3">
+			      <label for="validationServer03">City</label>
+			      <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="City" required>
+			      <div class="invalid-feedback">
+			        Please provide a valid city.
+			      </div>
+			    </div>
+			    <div class="col-md-3 mb-3">
+			      <label for="validationServer04">State</label>
+			      <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="State" required>
+			      <div class="invalid-feedback">
+			        Please provide a valid state.
+			      </div>
+			    </div>
+			    <div class="col-md-3 mb-3">
+			      <label for="validationServer05">Zip</label>
+			      <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="Zip" required>
+			      <div class="invalid-feedback">
+			        Please provide a valid zip.
+			      </div>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="form-check">
+			      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
+			      <label class="form-check-label" for="invalidCheck3">
+			        Agree to terms and conditions
+			      </label>
+			      <div class="invalid-feedback">
+			        You must agree before submitting.
+			      </div>
+			    </div>
+			  </div>
+			  <button class="btn btn-primary" type="submit">Submit form</button>
+			</form>
 					
 		      </div>
 		      <div class="modal-footer">
