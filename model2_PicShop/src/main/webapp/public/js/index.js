@@ -18,8 +18,8 @@
 		let i = 1;
 		const clone = clone_card.cloneNode(true);
 		console.log(clone);
+		let grid_area = `pic${i++}`;
 		for(const key in picture){
-			let grid_area = `pic${i++}`;
 			console.log(grid_area);
 			
 		}	

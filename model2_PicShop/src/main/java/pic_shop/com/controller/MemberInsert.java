@@ -1,4 +1,4 @@
-package pic_shop.com.contoroller;
+package pic_shop.com.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,18 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pic_shop.com.vo.MemberVo;
 import pic_shop.com.dao.MemberDao;
+import pic_shop.com.vo.MemberVo;
 
-@WebServlet("/mem/update.do")
-public class MemberUpdate extends HttpServlet{
-	MemberDao memDao= new MemberDao();
+@WebServlet("/mem/insert.do")
+public class MemberInsert extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException, IOException {
+		System.out.println("\"insert.do doGet()\"");
+		req.getRequestDispatcher("./insert.jsp").forward(req, resp);
+	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		MemberVo mem=new MemberVo();
-		
 		mem.setId(req.getParameter("id"));
 		mem.setPw(req.getParameter("pw"));
 		mem.setName(req.getParameter("name"));
@@ -32,26 +36,28 @@ public class MemberUpdate extends HttpServlet{
 		mem.setPhone(req.getParameter("phone"));
 		mem.setGrade(Byte.parseByte(req.getParameter("grade")));
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-DD");
-		
 		try {
-			mem.setSignup_time(sdf.parse(req.getParameter("signup_time")));
 			mem.setBirth(sdf.parse(req.getParameter("birth")));
 		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		System.out.println(mem);
+		MemberDao memDao=new MemberDao();
+		boolean insert=false;
 		
-		boolean update=false;
 		try {
-			update=memDao.update(mem);
+			insert=memDao.insert(mem);
 		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(update) {
-			resp.sendRedirect("./index.jsp");			
+		
+		req.getSession().setAttribute("insert", insert);
+		if(insert) {
+			resp.sendRedirect("./list.do");
 		}else {
-			resp.sendRedirect("./update.do?id="+mem.getId()+"&login=false");			
+			resp.sendRedirect("./insert.do");
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package pic_shop.com.contoroller;
+package pic_shop.com.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -12,26 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 import pic_shop.com.dao.MemberDao;
 import pic_shop.com.vo.MemberVo;
 
-@WebServlet("/mem/phone_check.do")
-public class MemberPhoneCheck extends HttpServlet{
+@WebServlet("/mem/email_check.do")
+public class MemberEmailCheck extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		MemberDao memDao= new MemberDao();
-		String phone=req.getParameter("phone");
+		String email=req.getParameter("email");
 		resp.setContentType("json/application; charset=UTF-8");
 		MemberVo mem =null;
 		try {
-			mem=memDao.detail_phone(phone);
+			mem=memDao.detail_email(email);
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		if(mem.getPhone()==null) {
-			resp.getWriter().append("{ \"phone_check\" : true }");
+			resp.getWriter().append("{ \"email_check\" : true }");
 		}else {
-			resp.getWriter().append("{ \"phone_check\" : false }");
+			resp.getWriter().append("{ \"email_check\" : false }");
 		}
-		
+
 	}
 }

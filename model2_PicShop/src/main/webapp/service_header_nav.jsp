@@ -101,8 +101,9 @@
 		/* String login_id = "admin"; */
 		/* String alert = "<script>alert("+login_id+")</script>";
 		out.append(alert); */
+		/* request.getSession().invalidate(); */
 	%>
-	<!-- <div class="fixed-top"> -->
+
 	<nav  >
 		<ul id="top_first_nav" class="nav justify-content-space-evenly align-items-center" style="padding:10px;">
 			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link">Draw</a></li>
@@ -135,6 +136,6 @@
 			<li class="nav-item"><a class="nav-link" href="#">자유 게시판</a></li>
 		</ul>
 	</nav>
-	<!-- </div> -->
+
 </body>
 </html>

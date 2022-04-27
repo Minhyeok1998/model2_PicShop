@@ -97,7 +97,7 @@
 <body>
 	<%
 		String login_id = String.valueOf(request.getSession().getAttribute("login_id")); // session 에 저장된 id
-	
+		
 	%>
 	<!-- <div class="fixed-top"> -->
 	<nav  >
