@@ -9,6 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script defer src="<%=request.getContextPath()%>/public/js/service_header_nav.js"></script>
 <style>
 
 	*{
@@ -95,6 +96,12 @@
 </style>
 </head>
 <body>
+	<%
+		 String login_id = String.valueOf(request.getSession().getAttribute("login_id")); // session 에 저장된 id =>세션에 저장된 login_id가 없으면  null 이나온다.
+		/* String login_id = "admin"; */
+		/* String alert = "<script>alert("+login_id+")</script>";
+		out.append(alert); */
+	%>
 	<!-- <div class="fixed-top"> -->
 	<nav  >
 		<ul id="top_first_nav" class="nav justify-content-space-evenly align-items-center" style="padding:10px;">
@@ -106,9 +113,10 @@
 			</li>
 			<li class="nav-item">
 				<ul class="nav justify-content-space-evenly align-items-center">
-					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li>
-					<li class="nav-item"><a class=" nav-link" href="#" id="login_value">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
-					<li class="nav-item"><a class=" nav-link" href="#">회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
+<!-- 					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li> -->
+					<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals("null"))?"로그인해주세요":login_id%></span></li>
+					<li class="nav-item"><a class="  btn btn-primary" href="#" id="login_value">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
+					<li class="nav-item"><a class="  btn btn-primary" href="#">회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
 					<li id="user_info" class='nav-item display_None'> <!--로그인 되어있을때 display_None을 지워준다.-->
 						<ul class="nav">
 							<li class="nav-item"><a class="nav-link" href="#" id="user_write_Atg">내가 작성한 글</a></li>

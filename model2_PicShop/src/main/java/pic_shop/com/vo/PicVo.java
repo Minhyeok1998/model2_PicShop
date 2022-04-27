@@ -18,6 +18,7 @@ public class PicVo {
 	private Date sale_end_time;
 	private byte state;
 	private int cate_num;
+	private String cate_name;
 	public int getNum() {
 		return num;
 	}
@@ -108,6 +109,13 @@ public class PicVo {
 	public void setCate_num(int cate_num) {
 		this.cate_num = cate_num;
 	}
+	
+	public String getCate_name() {
+		return cate_name;
+	}
+	public void setCate_name(String cate_name) {
+		this.cate_name = cate_name;
+	}
 	@Override
 	public String toString() {
 		return "{\"num\": " + num + ", \"name\": \"" + name + "\", \"title\": \"" + title
@@ -115,8 +123,7 @@ public class PicVo {
 				+ "\", \"main_img\": \"" + main_img + "\", \"img_comment\": \"" + img_comment + "\", \"pic_num\": \""
 				+ pic_num + "\", \"member_id\": \"" + member_id + "\", \"post_time\": \"" + post_time
 				+ "\", \"sale_time\": \"" + sale_time + "\", \"sale_end_time\": \"" + sale_end_time
-				+ "\", \"state\": " + state + ", \"cate_num\": " + cate_num + "}";
+				+ "\", \"state\": " + state + ", \"cate_num\": " + cate_num + ",\"cate_name\": \""+cate_name +"\"}";
 	}
-	
-	
+		
 }

@@ -11,7 +11,7 @@ import java.util.*;
 import pic_shop.com.vo.PicVo;
 
 public class PicDao implements picDaoAble{
-	private String list_sql = "SELECT * FROM PIC";
+	private String list_sql = "select p.*, c.name from pic p inner join category c on p.cate_num = c.cate_num";
 	@Override
 	public List<PicVo> list(int page) throws ClassNotFoundException, SQLException {
 		List<PicVo> pic_list= new ArrayList<>() ;
@@ -32,6 +32,7 @@ public class PicDao implements picDaoAble{
 				pic.setImg_comment(rs.getString("img_comment"));
 				pic.setPic_num(rs.getString("pic_num"));
 				pic.setMember_id(rs.getString("member_id"));
+				pic.setCate_name(rs.getString("c.name"));
 				try {
 					pic.setPost_time(sdf.parse(rs.getString("post_time")));
 					pic.setSale_time(sdf.parse(rs.getString("post_time")));

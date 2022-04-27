@@ -1,4 +1,4 @@
-package pic_shop.com.controller;
+package pic_shop.com.contoroller;
 
 import java.io.IOException;
 import java.sql.SQLException;

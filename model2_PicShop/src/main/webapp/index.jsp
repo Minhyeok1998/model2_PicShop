@@ -19,7 +19,15 @@
 	}
 	.picture_side{
 		grid-area:picture;
-		background-color:blue;
+		display:grid;
+		gap:10px;
+		grid-template-columns: 4fr 4fr 4fr;
+		grid-template-rows: 5fr 5fr 5fr;
+		gird-template-areas :
+			"pic1 pic2 pic3"
+			"pic4 pic5 pic6"
+			"pic7 pic8 pic9";
+		background-color:bisque;
 	}
 </style>
 </head>
@@ -47,7 +55,23 @@
 			</ul>		
 		</div>
 		<div class="picture_side">
-			<h2>right-side</h2>
+		
+			<div class="card clone_card" style="width: 18rem;">
+				  <img class="card-img-top pic1 main_img" src="<%=request.getContextPath()%>/public/image/1484629.png" alt="Card image cap">
+				  <div class="card-body">
+				    <h5 class="card-title title">그림 제목</h5>
+				    <p class="card-text img_comment">comments 를 작성하는 곳</p>
+				    <p class="card-subtitle mb-2 text-muted">
+				    	<span><b class="price">10000</b> 원</span>
+				    	<br>
+				    	<span>작성자 :<b class="member_id">민혁</b></span>
+				    	<br>
+				    	<span>카테고리 : <b class="cate_name">etc</b></span>
+				    </p>
+				    <a href="<%=request.getContextPath()%>/service/pic/detail.do?num=" class="btn btn-primary detail">더 자세히 보기</a>
+				  </div>
+			</div>		
+			
 		</div>
 	</div>
 
