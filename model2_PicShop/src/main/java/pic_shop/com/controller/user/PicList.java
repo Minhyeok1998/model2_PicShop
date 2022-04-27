@@ -1,4 +1,4 @@
-package pic_shop.com.controller;
+package pic_shop.com.controller.user;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,12 +21,13 @@ public class PicList extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		PicDao picdao = new PicDao();
-		int page = 1;
+		int page = 0;
 		String member_id = null;
 		String category = null;
 		if (req.getParameter("page") != null) {
 			page = Integer.parseInt(req.getParameter("page"));
 		}
+		
 		try {
 			if (req.getParameter("category") != null) {
 				category = req.getParameter("category");

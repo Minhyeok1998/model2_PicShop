@@ -294,14 +294,9 @@ if(session.getAttribute("insert")!=null){
                         
                     </li>
                 </ul>
-<<<<<<< HEAD
-				  
-  				<button class="btn btn-primary" type="submit">제출</button>
-			</form>
 
-=======
 			</form>					
->>>>>>> origin/zhyunp
+
 		      </div>
 		      <div class="modal-footer">
 		        <button type="submit" class="btn btn-secondary" form="join_form">Sign up</button>

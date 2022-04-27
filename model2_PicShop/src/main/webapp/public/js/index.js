@@ -14,15 +14,39 @@
 	pic_list = await res.json();
 	//console.log(pic_list);
 	picture_side.innerHTML="";
+	let i = 1;
+	console.log(pic_list);
 	pic_list.forEach((picture)=>{
-		let i = 1;
+		
 		const clone = clone_card.cloneNode(true);
-		console.log(clone);
+		clone.classList.remove("display_None");
 		let grid_area = `pic${i++}`;
 		for(const key in picture){
-			console.log(grid_area);
-			
+			clone.classList.add(grid_area);
+			switch(key){
+				case "main_img":
+					clone.querySelector(`.${key}`).src = "./public/image/"+picture[key];
+					break;
+				case "title":
+					clone.querySelector(`.${key}`).innerText = picture[key];
+					break;
+				case "img_comment":
+					clone.querySelector(`.${key}`).innerText = picture[key];
+					break;
+				case "price":
+					clone.querySelector(`.${key}`).innerText = picture[key];
+					break;
+				case "member_id":
+					clone.querySelector(`.${key}`).innerText = picture[key];
+					break;
+				case "cate_name":
+					clone.querySelector(`.${key}`).innerText = picture[key];
+					break;
+				case "num":
+					clone.querySelector(".detail").href += picture[key];
+			}
 		}	
+		picture_side.append(clone);
 	});
 	
 }
