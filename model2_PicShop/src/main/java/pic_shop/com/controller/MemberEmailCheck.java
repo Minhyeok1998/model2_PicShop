@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import pic_shop.com.dao.MemberDao;
 import pic_shop.com.vo.MemberVo;
 
-@WebServlet("/mem/email_check.do")
+@WebServlet("/user/mem/email_check.do")
 public class MemberEmailCheck extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 

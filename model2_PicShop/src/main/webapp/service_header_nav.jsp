@@ -151,19 +151,65 @@
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body">
-		        	<form action="">
-		        		<label>ID : <input type='text'></label>
-		        		<label>PW : <input type='password'></label>
-		        	</form>
+		      <form action="">
+					  <div class="form-group">
+					    <label for="InputID1">ID</label>
+					    <input type="id" class="form-control" id="InputID1" aria-describedby="idHelp" placeholder="Enter ID">
+					    <small id="idHelp" class="form-text text-muted">아이디를 입력해주세요</small>
+					  </div>
+					  <div class="form-group">
+					    <label for="InputPassword1">Password</label>
+					    <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
+					  </div>
+					  <div class="form-check">
+					    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+					    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+					  </div>
+					</form>
+					
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-		        <button type="button" class="btn btn-primary">Save changes</button>
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">회원가입</button>
+		        <button type="button" class="btn btn-primary">login</button>
 		      </div>
 		    </div>
   		</div>
 	</div>
 
+<div class="modal" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">로그인 해주세요</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		      <form action="">
+					  <div class="form-group">
+					    <label for="InputID1">ID</label>
+					    <input type="id" class="form-control" id="InputID2" aria-describedby="idHelp" placeholder="Enter ID">
+					    <small id="idHelp" class="form-text text-muted">아이디를 입력해주세요</small>
+					  </div>
+					  <div class="form-group">
+					    <label for="InputPassword2">Password</label>
+					    <input type="password" class="form-control" id="InputPassword2" placeholder="Password">
+					  </div>
+					  <div class="form-check">
+					    <input type="checkbox" class="form-check-input" id="exampleCheck2">
+					    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+					  </div>
+					</form>
+					
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sign up</button>
+		        <button type="button" class="btn btn-primary">login</button>
+		      </div>
+		    </div>
+  		</div>
+	</div>
 
+	
+	
 </body>
 </html>
