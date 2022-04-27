@@ -120,7 +120,7 @@ if(session.getAttribute("insert")!=null){
 
 	<nav  >
 		<ul id="top_first_nav" class="nav justify-content-space-evenly align-items-center" style="padding:10px;">
-			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link">Draw</a></li>
+			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link"><img src="./public/image/draw.png" width=100px></a></li>
 			<li class="nav-item"> <!-- searc_form_li -->
 				<form class="form-group" action="" name="nav_search">
 					<input class="form-control" type="text" name="nav_search_input" placeholder="검색어 입력~" style="width:500px; padding:10px;">
@@ -181,7 +181,7 @@ if(session.getAttribute("insert")!=null){
 					
 		      </div>
 		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">회원가입</button>
+		        <button type="button" class="btn btn-secondary" id="join_btn2" data-bs-toggle="modal" data-bs-target="#JoinModal">회원가입</button>
 		        <button type="button" class="btn btn-primary">login</button>
 		      </div>
 		    </div>
