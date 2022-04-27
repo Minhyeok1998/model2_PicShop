@@ -116,7 +116,7 @@
 				<ul class="nav justify-content-space-evenly align-items-center">
 <!-- 					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li> -->
 					<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals("null"))?"로그인해주세요":login_id%></span></li>
-					<li class="nav-item"><a class="  btn btn-primary" href="#" id="login_value">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
+					<li class="nav-item"><a class="  btn btn-primary" href="#" id="login_value" data-bs-toggle="modal" data-bs-target="#exampleModal">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
 					<li class="nav-item"><a class="  btn btn-primary" href="#">회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
 					<li id="user_info" class='nav-item display_None'> <!--로그인 되어있을때 display_None을 지워준다.-->
 						<ul class="nav">
@@ -136,6 +136,34 @@
 			<li class="nav-item"><a class="nav-link" href="#">자유 게시판</a></li>
 		</ul>
 	</nav>
+	
+	
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button>
+
+
+	<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  		<div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">로그인 해주세요</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        	<form action="">
+		        		<label>ID : <input type='text'></label>
+		        		<label>PW : <input type='password'></label>
+		        	</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary">Save changes</button>
+		      </div>
+		    </div>
+  		</div>
+	</div>
+
 
 </body>
 </html>
