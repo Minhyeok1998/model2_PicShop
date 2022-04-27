@@ -10,6 +10,19 @@
 <%
 MemberVo mem=(MemberVo)request.getAttribute("mem");
 %>
+<%
+if(session.getAttribute("delete")!=null){
+	boolean delete=(boolean)session.getAttribute("delete");
+	String msg="";
+	if(delete){ 
+		msg="<script>alert(\"삭제 성공\");</script>";
+	}else{ 
+		msg="<script>alert(\"삭제 실패\");</script>";
+	} 
+	out.append(msg);
+	session.removeAttribute("delete"); 
+}
+%>
 <style>
 body{
     margin:0px;
@@ -41,43 +54,43 @@ body{
     	<div class="divMain">
     		<div class="divLeft">
                 <div>
+                	<label for="">아이디: </label>
+					<input type="text" value="<%=mem.getId()%>" placeholder="아이디 입력" disabled>
+					
+                </div>
+                <div>
                 	<label>
-						아이디: <input type="text" value="<%=mem.getId()%>" placeholder="아이디 입력" disabled>
+						pw: <input type="text"value="<%=mem.getPw()%>" disabled>
 					</label>
                 </div>
                 <div>
                 	<label>
-						pw:<input type="text"value="<%=mem.getPw()%>" disabled>
+						폰: <input type="text" value="<%=mem.getPhone()%>" placeholder="휴대폰 번호 입력 (123-456-7890)" disabled>
 					</label>
                 </div>
                 <div>
                 	<label>
-						폰:<input type="text" value="<%=mem.getPhone()%>" placeholder="휴대폰 번호 입력 (123-456-7890)" disabled>
+						이메일: <input type="email" value="<%=mem.getEmail()%>" placeholder="이메일 입력" disabled>
 					</label>
                 </div>
                 <div>
                 	<label>
-						이메일:<input type="email" value="<%=mem.getEmail()%>" placeholder="이메일 입력" disabled>
+						이름: <input type="text" value="<%=mem.getName()%>" disabled>
 					</label>
                 </div>
                 <div>
                 	<label>
-						이름:<input type="text" value="<%=mem.getName()%>" disabled>
+						주소: <input type="text" value="<%=mem.getAddress()%>" disabled>
 					</label>
                 </div>
                 <div>
                 	<label>
-						주소:<input type="text" value="<%=mem.getAddress()%>" disabled>
+						주소상세: <input type="text" value="<%=mem.getAddress_detail()%>" disabled>
 					</label>
                 </div>
                 <div>
                 	<label>
-						주소상세:<input type="text" value="<%=mem.getAddress_detail()%>" disabled>
-					</label>
-                </div>
-                <div>
-                	<label>
-						등급:<select size="1" name="gradeCopy" disabled>
+						등급: <select size="1" name="gradeCopy" disabled>
 								<option value="0" <%if(mem.getGrade()==0){out.print("selected");} %>>총관리자(0)</option>
 								<option value="1" <%if(mem.getGrade()==1){out.print("selected");} %>>관리자(1)</option>
 							</select>
@@ -156,9 +169,9 @@ body{
 	       		</div>
 	       		<div>
                     <button type="submit">수정하기</button>
-                    <button type="button">뒤로가기</button>
                     <button type="reset">리셋하기</button>
-					<a href="./delete.do?id=<%out.append(mem.getId());%>">삭제</a>
+                    <button type="button" onclick="location.href='./list.do'">뒤로가기</button>
+					<a href="./delete.do?id=<%=mem.getId()%>">삭제</a>
                	</div>
             </form>
         </div>

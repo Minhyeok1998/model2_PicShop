@@ -1,4 +1,4 @@
-package pic_shop.com.contoroller;
+package pic_shop.com.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -11,22 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pic_shop.com.dao.MemberDao;
 import pic_shop.com.vo.MemberVo;
+import pic_shop.com.dao.MemberDao;
 
-@WebServlet("/mem/insert.do")
-public class MemberInsert extends HttpServlet{
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
-		System.out.println("\"insert.do doGet()\"");
-		req.getRequestDispatcher("./insert.jsp").forward(req, resp);
-	}
+@WebServlet("/admin/mem/update.do")
+public class MemberUpdate extends HttpServlet{
+	MemberDao memDao= new MemberDao();
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		MemberVo mem=new MemberVo();
+		
 		mem.setId(req.getParameter("id"));
 		mem.setPw(req.getParameter("pw"));
 		mem.setName(req.getParameter("name"));
@@ -36,23 +32,28 @@ public class MemberInsert extends HttpServlet{
 		mem.setPhone(req.getParameter("phone"));
 		mem.setGrade(Byte.parseByte(req.getParameter("grade")));
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-DD");
+		
 		try {
+			mem.setSignup_time(sdf.parse(req.getParameter("signup_time")));
 			mem.setBirth(sdf.parse(req.getParameter("birth")));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		MemberDao memDao=new MemberDao();
-		boolean insert=false;
+		
+		boolean update=false;
 		try {
-			insert=memDao.insert(mem);
+			update=memDao.update(mem);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		req.getSession().setAttribute("insert", insert);
-		if(insert) {
-			resp.sendRedirect("./list.do");
+		if(update) { //관리자가 회원 수정했을때와 사용자가 수정한 경우로 url을 나누었습니다.
+			if(req.getRequestURI().equals("/model2_PicShop/admin/mem/update.do")) {
+				resp.sendRedirect("./list.do?page=1");	
+			}else {
+				resp.sendRedirect("./index.jsp");	
+			}		
 		}else {
-			resp.sendRedirect("./insert.do");
+			resp.sendRedirect("./update.do?id="+mem.getId());			
 		}
 	}
 }

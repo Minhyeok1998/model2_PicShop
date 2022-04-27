@@ -148,8 +148,7 @@ public class MemberDao implements MemberDaoAble{
 		Connection conn=SqlConnection.getConnection();
 		PreparedStatement ps=conn.prepareStatement(delete_sql);
 		ps.setString(1, id);
-		int delete=ps.executeUpdate(); //delete, update, insert => 성공한 수
-		//session 으로 성공 실패 (서버에 저장되는 객체)
+		int delete=ps.executeUpdate();
 		if(delete>0) {
 			return true;
 		}else{
@@ -178,7 +177,6 @@ public class MemberDao implements MemberDaoAble{
 			mem.setGrade(rs.getByte("grade"));
 			mem.setSignup_time(rs.getDate("signup_time"));
 			mem_list.add(mem);
-			
 		}
 		return mem_list;
 	}

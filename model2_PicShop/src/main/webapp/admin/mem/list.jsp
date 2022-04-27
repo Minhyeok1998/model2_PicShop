@@ -32,6 +32,32 @@
 <%
 	List<MemberVo> mem_list=(List<MemberVo>)request.getAttribute("mem_list");
 %>
+<%
+if(session.getAttribute("delete")!=null){
+	boolean delete=(boolean)session.getAttribute("delete");
+	String msg="";
+	if(delete){
+			msg="<script>alert(\"삭제 성공\");</script>";
+		}else{ 
+			msg="<script>alert(\"삭제 실패\");</script>";
+		} 
+	out.append(msg);
+	session.removeAttribute("delete");
+}
+%>
+<%
+/* if(session.getAttribute("insert")!=null){
+	boolean delete=(boolean)session.getAttribute("insert");
+	String msg="";
+	if(insert){ 
+		msg="<script>alert(\"등록 성공\");</script>";
+	}else{ 
+		msg="<script>alert(\"등록 실패\");</script>";
+	} 
+	out.append(msg);
+	session.removeAttribute("insert");
+} */
+%>
 <body>
 <!-- member 테이블 확인용 주석입니다.
 +----------------+--------------+------+-----+-------------------+-------------------+
@@ -65,7 +91,7 @@
 					  	<option value="1">오름차</option>
 					   	<option value="2">내림차</option>
 					</select>
-					<button type="button" class="btn btn-outline-dark navbar-brand">멤버 등록</button>
+					<button type="button" onclick="location.href='insert.jsp'" class="btn btn-outline-dark navbar-brand">멤버 등록</button>
 			    	<form class="d-flex">
 			      		<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 			      		<button class="btn btn-outline-success" type="submit">Search</button>

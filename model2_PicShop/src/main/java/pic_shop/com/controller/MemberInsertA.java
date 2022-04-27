@@ -1,4 +1,4 @@
-package pic_shop.com.contoroller;
+package pic_shop.com.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -14,8 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 import pic_shop.com.dao.MemberDao;
 import pic_shop.com.vo.MemberVo;
 
-@WebServlet("/mem/insert.do")
-public class MemberInsert extends HttpServlet{
+@WebServlet("/admin/mem/insert.do")
+public class MemberInsertA extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
