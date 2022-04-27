@@ -198,7 +198,7 @@ if(session.getAttribute("insert")!=null){
 		      </div>
 		      <div class="modal-body">
 		      <!-- joinFORM 시작 -->
-		      	<form action="./user/mem/insert.do" method="post" name="join_form">
+		      	<form action="./user/mem/insert.do" method="post" name="join_form" id="join_form">
     					<div class="col-md-5 mb-3">
       						<label for="id">ID</label>
       						
@@ -292,15 +292,10 @@ if(session.getAttribute("insert")!=null){
                         
                     </li>
                 </ul>
-				  
-  				<button class="btn btn-primary" type="submit">제출</button>
-			</form>
-
-					
+			</form>					
 		      </div>
 		      <div class="modal-footer">
-
-		        <button type="button" class="btn btn-secondary submit" data-bs-dismiss="modal">Sign up</button>
+		        <button type="submit" class="btn btn-secondary" form="join_form">Sign up</button>
 		        <button type="button" class="btn btn-primary">login</button>
 		      </div>
 		    </div>
