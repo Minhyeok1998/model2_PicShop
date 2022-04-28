@@ -50,7 +50,11 @@ public class MemberUpdate extends HttpServlet{
 			e.printStackTrace();
 		}
 		if(update) {
-			resp.sendRedirect("./index.jsp");			
+			if(req.getRequestURI().equals("/model2_PicShop/admin/mem/update.do")) {
+				resp.sendRedirect("./list.do?page=1");	
+			}else {
+				resp.sendRedirect("./index.jsp");	
+			}			
 		}else {
 			resp.sendRedirect("./update.do?id="+mem.getId()+"&login=false");			
 		}
