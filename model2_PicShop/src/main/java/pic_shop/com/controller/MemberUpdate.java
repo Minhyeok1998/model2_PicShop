@@ -1,3 +1,4 @@
+
 package pic_shop.com.controller;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import pic_shop.com.vo.MemberVo;
 import pic_shop.com.dao.MemberDao;
 
-@WebServlet("/admin/mem/update.do")
+@WebServlet("/user/mem/update.do")
 public class MemberUpdate extends HttpServlet{
 	MemberDao memDao= new MemberDao();
 	@Override
@@ -40,20 +41,18 @@ public class MemberUpdate extends HttpServlet{
 			e.printStackTrace();
 		}
 		
+		System.out.println(mem);
+		
 		boolean update=false;
 		try {
 			update=memDao.update(mem);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		if(update) { //관리자가 회원 수정했을때와 사용자가 수정한 경우로 url을 나누었습니다.
-			if(req.getRequestURI().equals("/model2_PicShop/admin/mem/update.do")) {
-				resp.sendRedirect("./list.do?page=1");	
-			}else {
-				resp.sendRedirect("./index.jsp");	
-			}		
+		if(update) {
+			resp.sendRedirect("./index.jsp");			
 		}else {
-			resp.sendRedirect("./update.do?id="+mem.getId());			
+			resp.sendRedirect("./update.do?id="+mem.getId()+"&login=false");			
 		}
 	}
 }
