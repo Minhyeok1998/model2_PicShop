@@ -3,7 +3,7 @@
 	Pic table의 정보를 list로 불러와서 화면에 bootstrap에서 카드형태로  구현 하겠습니다.
 	Category table의 정보를 가지고와서 왼쪽 사이드에 리스트로 구현하겠습니다.
  */
- 
+
  let pic_list;
  let cate_list;
  const picture_side = document.querySelector("div.picture_side");
@@ -21,7 +21,6 @@
 		let grid_area = `pic${i++}`;
 		for(const key in picture){
 			console.log(grid_area);
-			
 		}	
 	});
 	
@@ -32,5 +31,5 @@ async function showCateList(){
 	console.log(cate_list);
 }
 
-showCateList();
+//showCateList();
 showPicList();
