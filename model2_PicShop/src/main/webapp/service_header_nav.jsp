@@ -301,8 +301,6 @@ if(session.getAttribute("insert")!=null){
 		    </div>
   		</div>
 	</div>
-
-	
 	
 </body>
 </html>
