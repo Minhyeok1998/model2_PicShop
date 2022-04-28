@@ -6,12 +6,12 @@ import pic_shop.com.vo.MemberVo;
 
 public interface MemberDaoAble {
 
-	public List<MemberVo> list(int page) throws ClassNotFoundException, SQLException;	//°ü¸®ÀÚ ¸â¹ö ¸®½ºÆ®
-	public MemberVo detail_id(String id) throws ClassNotFoundException, SQLException;	//°ü¸®ÀÚ ¼öÁ¤, °³ÀÎÁ¤º¸ ¼öÁ¤ÆäÀÌÁö, °³ÀÎÁ¤º¸ »ó¼¼ÆäÀÌÁö 
+	public List<MemberVo> list(int page) throws ClassNotFoundException, SQLException;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®
+	public MemberVo detail_id(String id) throws ClassNotFoundException, SQLException;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	public MemberVo detail_phone(String phone) throws ClassNotFoundException, SQLException;
 	public MemberVo detail_email(String email) throws ClassNotFoundException, SQLException;
-	public boolean insert(MemberVo mem) throws ClassNotFoundException, SQLException;	//È¸¿øµî·Ï, È¸¿ø°¡ÀÔ
-	public boolean update(MemberVo mem) throws ClassNotFoundException, SQLException;	//È¸¿ø¼öÁ¤, °³ÀÎ Á¤º¸ ¼öÁ¤
-	public boolean delete(String id) throws ClassNotFoundException, SQLException;	//È¸¿ø»èÁ¦ => À§Çè ¿Ü·¡Å°·Î ÂüÁ¶ÇÏ´Â Å×ÀÌºíÀÌ ¸¹±â ¶§¹®¿¡
+	public boolean insert(MemberVo mem) throws ClassNotFoundException, SQLException;	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½, È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	public boolean update(MemberVo mem) throws ClassNotFoundException, SQLException;	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	public boolean delete(String id) throws ClassNotFoundException, SQLException;	//È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ => ï¿½ï¿½ï¿½ï¿½ ï¿½Ü·ï¿½Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 }

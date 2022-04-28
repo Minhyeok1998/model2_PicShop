@@ -145,8 +145,15 @@ public class MemberDao implements MemberDaoAble{
 
 	@Override
 	public boolean delete(String id) throws ClassNotFoundException, SQLException {
-		// TODO Auto-generated method stub
-		return false;
+		Connection conn=SqlConnection.getConnection();
+		PreparedStatement ps=conn.prepareStatement(delete_sql);
+		ps.setString(1, id);
+		int delete=ps.executeUpdate();
+		if(delete>0) {
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	
@@ -170,10 +177,33 @@ public class MemberDao implements MemberDaoAble{
 			mem.setGrade(rs.getByte("grade"));
 			mem.setSignup_time(rs.getDate("signup_time"));
 			mem_list.add(mem);
-			
 		}
 		return mem_list;
 	}
 	
+	public List<MemberVo> list(int page,String sortCol, int sortHow) throws ClassNotFoundException, SQLException {
+		List<MemberVo> mem_list=new ArrayList<>();
+		Connection conn=SqlConnection.getConnection();
+		String list_sort_sql=list_sql+" ORDER BY "+sortCol+((sortHow==1)?" ASC":" DESC");
+		System.out.println(list_sort_sql);
+		PreparedStatement ps=conn.prepareStatement(list_sort_sql);
+		ResultSet rs=ps.executeQuery();
+		MemberVo mem;
+		while(rs.next()) {
+			mem=new MemberVo();
+			mem.setId(rs.getString("id"));
+			mem.setPw(rs.getString("pw"));
+			mem.setName(rs.getString("name"));
+			mem.setEmail(rs.getString("email"));
+			mem.setPhone(rs.getString("phone"));
+			mem.setAddress(rs.getString("address"));
+			mem.setAddress_detail(rs.getString("address_detail"));
+			mem.setBirth(rs.getDate("birth"));
+			mem.setGrade(rs.getByte("grade"));
+			mem.setSignup_time(rs.getDate("signup_time"));
+			mem_list.add(mem);
+		}
+		return mem_list;
+	}
 
 }
