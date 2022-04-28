@@ -27,7 +27,7 @@ public class PicList extends HttpServlet {
 		if (req.getParameter("page") != null) {
 			page = Integer.parseInt(req.getParameter("page"));
 		}
-		
+		System.out.println("page : "+ page);
 		try {
 			if (req.getParameter("category") != null) {
 				category = req.getParameter("category");

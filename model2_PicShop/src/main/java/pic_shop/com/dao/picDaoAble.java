@@ -7,8 +7,8 @@ import pic_shop.com.vo.PicVo;
 
 public interface picDaoAble {
 	public List<PicVo> list(int page) throws ClassNotFoundException, SQLException ; 
-	public PicVo detail(String id) throws ClassNotFoundException, SQLException ; 
+	public PicVo detail(int num) throws ClassNotFoundException, SQLException ; 
 	public boolean insert(PicVo mem) throws ClassNotFoundException, SQLException ; 
 	public boolean update(PicVo mem) throws ClassNotFoundException, SQLException ; 
-	public boolean delete(String id) throws ClassNotFoundException, SQLException ; 
+	public boolean delete(int num) throws ClassNotFoundException, SQLException ; 
 }

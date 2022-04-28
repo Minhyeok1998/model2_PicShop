@@ -1,6 +1,7 @@
 package pic_shop.com.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,8 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import pic_shop.com.vo.CategoryVo;
 import pic_shop.com.vo.PicVo;
-
+import org.json.*;
 public class PicDao implements picDaoAble{
 	private String list_sql_All = "Select * from pic";
 	private String list_sql = "select p.*, c.name from pic p inner join category c on p.cate_num = c.cate_num ";
@@ -94,8 +96,32 @@ public class PicDao implements picDaoAble{
 	}
 
 	@Override
-	public PicVo detail(String id) throws ClassNotFoundException, SQLException {
-		return null;
+	public PicVo detail(int num) throws ClassNotFoundException, SQLException {
+		PicVo picture = new PicVo();
+		String detail_query = "SELECT * FROM PIC WHERE NUM=?";
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(detail_query);
+		ps.setInt(1, num);
+		ResultSet rs = ps.executeQuery();
+		if(rs!=null) {
+			while(rs.next()) {
+				picture.setNum(rs.getInt("num"));
+				picture.setName(rs.getString("name"));
+				picture.setTitle(rs.getString("title"));
+				picture.setCount(rs.getInt("count"));
+				picture.setPrice(rs.getInt("price"));
+				picture.setFrame(rs.getString("frame"));
+				picture.setCate_num(rs.getInt("cate_num"));
+				picture.setMain_img(rs.getString("main_img"));
+				picture.setImg_comment(rs.getString("img_comment"));
+				picture.setPic_num(rs.getString("pic_num"));
+				picture.setMember_id(rs.getString("member_id"));
+				picture.setPost_time(rs.getDate("post_time"));
+				picture.setSale_time(rs.getDate("sale_time"));
+				picture.setSale_end_time(rs.getDate("sale_end_time"));
+			}
+		}
+		return picture;
 	}
 
 	@Override
@@ -104,13 +130,76 @@ public class PicDao implements picDaoAble{
 	}
 
 	@Override
-	public boolean update(PicVo mem) throws ClassNotFoundException, SQLException {
+	public boolean update(PicVo pic) throws ClassNotFoundException, SQLException {
+		String update_sql = "update pic set member_id =?,count=?,cate_num =?,title=?,post_time=?,img_comment=?,price=?,sale_end_time=?,pic_num=?,name=?,main_img=?,state=?,sale_time=?,frame=? where num=?";
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(update_sql);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		ps.setString(1, pic.getMember_id());
+		ps.setInt(2, pic.getCount());
+		ps.setInt(3,pic.getCate_num());
+		ps.setString(4, pic.getTitle());
+		ps.setString(5,  sdf.format(pic.getPost_time()));
+		ps.setString(6,pic.getImg_comment());
+		ps.setInt(7, pic.getPrice());
+		ps.setString(8,sdf.format(pic.getPost_time()));
+		ps.setString(9, pic.getPic_num());
+		ps.setString(10, pic.getName());
+		ps.setString(11, pic.getMain_img());
+		ps.setInt(12, pic.getState());
+		ps.setString(13,sdf.format(pic.getPost_time()));
+		ps.setString(14, pic.getFrame());
+		ps.setInt(15, pic.getNum());
+		int update = ps.executeUpdate();
+		if(update >0) {
+			return true;
+		}
 		return false;
 	}
 
 	@Override
-	public boolean delete(String id) throws ClassNotFoundException, SQLException {
+	public boolean delete(int num) throws ClassNotFoundException, SQLException {
 		return false;
+	}
+	
+	public boolean delete(JSONArray ar) throws ClassNotFoundException,SQLException{
+		String query = "delete from pic where num in";
+		String where_query ="(";
+		for(int i = 0; i<ar.length(); i++) {
+			where_query+=String.valueOf(ar.get(i));
+			if(i != ar.length()-1) {
+				where_query +=",";
+			}
+		}
+		
+		where_query+=")";
+		query += where_query;
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(query);
+		int delete = ps.executeUpdate();
+		if(delete >0) {
+			return true;
+		}
+		return false;
+	}
+	
+	public List<CategoryVo> cateList() throws SQLException,ClassNotFoundException {
+		String cateList_sql = "SELECT * FROM CATEGORY";
+		List<CategoryVo> cate_list = new ArrayList<>();
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(cateList_sql);
+		ResultSet rs = ps.executeQuery();
+		if(rs!=null) {
+			while(rs.next()) {
+				CategoryVo cate = new CategoryVo();
+				cate.setCate_num(rs.getInt("cate_num"));
+				cate.setName(rs.getString("name"));
+				cate.setSub(rs.getInt("sub"));
+				cate_list.add(cate);
+			}
+		}
+		
+		return cate_list;
 	}
 
 	/*

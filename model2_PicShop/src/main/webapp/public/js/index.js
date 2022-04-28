@@ -10,7 +10,7 @@
  const clone_card  = document.querySelector("div.clone_card");
  
  async function showPicList(){
-	const res = await fetch("./service/pic/list.do");
+	const res = await fetch("./service/pic/list.do?page=1");
 	pic_list = await res.json();
 	//console.log(pic_list);
 	picture_side.innerHTML="";
