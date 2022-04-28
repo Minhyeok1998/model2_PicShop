@@ -21,14 +21,26 @@
 		grid-area:picture;
 		display:grid;
 		gap:10px;
+		padding:20px;
 		grid-template-columns: 4fr 4fr 4fr;
 		grid-template-rows: 5fr 5fr 5fr;
-		gird-template-areas :
+		grid-template-areas :
 			"pic1 pic2 pic3"
 			"pic4 pic5 pic6"
 			"pic7 pic8 pic9";
-		background-color:bisque;
+		/* background-color:bisque;  */
 	}
+	
+	.pic1 {grid-area:pic1;}
+	.pic2 {grid-area:pic2;}
+	.pic3 {grid-area:pic3;}
+	.pic4 {grid-area:pic4;}
+	.pic5 {grid-area:pic5;}
+	.pic6 {grid-area:pic6;}
+	.pic7 {grid-area:pic7;}
+	.pic8 {grid-area:pic8;}
+	.pic9 {grid-area:pic9;} 
+	
 </style>
 </head>
 <body>
@@ -56,8 +68,8 @@
 		</div>
 		<div class="picture_side">
 		
-			<div class="card clone_card" style="width: 18rem;">
-				  <img class="card-img-top pic1 main_img" src="<%=request.getContextPath()%>/public/image/1484629.png" alt="Card image cap">
+			<div class="card clone_card display_None" style="width: 18rem;">
+				  <img class="card-img-top  main_img" src="<%=request.getContextPath()%>/public/image/1484629.png" alt="Card image cap">
 				  <div class="card-body">
 				    <h5 class="card-title title">그림 제목</h5>
 				    <p class="card-text img_comment">comments 를 작성하는 곳</p>

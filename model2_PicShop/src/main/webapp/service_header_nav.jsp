@@ -181,7 +181,9 @@ if(session.getAttribute("insert")!=null){
 					
 		      </div>
 		      <div class="modal-footer">
+
 		        <button type="button" class="btn btn-secondary" id="join_btn2" data-bs-toggle="modal" data-bs-target="#JoinModal">회원가입</button>
+
 		        <button type="button" class="btn btn-primary">login</button>
 		      </div>
 		    </div>
@@ -292,7 +294,9 @@ if(session.getAttribute("insert")!=null){
                         
                     </li>
                 </ul>
+
 			</form>					
+
 		      </div>
 		      <div class="modal-footer">
 		        <button type="submit" class="btn btn-secondary" form="join_form">Sign up</button>
