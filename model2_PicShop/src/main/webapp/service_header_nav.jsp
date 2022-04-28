@@ -153,6 +153,9 @@ if(session.getAttribute("insert")!=null){
 			<li class="nav-item"><a class="nav-link" href="#">자유 게시판</a></li>
 		</ul>
 	</nav>
+	
+
+
 
 		<div class="modal" id="LoginModal" tabindex="-1" aria-labelledby="LoginModalLabel" aria-hidden="true">
   		<div class="modal-dialog modal-dialog-centered">
@@ -189,6 +192,8 @@ if(session.getAttribute("insert")!=null){
 		    </div>
   		</div>
 	</div>
+
+
 <div class="modal" id="JoinModal" tabindex="-1" aria-labelledby="JoinModalLabel" aria-hidden="true">
   		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
 		    <div class="modal-content">
@@ -294,7 +299,8 @@ if(session.getAttribute("insert")!=null){
                 </ul>
 
   				<button class="btn btn-primary" type="submit">제출</button>
-			</form>			
+
+			</form>					
 
 		      </div>
 		      <div class="modal-footer">

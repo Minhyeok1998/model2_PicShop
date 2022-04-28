@@ -15,7 +15,7 @@ import org.json.*;
 public class PicDao implements picDaoAble{
 	private String list_sql_All = "Select * from pic";
 	private String list_sql = "select p.*, c.name from pic p inner join category c on p.cate_num = c.cate_num ";
-	
+	private String detail_sql_num="select * from pic where num=?";
 	public List<PicVo> list() throws ClassNotFoundException,SQLException{
 		List<PicVo> pic_list= new ArrayList<>();
 		Connection conn = SqlConnection.getConnection();
@@ -122,6 +122,42 @@ public class PicDao implements picDaoAble{
 			}
 		}
 		return picture;
+	}
+	
+
+	public PicVo detail_num(int num) throws ClassNotFoundException, SQLException {
+		Connection conn=SqlConnection.getConnection();
+		PreparedStatement ps=conn.prepareStatement(detail_sql_num);
+		ps.setInt(1, num);
+		ResultSet rs=ps.executeQuery();
+		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		PicVo pic = new PicVo();
+		while(rs.next()) {
+			pic.setNum(rs.getInt("num"));
+			pic.setName(rs.getString("name"));
+			pic.setTitle(rs.getString("title"));
+			pic.setCount(rs.getInt("count"));
+			pic.setPrice(rs.getInt("price"));
+			pic.setFrame(rs.getString("frame"));
+			pic.setMain_img(rs.getString("main_img"));
+			pic.setImg_comment(rs.getString("img_comment"));
+			pic.setPic_num(rs.getString("pic_num"));
+			pic.setMember_id(rs.getString("member_id"));
+			//pic.setCate_name(rs.getString("c.name"));
+			try {
+				pic.setPost_time(sdf.parse(rs.getString("post_time")));
+				pic.setSale_time(sdf.parse(rs.getString("sale_time")));
+				if(rs.getString("sale_end_time")!=null) {
+					pic.setSale_end_time(sdf.parse(rs.getString("sale_end_time")));
+				}
+			} catch (ParseException | SQLException e) {
+				e.printStackTrace();
+			}
+			pic.setState(rs.getByte("state"));
+			pic.setCate_num(rs.getInt("cate_num"));
+
+		}
+		return pic;
 	}
 
 	@Override
