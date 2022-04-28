@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pic_shop.com.vo.MemberVo;
-public class MemberDao implements MemberDaoAble{
+public class MemberDao implements memberDaoAble{
 
 	
 	private String list_sql="SELECT * FROM MEMBER";

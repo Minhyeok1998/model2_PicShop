@@ -105,6 +105,7 @@ if(session.getAttribute("insert")!=null){
 		font-family:'YUniverse-B';
 		font-size:20px;
 	}
+
 	
 
 </style>
@@ -202,12 +203,13 @@ if(session.getAttribute("insert")!=null){
 		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		      </div>
 		      <div class="modal-body">
+		      
 		      <!-- joinFORM 시작 -->
 		      	<form action="./user/mem/insert.do" method="post" name="join_form" id="join_form">
+
     					<div class="col-md-5 mb-3">
       						<label for="id">ID</label>
-      						
-      						<input name="id" type="text" class="form-control is-invalid" id="id" placeholder="ID" value="min123" required>
+      						<input name="id" type="text" class="form-control is-invalid" id="id" placeholder="ID" value="" required>
       						<div class="invalid-feedback">
       							사용 불가!
       						</div>
@@ -215,10 +217,10 @@ if(session.getAttribute("insert")!=null){
        						 	멋진 아이디인걸요~
       						</div>
     					</div>
-   					
+   			
     				<div class="col-md-6 mb-3">
       					<label for="pw">PassWord</label>
-      					<input name="pw" type="password" class="form-control is-invalid" id="pw" placeholder="Password" value="1234" required>
+      					<input name="pw" type="password" class="form-control is-invalid" id="pw" placeholder="Password" value="" required>
 	      				<div id="pwCheck" class="invalid-feedback">
 	       					사용할 수 없는 비밀번호
 	      				</div>
@@ -272,11 +274,16 @@ if(session.getAttribute("insert")!=null){
 				      <label for="birth">Birth</label>
 				      <input name="birth" type="date" class="form-control is-invalid" id="birth" required>
 				    </div>
+				    
+					<div class="col-md-6 mb-3" style="display:none">
+				      <label for="grade">등급</label>
+				      <input name="grade" type="text" class="form-control is-valid" id="grade" value="0" placeholder="" required readonly >
+				    </div>
 	  		
 				  <div class="form-group">
 				    <div class="form-check">
-				      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" required>
-				      <label class="form-check-label" for="invalidCheck3">
+				      <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3"  onclick='is_checked()' name="invalidCheck3" required>
+				      <label class="form-check-label" for="invalidCheck3" >
 				        Agree to terms and conditions
 				      </label>
 				      <div class="invalid-feedback">
@@ -284,21 +291,6 @@ if(session.getAttribute("insert")!=null){
 				      </div>
 				    </div>
 				  </div>
-				   <ul class="container">
-                    <li class="item center">
-                        등급
-                    </li>
-                    <li class="item">
-                      	<select size="1" name="grade">
-							<option value="0" selected>사용자(0)</option>
-						</select>
-                    </li>
-                    <li class="item">
-                        
-                    </li>
-                </ul>
-
-  				<button class="btn btn-primary" type="submit">제출</button>
 
 			</form>					
 
