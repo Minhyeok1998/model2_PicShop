@@ -121,8 +121,9 @@
 	<nav id="top_second_nav">
 		<ul class="nav justify-content-center  nav-pills nav-fill">
 			<li class="nav-item"><a class="nav-link active" href="#">Member 관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Picture 관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/picture/list.do">Picture 관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">Board 관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/category/list.do">Category 관리</a></li>
 		</ul>
 	</nav>
 <!-- 	</div> -->
