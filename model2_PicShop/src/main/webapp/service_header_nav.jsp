@@ -111,11 +111,14 @@ if(session.getAttribute("insert")!=null){
 </head>
 <body>
 	<%
-		 String login_id = String.valueOf(request.getSession().getAttribute("login_id")); // session 에 저장된 id =>세션에 저장된 login_id가 없으면  null 이나온다.
-		/* String login_id = "admin"; */
-		/* String alert = "<script>alert("+login_id+")</script>";
-		out.append(alert); */
-		/* request.getSession().invalidate(); */
+		String login_id = "";
+		//int grade = (int)request.getSession().getAttribute("grade");
+		
+		if(!String.valueOf(request.getSession().getAttribute("id")).equals("없는 아이디") && request.getSession().getAttribute("id")!=null ){
+			login_id = String.valueOf(request.getSession().getAttribute("id"));
+		}else{
+			login_id="로그인 해주세요!";
+		}
 	%>
 
 	<nav  >
@@ -129,7 +132,7 @@ if(session.getAttribute("insert")!=null){
 			<li class="nav-item">
 				<ul class="nav justify-content-space-evenly align-items-center">
 <!-- 					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li> -->
-					<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals("null"))?"로그인해주세요":login_id%></span></li>
+					<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals(""))?"로그인해주세요":login_id%></span></li>
 					<li class="nav-item"><a class="  btn btn-primary" href="javacript:void(0)" id="login_btn" data-bs-toggle="modal" data-bs-target="#LoginModal">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
 					<li class="nav-item"><a class="  btn btn-primary" href="javascript:void(0)" id="join_btn" data-bs-toggle="modal" data-bs-target="#JoinModal" >회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
 					<li id="user_info" class='nav-item display_None'> <!--로그인 되어있을때 display_None을 지워준다.-->
@@ -160,15 +163,15 @@ if(session.getAttribute("insert")!=null){
 		      </div>
 		      <div class="modal-body">
 		      <!-- loging form 시작 -->
-		      <form action="">
+		      <form action="<%=request.getContextPath()%>/user/login.do" method="POST" name="login_form" id="login_form">
 					  <div class="form-group">
 					    <label for="InputID1">ID</label>
-					    <input type="id" class="form-control" id="InputID1" aria-describedby="idHelp" placeholder="Enter ID">
+					    <input name="id" type="id" class="form-control" id="InputID1" aria-describedby="idHelp" placeholder="Enter ID">
 					    <small id="idHelp" class="form-text text-muted">아이디를 입력해주세요</small>
 					  </div>
 					  <div class="form-group">
 					    <label for="InputPassword1">Password</label>
-					    <input type="password" class="form-control" id="InputPassword1" placeholder="Password">
+					    <input name="pwd" type="password" class="form-control" id="InputPassword1" placeholder="Password">
 					  </div>
 					  <div class="form-check">
 					    <input type="checkbox" class="form-check-input" id="LoginCheck1">
@@ -181,7 +184,7 @@ if(session.getAttribute("insert")!=null){
 
 		        <button type="button" class="btn btn-secondary" id="join_btn2" data-bs-toggle="modal" data-bs-target="#JoinModal">회원가입</button>
 
-		        <button type="button" class="btn btn-primary">login</button>
+		        <button type="submit" form="login_form"  class="btn btn-primary">login</button>
 		      </div>
 		    </div>
   		</div>

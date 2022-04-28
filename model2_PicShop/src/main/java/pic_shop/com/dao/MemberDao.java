@@ -28,7 +28,7 @@ public class MemberDao implements MemberDaoAble{
 	private String detail_sql_id="SELECT * FROM MEMBER WHERE iD=?";
 	private String detail_sql_phone="SELECT * FROM MEMBER WHERE PHONE=?";
 	private String detail_sql_email="SELECT * FROM MEMBER WHERE EMAIL=?";
-	
+	private String login_sql = "SELECT count(*) from member where id=? and pw=?";
 
 	/*
 	 * @Override public List<MemberVo> list(int page) throws ClassNotFoundException,
@@ -205,5 +205,40 @@ public class MemberDao implements MemberDaoAble{
 		}
 		return mem_list;
 	}
-
+	
+	public boolean login(String id, String pwd) throws SQLException,ClassNotFoundException {
+		
+		Connection conn  =SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(login_sql);
+		ps.setString(1, id);
+		ps.setString(2, pwd);
+		int count = 0;
+		ResultSet rs = ps.executeQuery();
+		if(rs!=null) {
+			while(rs.next()) {
+				count = rs.getInt("count(*)");
+			}
+		}
+		
+		if(count == 0) {
+			return false;
+		}else {
+			return true;
+		}
+	}
+	
+	public int getGrade(String id) throws SQLException,ClassNotFoundException{
+		int grade = 0;
+		String grade_sql = "SELECT grade FROM MEMBER WHERE ID=?";
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(grade_sql);
+		ps.setString(1, id);
+		ResultSet rs = ps.executeQuery();
+		if(rs!=null) {
+			while(rs.next()) {
+				grade = rs.getInt("grade");
+			}
+		}
+		return grade;
+	}
 }

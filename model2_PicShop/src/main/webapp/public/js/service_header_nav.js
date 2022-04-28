@@ -89,3 +89,14 @@ join_form.phone.addEventListener("blur",async(e)=>{
 		}
 	});
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
