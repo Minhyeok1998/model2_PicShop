@@ -46,8 +46,8 @@ if(session.getAttribute("delete")!=null){
 }
 %>
 <%
-/* if(session.getAttribute("insert")!=null){
-	boolean delete=(boolean)session.getAttribute("insert");
+ if(session.getAttribute("insert")!=null){
+	boolean insert=(boolean)session.getAttribute("insert");
 	String msg="";
 	if(insert){ 
 		msg="<script>alert(\"등록 성공\");</script>";
@@ -56,7 +56,7 @@ if(session.getAttribute("delete")!=null){
 	} 
 	out.append(msg);
 	session.removeAttribute("insert");
-} */
+}
 %>
 <body>
 <!-- member 테이블 확인용 주석입니다.
@@ -79,15 +79,19 @@ if(session.getAttribute("delete")!=null){
 		<div class="memHeader">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			  	<div id="memDivHeader" class="container-fluid">
-			  		<button type="button" class="btn btn-outline-dark navbar-brand">정렬</button>
-			  		<select style="width:200px;" class="form-select form-select-sm navbar-brand" aria-label=".form-select-sm example">
-					  	<option value="1">num</option>
-					   	<option value="2">name</option>
-					   	<option value="3">title</option>
-					   	<option value="4">count</option>
-					   	<option value="5">price</option>
+			  		<button id="sortBtn" type="button" class="btn btn-outline-dark navbar-brand">정렬</button>
+			  		<select id="sortCol" style="width:200px;" class="form-select form-select-sm navbar-brand" aria-label=".form-select-sm example">
+					  	<option value="id">아이디</option>
+					   	<option value="phone">핸드폰</option>
+					   	<option value="email">이메일</option>
+					   	<option value="name">이름</option>
+					   	<option value="signup_time">등록일자</option>
+					   	<option value="birth">생년월일</option>
+					   	<option value="address">주소</option>
+					   	<option value="address_detail">상세주소</option>
+					   	<option value="grade">등급</option>
 					</select>
-					<select style="width:200px;" class="form-select form-select-sm navbar-brand" aria-label=".form-select-sm example">
+					<select id="sortHow" style="width:200px;" class="form-select form-select-sm navbar-brand" aria-label=".form-select-sm example">
 					  	<option value="1">오름차</option>
 					   	<option value="2">내림차</option>
 					</select>
@@ -146,20 +150,25 @@ if(session.getAttribute("delete")!=null){
 	</div>
 </body>
 <script>
-	function postDel(id){
-		//삭제를 누르면 폼과 인풋생성후 내부에 id를 담아서 post방식으로 전송
-		let f = document.createElement('form');
-	    let obj;
-	    obj = document.createElement('input');
-	    obj.setAttribute('type', 'hidden');
-	    obj.setAttribute('name', 'id');
-	    obj.setAttribute('value', id);
-	    
-	    f.appendChild(obj);
-	    f.setAttribute('method', 'post');
-	    f.setAttribute('action', 'delete2.do');
-	    document.body.appendChild(f);
-	    f.submit();
-	}
+sortBtn.addEventListener("click",()=>{
+		console.log(sortCol.value);
+		console.log(sortHow.value);
+		location.href="./list.do?sortCol="+sortCol.value+"&sortHow="+sortHow.value;	
+});
+function postDel(id){
+	//삭제를 누르면 폼과 인풋생성후 내부에 id를 담아서 post방식으로 전송
+	let f = document.createElement('form');
+    let obj;
+    obj = document.createElement('input');
+    obj.setAttribute('type', 'hidden');
+    obj.setAttribute('name', 'id');
+    obj.setAttribute('value', id);
+    
+    f.appendChild(obj);
+    f.setAttribute('method', 'post');
+    f.setAttribute('action', 'delete2.do');
+    document.body.appendChild(f);
+    f.submit();
+}
 </script>
 </html>

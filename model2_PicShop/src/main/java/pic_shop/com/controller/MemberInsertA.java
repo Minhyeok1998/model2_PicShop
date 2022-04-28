@@ -19,7 +19,6 @@ public class MemberInsertA extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		System.out.println("\"insert.do doGet()\"");
 		req.getRequestDispatcher("./insert.jsp").forward(req, resp);
 	}
 	@Override

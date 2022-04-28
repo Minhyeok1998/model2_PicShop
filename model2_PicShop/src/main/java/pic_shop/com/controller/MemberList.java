@@ -21,13 +21,15 @@ public class MemberList extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String page_str=req.getParameter("page");
+		String sort_col=(req.getParameter("sortCol")!=null)?req.getParameter("sortCol"):"id";
+		int sort_how=(req.getParameter("sortHow")!=null)?Integer.parseInt(req.getParameter("sortHow")):1;
 		int page=(page_str!=null)?Integer.parseInt(page_str):1;
 		List<MemberVo> mem_list=new ArrayList<>();
 		try {
-			mem_list=memDao.list(page);
+			mem_list=memDao.list(page,sort_col,sort_how);
 		} catch (ClassNotFoundException |SQLException e) {
 			e.printStackTrace();
-		}
+		}	
 		req.setAttribute("mem_list", mem_list);
 		req.getRequestDispatcher("./list.jsp").forward(req, resp);
 	}
