@@ -102,12 +102,12 @@
 	<!-- <div class="fixed-top"> -->
 	<nav  >
 		<ul id="top_first_nav" class="nav justify-content-space-evenly align-items-center" style="padding:10px;">
-			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link">Draw</a></li>
+			<li class="nav-item"> <a href="<%=request.getContextPath()%>/admin/mem/list.do" class="big_logo nav-link">Draw</a></li>
 			<li class="nav-item">
 				<ul class="nav justify-content-space-evenly align-items-center">
 					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li>
-					<li class="nav-item"><a class=" nav-link" href="#" id="login_value">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
-					<li class="nav-item"><a class=" nav-link" href="#">회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
+					<li class="nav-item"><a class=" nav-link" href="#" id="login_value">logout</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
+					<li class="nav-item"><a class=" nav-link" href="<%=request.getContextPath() %>/">서비스화면 이동</a></li>
 					<li id="user_info" class='nav-item display_None'> <!--로그인 되어있을때 display_None을 지워준다.-->
 						<ul class="nav">
 							<li class="nav-item"><a class="nav-link" href="#" id="user_write_Atg">내가 작성한 글</a></li>
@@ -120,10 +120,11 @@
 	</nav>
 	<nav id="top_second_nav">
 		<ul class="nav justify-content-center  nav-pills nav-fill">
-			<li class="nav-item"><a class="nav-link active" href="#">Member 관리</a></li>
+			<li class="nav-item"><a class="nav-link active" href="<%=request.getContextPath()%>/admin/mem/list.do">Member 관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/picture/list.do">Picture 관리</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Board 관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Pic_comment 관리</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/admin/category/list.do">Category 관리</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Board 관리</a></li>
 		</ul>
 	</nav>
 <!-- 	</div> -->

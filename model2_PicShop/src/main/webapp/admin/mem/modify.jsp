@@ -58,6 +58,7 @@ body{
 }
 </style>
 <body>
+<%@ include file="/admin_header_nav.jsp" %>
 	<h1 class="h1Cl">멤버 수정 페이지</h1>
 	<main>
     	<div class="divMain">

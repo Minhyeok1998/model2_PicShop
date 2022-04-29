@@ -1,4 +1,4 @@
-package pic_shop.com.controller;
+package pic_shop.com.controller.admin;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -32,13 +32,13 @@ public class MemberDelete2 extends HttpServlet{
 		if(delete) {
 			resp.setContentType("text/html; charset=utf-8");
 			PrintWriter out = resp.getWriter(); 
-			out.println("<script>alert('ì‚­ì œì„±ê³µ!!!'); location.href='./list.do?page=1'</script>"); 
+			out.println("<script>alert('?‚­? œ?„±ê³?!!!'); location.href='./list.do?page=1'</script>"); 
 			out.flush();
 						
 		}else {
 			resp.setContentType("text/html; charset=utf-8");
 			PrintWriter out = resp.getWriter(); 
-			out.println("<script>alert('ì‚­ì œì‹¤íŒ¨!!!'); location.href='./list.do?page=1'</script>"); 
+			out.println("<script>alert('?‚­? œ?‹¤?Œ¨!!!'); location.href='./list.do?page=1'</script>"); 
 			out.flush();
 			//resp.sendRedirect("./list.do?page=1");	
 		}

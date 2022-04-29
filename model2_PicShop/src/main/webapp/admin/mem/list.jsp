@@ -74,12 +74,13 @@ if(session.getAttribute("delete")!=null){
 | birth          | date         | NO   |     | NULL              |                   |
 | grade          | tinyint      | NO   |     | 0                 |                   |
 +----------------+--------------+------+-----+-------------------+-------------------+ -->
+	 <%@ include file="/admin_header_nav.jsp" %>
 	<h1 class="h1Cl">멤버 관리 페이지</h1>
 	<div class="memDiv">
 		<div class="memHeader">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			  	<div id="memDivHeader" class="container-fluid">
-			  		<button id="sortBtn" type="button" class="btn btn-outline-dark navbar-brand">정렬</button>
+			  		
 			  		<select id="sortCol" style="width:200px;" class="form-select form-select-sm navbar-brand" aria-label=".form-select-sm example">
 					  	<option value="id">아이디</option>
 					   	<option value="phone">핸드폰</option>
@@ -95,6 +96,7 @@ if(session.getAttribute("delete")!=null){
 					  	<option value="1">오름차</option>
 					   	<option value="2">내림차</option>
 					</select>
+					<button id="sortBtn" type="button" class="btn btn-outline-dark navbar-brand">정렬</button>
 					<button type="button" onclick="location.href='insert.jsp'" class="btn btn-outline-dark navbar-brand">멤버 등록</button>
 			    	<form class="d-flex">
 			      		<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

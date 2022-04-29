@@ -136,6 +136,7 @@ if(session.getAttribute("insert")!=null){
 					<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals(""))?"로그인해주세요":login_id%></span></li>
 					<li class="nav-item"><a class="  btn btn-primary" href="javacript:void(0)" id="login_btn" data-bs-toggle="modal" data-bs-target="#LoginModal">login</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
 					<li class="nav-item"><a class="  btn btn-primary" href="javascript:void(0)" id="join_btn" data-bs-toggle="modal" data-bs-target="#JoinModal" >회원가입</a></li> <!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
+					<li class="nav-item"><a class="  btn btn-primary" href="<%=request.getContextPath()%>/admin/mem/list.do">관리자 페이지</a></li>
 					<li id="user_info" class='nav-item display_None'> <!--로그인 되어있을때 display_None을 지워준다.-->
 						<ul class="nav">
 							<li class="nav-item"><a class="nav-link" href="#" id="user_write_Atg">내가 작성한 글</a></li>
@@ -148,7 +149,7 @@ if(session.getAttribute("insert")!=null){
 	</nav>
 	<nav id="top_second_nav">
 		<ul class="nav justify-content-center  nav-pills nav-fill">
-			<li class="nav-item"><a class="nav-link active" href="#">그림 list</a></li>
+			<li class="nav-item"><a class="nav-link active" href="<%=request.getContextPath()%>/">그림 list</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">그림 그리기</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">그림 평가하기</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">자유 게시판</a></li>
