@@ -26,6 +26,7 @@
 
 .rightside {
 	grid-area: right;
+	
 }
 
 .range {
@@ -49,16 +50,17 @@
 }
 </style>
 <body>
-	<div class=mycontainer>
-		<div class=leftside>
-			<div class=range>
-				<div class="controls">
+	<div class='mycontainer'>
+		<div class='leftside'>
+			<div class='range'>
+				 <div class="controls">
 					<div class="controls_range">
 						<input type="range" id="jsRange" min="0.1" max="5.0" value="2.5"
 							step="0.1" />
 					</div>
 				</div>
-				<div class=color>
+				</div>
+				<div class='color'>
 					<div class="controls_colors" id="jsColors">
 						<div class="controls_color jsColor"
 							style="background-color: #2c2c2c;"></div>
@@ -78,16 +80,17 @@
 							style="background-color: #5856d6;"></div>
 					</div>
 				</div>
-				<div class=canvas>
-					<canvas id="jsCanvas" class="canvas"></canvas>
+				<div class='canvas'>
+					 <canvas id="jsCanvas" class="canvas"></canvas>
 				</div>
-				<div class=save>
+				<div class='stroke'></div>
+				<div class='save'>
 					<div class="controls_btns">
 						<button id="jsMode">Fill</button>
 						<button id="jsSave">Save</button>
-					</div>
+					</div> 
 				</div>
-			</div>
+			
 		</div>
 		<div class=rightside>
 			<form name="pic_insert_form">

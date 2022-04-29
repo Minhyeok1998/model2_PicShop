@@ -55,6 +55,25 @@
 	  </div>
 	  <div class="tab-pane fade" id="pills-modify" role="tabpanel" aria-labelledby="pills-modify-tab">
 	  		<h3>카테고리 수정</h3>
+	  		<form name="update_form">
+	  			<p class="form-group">
+	  				<label for="cate_num">cate_num</label>
+	  				<input name='cate_num' class="form-control" id="cate_num" readonly>
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="name">name</label>
+	  				<input name="name" class='form-control' id="name">
+	  			</p>
+	  			<p class="form-group">
+	  				<select name="sub" class="form-control">
+	  				
+	  				
+	  				</select>
+	  			</p>
+	  			<p class="form-group">
+	  				<input type="submit" class="form-control btn btn-warning" value="업데이트">
+	  			</p>
+	  		</form>
 	  </div>
   </div>
 </div>

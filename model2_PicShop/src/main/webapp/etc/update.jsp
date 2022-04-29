@@ -23,7 +23,7 @@ if(session.getAttribute("update")!=null){
 }
 %>
 <body>
-<%@ include file="/nav_header.jsp" %>
+<%-- <%@ include file="/nav_header.jsp" %> --%>
 <script>
 window.onload=function(){	
 	const MemInsert=document.forms.MemInsert;

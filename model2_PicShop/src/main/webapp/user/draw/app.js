@@ -51,6 +51,7 @@ function handleRangeChange(event){
 const size = event.target.value;
 ctx.lineWidth = size;
 }
+/**여기여기!! 여기! */
 function handleModeClick(){
 if(filling ===true){
 filling=false;

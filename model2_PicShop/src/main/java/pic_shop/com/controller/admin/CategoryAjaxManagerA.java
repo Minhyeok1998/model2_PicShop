@@ -22,18 +22,28 @@ public class CategoryAjaxManagerA extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<CategoryVo> cate_list = new ArrayList<>();
 		if(req.getParameter("cate_num")!= null) {
-			//modify 할때 구현할 위치
+			int cate_num = Integer.parseInt(req.getParameter("cate_num"));
+			CategoryVo cate = new CategoryVo();
+			try {
+				 cate = catedao.detail(cate_num);
+			} catch (ClassNotFoundException | SQLException e) {
+				e.printStackTrace();
+			}
+			resp.setContentType("application/json; charset=UTF-8");
+			resp.getWriter().append(cate.toString());
+			
 		}else {
 			try {
 				cate_list = catedao.list(0);
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
+			resp.setContentType("application/json; charset=UTF-8");
+			resp.getWriter().append(cate_list.toString());
 		}
 		
 		
-		resp.setContentType("application/json; charset=UTF-8");
-		resp.getWriter().append(cate_list.toString());
+		
 	}
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -54,5 +64,29 @@ public class CategoryAjaxManagerA extends HttpServlet{
 		
 		resp.setContentType("application/json; charset=UTF-8");
 		resp.getWriter().append("{\"delete\":"+delete+"}");
+	}
+	@Override
+	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		CategoryDao catedao = new CategoryDao();
+		BufferedReader br = req.getReader();
+		StringBuffer sb = new StringBuffer();
+		String line="";
+		while((line = br.readLine())!=null) {
+			sb.append(line);
+		}
+		
+		JSONObject json = new JSONObject(sb.toString());
+		CategoryVo cate = new CategoryVo();
+		cate.setCate_num(json.getInt("cate_num"));
+		cate.setName(json.getString("name"));
+		cate.setSub(json.getInt("sub"));
+		boolean update = false;
+		try {
+			update = catedao.update(cate);
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		resp.setContentType("application/json; charset=UTF-8");
+		resp.getWriter().append("{\"update\": "+update+"}");
 	}
 }

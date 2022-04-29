@@ -26,10 +26,10 @@ insert_tab.addEventListener("click",()=>{insertT.show()});
 const cate_body = document.querySelector(".cate_body");
 const clone_tr = document.querySelector(".clone_tr");
 const delete_btn = document.getElementById('delete_btn');
-
+let cate_list;
 async function showCategoryList(){
 	const res =await fetch("./ajax.do");
-	const cate_list = await res.json();
+	 cate_list = await res.json();
 	console.log(cate_list);
 	cate_body.innerHTML="";
 	cate_list.forEach((category)=>{
@@ -45,8 +45,37 @@ async function showCategoryList(){
 	})
 }
 showCategoryList();
-function cateDetail(cate_num){ //수정페이지로 갈섯
-	alert(cate_num);
+const update_form = document.forms.update_form;
+
+async function cateDetail(cate_num){ //수정페이지로 갈섯
+	modifyT.show();
+	const optTg = document.createElement("option");
+	optTg.setAttribute("value",0);
+	optTg.label=`최상위(0)`;
+	update_form.sub.append(optTg);
+	cate_list.forEach((item)=>{
+		const optionTg = document.createElement("option");
+		optionTg.setAttribute("value",item['cate_num']);
+		optionTg.label=`${item['name']}(${item['cate_num']})`;
+		update_form.sub.append(optionTg);
+	})
+	const res = await fetch("./ajax.do?cate_num="+cate_num);
+	const detail = await res.json();
+	const input_list = update_form.querySelectorAll("[name]");
+	input_list.forEach((input)=>{
+		if(input.name == 'sub'){
+			
+			input.querySelectorAll(`option[value]`).forEach((item)=>{
+				if(item.value == detail['sub']){
+					item.setAttribute('selected',true);
+				}
+			})
+		}else{
+			input.value = detail[input.getAttribute('name')];
+			
+		}
+	})
+	
 }
 
 delete_btn.addEventListener('click',async ()=>{
@@ -72,3 +101,23 @@ delete_btn.addEventListener('click',async ()=>{
 	showCategoryList();
 
 });
+
+
+update_form.addEventListener("submit",async (e)=>{
+	e.preventDefault();
+	const input_list = update_form.querySelectorAll("[name]");
+	const obj = new Object();
+	input_list.forEach((item)=>{
+		obj[item.name] = item.value;
+	})
+	const res = await fetch("./ajax.do",{method:"PUT",headers:{"Content-Type":"application/json; charset=UTF-8"},body:JSON.stringify(obj)});
+	const result = await res.json();
+	if(result['update']){
+		alert("수정 성공!");
+		listT.show();
+		showCategoryList();
+	}else{
+		alert("수정 실패!");
+	}
+	
+})
