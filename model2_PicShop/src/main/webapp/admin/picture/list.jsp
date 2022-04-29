@@ -10,7 +10,6 @@
 <script defer src="<%=request.getContextPath()%>/public/js/picture_admin.js"></script>
 <style>
 
-
 </style>
 </head>
 <body>
@@ -33,24 +32,24 @@
 	  <div class="tab-pane fade show active" id="pills-list" role="tabpanel" aria-labelledby="pills-list-tab">
 	  		<h3>리스트 출력</h3>
 	  		<button id="deleteBtn">일괄 삭제</button>
-	  		<table class="table table-bordered table-striped  table-primary">
+	  		<table class="table table-bordered table-striped  table-primary align-middle">
   				<thead class="thead-success">
   					<tr>
-  						<th class="col-md-1">num</th>
-						<th class="col-md-2">name</th>
-  						<th class="col-md-2">title</th>
-						<th class="col-md-1">count</th>
-						<th class="col-md-1">price</th>
-						<th class="col-md-3">main_img</th>
-						<th class="col-md-3">img_comment</th>
-						<th class="col-md-2">pic_num</th>
-						<th class="col-md-2">member_id</th>
-						<th class="col-md-4">post_time</th>
-						<th class="col-md-4">sale_time</th>
-						<th class="col-md-1">state</th>
-						<th class="col-md-1">cate_num</th>
-						<th class="col-md-1">수정</th>
-						<th class="col-md-1">삭제</th>
+  						<th  class="md-1">num</th>
+						<th  class="md-2">name</th>
+  						<th class="md-2">title</th>
+						<th class="md-1 ">count</th>
+						<th class="md-1">price</th>
+						<th class="md-3">main_img</th>
+						<th class="md-3">img_comment</th>
+						<th class="md-2">pic_num</th>
+						<th class="md-2">member_id</th>
+						<th class="md-4">post_time</th>
+						<th class="md-4">sale_time</th>
+						<th class="md-1 ">state</th>
+						<th class="md-1">cate_num</th>
+						<th class="md-1">modify</th>
+						<th class="mb-3">delete</th>
   					</tr>
   				</thead>
   				<tbody id="pic_tbody">
@@ -74,8 +73,76 @@
   				</tbody>
 			</table>
 	  </div>
-	  <div class="tab-pane fade" id="pills-insert" role="tabpanel" aria-labelledby="pills-insert-tab">Picture 추가
-	  
+	  <div class="tab-pane fade" id="pills-insert" role="tabpanel" aria-labelledby="pills-insert-tab">
+	  		<h3>Picture 추가</h3>
+	  		<form name="pic_insert_form">
+	  			<p class="form-group">
+	  				<label for="title">title</label>
+	  				<input name="title" id="title" class="form-control" type="text"  value="test 사진" required>
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="name">name</label>
+	  				<input name="name" id="name" class="form-control" type="text"  value="testPic" required>
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="count">count</label>
+	  				<input name="count" id="count" class="form-control" type="number"  value="2000" required>
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="price">price</label>
+	  				<input name="price" id="price" class="form-control" type="number"  value="300000" required>
+	  			</p>
+	  			<p class="form-group">
+	  				<label class="form-label" for="frame">frame</label>
+	  				<input name="frame" id="frame" class="form-control" type="text"  value="빈티지">
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="main_img">main_img</label>
+	  				<input name="main_img" id="main_img" class="form-control" type="text"  value="test.jpg">
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="img_comment">img_comment</label>
+	  				<input name="img_comment" id="img_comment" class="form-control" type="text"  value="test 사진입니다.">
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="pic_num">pic_num</label>
+	  				<input name="pic_num" id="pic_num" class="form-control" type="text"  value="test123123">
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="member_id">member_id</label>
+	  				<input name="member_id" id="member_id" class="form-control" type="text"   value="admin" required>
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="post_time">post_time</label>
+	  				<input name="post_time" id="post_time" class="form-control" type="date"  value="2022-04-29">
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="sale_time">sale_time</label>
+	  				<input name="sale_time" id="sale_time" class="form-control" type="date"  value="2022-05-05">
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="sale_end_time">sale_end_time</label>
+	  				<input name="sale_end_time" id="sale_end_time" class="form-control" type="date"  value="">
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="state">state</label>
+	  				<select class="form-control" name="state" id="state">
+	  					<option value="0">게시(0)</option>
+	  					<option value="1">비공개(1)</option>
+	  				</select>
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="cate_num">cate_num</label>
+	  				<select  class="form-control" name="cate_num" id="cate_num" required>
+	  						<% for(CategoryVo cate : cate_list){ %>
+	  							<option value="<%=cate.getCate_num()%>"><%=cate.getName()%>(<%=cate.getCate_num()%>)</option>
+	  						<%} %>
+	  				</select>
+	  			</p>
+	  			<p class="form-group">
+	  				<input  class="form-control btn btn-primary"type="submit" value="등록하기">
+	  			</p>
+	  		</form>
 	  	
 	  </div>
 	  <div class="tab-pane fade" id="pills-modify" role="tabpanel" aria-labelledby="pills-modify-tab">
@@ -150,7 +217,7 @@
 	  				</select>
 	  			</p>
 	  			<p class="form-group">
-	  				<input  class="form-control"type="submit" value="수정하기">
+	  				<input  class="form-control btn btn-warning"type="submit" value="수정하기">
 	  			</p>
 	  		</form>
 	  	
