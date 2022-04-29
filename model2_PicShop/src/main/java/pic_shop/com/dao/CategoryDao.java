@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.*;
 import java.sql.*;
 import pic_shop.com.vo.CategoryVo;
-
+import org.json.*;
 public class CategoryDao implements categoryDaoAble{
 	private String list_sql = "SELECT * FROM CATEGORY";
 	@Override
@@ -20,6 +20,7 @@ public class CategoryDao implements categoryDaoAble{
 				cate.setName(rs.getString("name"));
 				cate.setSub(rs.getInt("sub"));
 				cate_list.add(cate);
+				
 			}
 		}
 		
@@ -44,6 +45,26 @@ public class CategoryDao implements categoryDaoAble{
 
 	@Override
 	public boolean delete(int cate_num) throws ClassNotFoundException, SQLException {
+		return false;
+	}
+	
+	public boolean delete(JSONArray ar)throws ClassNotFoundException,SQLException{
+		String delete_multi_sql = "DELETE FROM CATEGORY WHERE cate_num IN";
+		String del_num ="(";
+		Connection conn = SqlConnection.getConnection();
+		for(int i =0; i<ar.length(); i++) {
+			del_num+=ar.get(i);
+			if(i != ar.length()-1) {
+				del_num+=",";
+			}
+		}
+		del_num+=")";
+		delete_multi_sql+=del_num;
+		PreparedStatement ps = conn.prepareStatement(delete_multi_sql);
+		int delete = ps.executeUpdate();
+		if(delete>0) {
+			return true;
+		}
 		return false;
 	}
 

@@ -10,7 +10,7 @@
  const clone_card  = document.querySelector("div.clone_card");
  
  async function showPicList(){
-	const res = await fetch("./service/pic/list.do?page=1");
+	const res = await fetch("./service/pic/list.do");
 	pic_list = await res.json();
 	//console.log(pic_list);
 	picture_side.innerHTML="";
@@ -51,11 +51,7 @@
 	});
 	
 }
-async function showCateList(){
-	const res = await fetch("./service/category/list.do");
-	cate_list = await res.json();
-	console.log(cate_list);
-}
 
-//showCateList();
+
+
 showPicList();

@@ -46,8 +46,7 @@
 <body>
 	<%@ include file="service_header_nav.jsp" %>
 
-	<h1>서비스화면 시작 페이지</h1>
-	<h2>Picture 리스트가 보이게 구현 하겠습니다!</h2>
+	
 	
 	<div class="my_container">
 		<div class="category_side">
