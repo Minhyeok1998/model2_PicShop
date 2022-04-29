@@ -7,6 +7,8 @@ import pic_shop.com.vo.CategoryVo;
 import org.json.*;
 public class CategoryDao implements categoryDaoAble{
 	private String list_sql = "SELECT * FROM CATEGORY";
+	private String detail_sql = "SELECT * FROM CATEGORY WHERE CATE_NUM =?";
+	private String update_sql = "Update category set name=?,sub=? where cate_num =?";
 	@Override
 	public List<CategoryVo> list(int page) throws ClassNotFoundException, SQLException {
 		List<CategoryVo> cate_list = new ArrayList<>();
@@ -30,7 +32,21 @@ public class CategoryDao implements categoryDaoAble{
 
 	@Override
 	public CategoryVo detail(int cate_num) throws ClassNotFoundException, SQLException {
-		return null;
+		CategoryVo cate = new CategoryVo();
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(detail_sql);
+		ps.setInt(1, cate_num);
+		ResultSet rs = ps.executeQuery();
+		if(rs != null) {
+			while(rs.next()) {
+				cate.setCate_num(rs.getInt("cate_num"));
+				cate.setName(rs.getString("name"));
+				cate.setSub(rs.getInt("sub"));
+			}
+		}
+		
+		
+		return cate;
 	}
 
 	@Override
@@ -40,6 +56,14 @@ public class CategoryDao implements categoryDaoAble{
 
 	@Override
 	public boolean update(CategoryVo cate) throws ClassNotFoundException, SQLException {
+		
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(update_sql);
+		ps.setString(1, cate.getName());
+		ps.setInt(2, cate.getSub());
+		ps.setInt(3, cate.getCate_num());
+		int update = ps.executeUpdate();
+		if(update > 0 )return true;
 		return false;
 	}
 
