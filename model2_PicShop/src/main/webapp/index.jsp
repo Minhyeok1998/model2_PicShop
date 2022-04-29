@@ -44,10 +44,10 @@
 </style>
 </head>
 <body>
-	<%@ include file="service_header_nav.jsp" %>
+	<%@ include file="user_header_nav.jsp" %>
 
 	
-	
+	<div class="main-container">
 	<div class="my_container">
 		<div class="category_side">
 			<ul class="nav flex-column">
@@ -79,12 +79,12 @@
 				    	<br>
 				    	<span>카테고리 : <b class="cate_name">etc</b></span>
 				    </p>
-				    <a href="<%=request.getContextPath()%>/user/pic/detail.do?num=" class="btn btn-primary detail">더 자세히 보기</a>
+				    <a href="<%=request.getContextPath()%>/user/pic_list/detail.do?num=" class="btn btn-primary detail">더 자세히 보기</a>
 				  </div>
 			</div>		
 			
 		</div>
 	</div>
-
+	</div>
 </body>
 </html>

@@ -124,7 +124,7 @@ if(session.getAttribute("insert")!=null){
 
 	<nav  >
 		<ul id="top_first_nav" class="nav justify-content-space-evenly align-items-center" style="padding:10px;">
-			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link"><img src="./public/image/draw.png" width=100px></a></li>
+			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link"><img src="<%=request.getContextPath() %>/public/image/draw.png" width=100px></a></li>
 			<li class="nav-item"> <!-- searc_form_li -->
 				<form class="form-group" action="" name="nav_search">
 					<input class="form-control" type="text" name="nav_search_input" placeholder="검색어 입력~" style="width:500px; padding:10px;">
@@ -150,9 +150,9 @@ if(session.getAttribute("insert")!=null){
 	<nav id="top_second_nav">
 		<ul class="nav justify-content-center  nav-pills nav-fill">
 			<li class="nav-item"><a class="nav-link active" href="<%=request.getContextPath()%>/">그림 list</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">그림 그리기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">그림 평가하기</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">자유 게시판</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/draw/draw.jsp">그림 그리기</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/pic_list/detail.do?num=1015">그림 평가하기</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/board/board.jsp">자유 게시판</a></li>
 		</ul>
 	</nav>
 	

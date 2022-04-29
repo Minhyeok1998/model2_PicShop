@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import pic_shop.com.dao.PicDao;
 import pic_shop.com.vo.PicVo;
 
-@WebServlet("/user/pic/detail.do")
+@WebServlet("/user/pic_list/detail.do")
 public class PicDetailU extends HttpServlet{
 	private PicDao picDao= new PicDao();
 	@Override
