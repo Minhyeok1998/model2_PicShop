@@ -78,6 +78,7 @@ window.onload=function(){	//이메일체크
 	});
 }
 </script>
+<%@ include file="/admin_header_nav.jsp" %>
 	<h1>멤버 등록 페이지</h1>
 	<form action="./insert.do" method="post" name="MemInsert">
 		<div>

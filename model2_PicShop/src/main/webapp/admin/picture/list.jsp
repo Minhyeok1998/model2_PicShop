@@ -74,7 +74,10 @@
   				</tbody>
 			</table>
 	  </div>
-	  <div class="tab-pane fade" id="pills-insert" role="tabpanel" aria-labelledby="pills-insert-tab">Picture 추가</div>
+	  <div class="tab-pane fade" id="pills-insert" role="tabpanel" aria-labelledby="pills-insert-tab">Picture 추가
+	  
+	  	
+	  </div>
 	  <div class="tab-pane fade" id="pills-modify" role="tabpanel" aria-labelledby="pills-modify-tab">
 	  		<h3>Picture 수정</h3>
 	  		<form name="pic_modify_form">

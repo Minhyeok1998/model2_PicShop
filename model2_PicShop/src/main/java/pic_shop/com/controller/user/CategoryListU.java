@@ -1,4 +1,4 @@
-package pic_shop.com.controller;
+package pic_shop.com.controller.user;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/service/category/list.do")
-public class CategoryList extends HttpServlet{
+public class CategoryListU extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		CategoryDao catedao = new CategoryDao();
