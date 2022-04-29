@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script link="<%=request.getContextPath()%>/public/js/user_header_nav.js"></script>
+
 <!-- CSS only -->
 
 <link
