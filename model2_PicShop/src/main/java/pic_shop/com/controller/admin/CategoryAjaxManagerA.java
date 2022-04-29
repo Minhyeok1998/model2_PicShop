@@ -15,31 +15,45 @@ import org.json.*;
 import java.util.*;
 import pic_shop.com.dao.CategoryDao;
 import pic_shop.com.vo.CategoryVo;
+import pic_shop.com.vo.PicVo;
 @WebServlet("/admin/category/ajax.do")
 public class CategoryAjaxManagerA extends HttpServlet{
 	CategoryDao catedao = new CategoryDao();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		List<CategoryVo> cate_list = new ArrayList<>();
-		if(req.getParameter("cate_num")!= null) {
-			int cate_num = Integer.parseInt(req.getParameter("cate_num"));
-			CategoryVo cate = new CategoryVo();
+		resp.setContentType("application/json; charset=UTF-8");
+		if(req.getParameter("sort")!=null) {
 			try {
-				 cate = catedao.detail(cate_num);
-			} catch (ClassNotFoundException | SQLException e) {
+				
+				cate_list = catedao.list(req.getParameter("sort"),Integer.parseInt(req.getParameter("order")));
+			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
-			resp.setContentType("application/json; charset=UTF-8");
-			resp.getWriter().append(cate.toString());
 			
-		}else {
-			try {
-				cate_list = catedao.list(0);
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
-			resp.setContentType("application/json; charset=UTF-8");
 			resp.getWriter().append(cate_list.toString());
+		}else {
+			
+			if(req.getParameter("cate_num")!= null) {
+				int cate_num = Integer.parseInt(req.getParameter("cate_num"));
+				CategoryVo cate = new CategoryVo();
+				try {
+					cate = catedao.detail(cate_num);
+				} catch (ClassNotFoundException | SQLException e) {
+					e.printStackTrace();
+				}
+				
+				resp.getWriter().append(cate.toString());
+				
+			}else {
+				try {
+					cate_list = catedao.list(0);
+				} catch (ClassNotFoundException | SQLException e) {
+					e.printStackTrace();
+				}
+				resp.setContentType("application/json; charset=UTF-8");
+				resp.getWriter().append(cate_list.toString());
+			}
 		}
 		
 		

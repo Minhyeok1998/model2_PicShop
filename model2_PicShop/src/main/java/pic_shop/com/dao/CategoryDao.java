@@ -1,9 +1,10 @@
 package pic_shop.com.dao;
 
-import java.sql.SQLException;
 import java.util.*;
 import java.sql.*;
 import pic_shop.com.vo.CategoryVo;
+import pic_shop.com.vo.PicVo;
+
 import org.json.*;
 public class CategoryDao implements categoryDaoAble{
 	private String list_sql = "SELECT * FROM CATEGORY";
@@ -27,6 +28,29 @@ public class CategoryDao implements categoryDaoAble{
 		}
 		
 		
+		return cate_list;
+	}
+	public List<CategoryVo> list(String sortColumn,int order) throws SQLException,ClassNotFoundException{
+		List<CategoryVo> cate_list = new ArrayList<>();
+		Connection conn = SqlConnection.getConnection();
+		String sort_query ="";
+		if(order == 0) {
+			sort_query = "SELECT * FROM category ORDER BY "+sortColumn+" DESC";
+		}else {
+			sort_query="SELECT * FROM category ORDER BY "+sortColumn;
+		}
+		PreparedStatement ps = conn.prepareStatement(sort_query);
+		ResultSet rs = ps.executeQuery();
+		if(rs != null) {
+			while(rs.next()) {
+				CategoryVo cate = new CategoryVo();
+				cate.setCate_num(rs.getInt("cate_num"));
+				cate.setName(rs.getString("name"));
+				cate.setSub(rs.getInt("sub"));
+				cate_list.add(cate);
+				
+			}
+		}
 		return cate_list;
 	}
 
@@ -91,5 +115,7 @@ public class CategoryDao implements categoryDaoAble{
 		}
 		return false;
 	}
+	
+	
 
 }

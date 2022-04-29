@@ -143,3 +143,48 @@ pic_insert_form.addEventListener("submit",async (e)=>{
 		alert("등록 실패!");
 	}
 })
+
+/*th 를 누르면 정렬 하기! mysql 에서 default는 asc 이니까 flag를 걸어서 0 이면 desc 로 1이면 asc로 한다 그럼 */
+//1. th를 리스트로 조지기!
+const th_list = document.querySelectorAll("thead.thead-success th.sort");
+console.log(th_list);
+//2. click eventListener 조ㅓ지기
+th_list.forEach((item)=>{
+	item.addEventListener("click",()=>{
+		sortFunc(item.innerText);
+	})
+})
+
+const sort_flag ={"num":0,"name":0,"title":0,"count":0,"main_img":0,"img_comment":0,"pic_num":0,"post_time":0,"sale_time":0,"state":0,"cate_num":0,"price":0,"member_id":0};
+
+async function sortFunc(txt){
+	const res = await fetch("./ajax.do?sort="+txt+"&order="+sort_flag[txt]);
+	if(sort_flag[txt]==0){
+		sort_flag[txt]=1;
+	}else{
+		sort_flag[txt]=0;
+	}
+	
+	const pic_list = await res.json();
+	pic_tbody.innerHTML ="";
+	pic_list.forEach((pic)=>{
+		const clone = clone_tr.cloneNode(true);
+		const table_list = clone.querySelectorAll("[class]");
+		table_list.forEach((td)=>{
+			td.innerText = pic[td.classList[0]];
+			if(td.classList[0] == "num"){
+				clone.querySelector(".delete").value= pic[td.classList[0]];
+				clone.querySelector(".update").addEventListener('click',()=>{
+					modifyPic(pic[td.classList[0]]);
+				})
+				clone.querySelector(".update").innerText="modify";
+			}
+			
+		})
+		
+		pic_tbody.append(clone);
+		listT.show();
+	});
+	
+}
+//column 정렬하면서 의문점 왜 ps.setString(1, sortColumn) 이거 왜 안먹힘???!!!?!?!?!? 

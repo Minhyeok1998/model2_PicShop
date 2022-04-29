@@ -270,6 +270,50 @@ public class PicDao implements picDaoAble{
 		
 		return cate_list;
 	}
+	
+	public List<PicVo> list(String sortColumn,int order) throws SQLException,ClassNotFoundException{
+		List<PicVo> pic_list = new ArrayList<>();
+		Connection conn = SqlConnection.getConnection();
+		String sort_query ="";
+		if(order == 0) {
+			sort_query = "SELECT * FROM PIC ORDER BY "+sortColumn+" DESC";
+		}else {
+			sort_query="SELECT * FROM PIC ORDER BY "+sortColumn;
+		}
+		PreparedStatement ps = conn.prepareStatement(sort_query);
+		/*
+		 * PreparedStatement ps =
+		 * conn.prepareStatement("SELECT * FROM PIC ORDER BY ? desc"); ps.setString(1,
+		 * sortColumn);
+		 *이거 왜 안먹힘? 그래서 그냥 보안 신경 안쓰거 구현함*/
+		ResultSet rs = ps.executeQuery();
+		if(rs!=null) {
+			while(rs.next()) {
+				PicVo pic = new PicVo();
+				pic.setNum(rs.getInt("num"));
+				pic.setName(rs.getString("name"));
+				pic.setTitle(rs.getString("title"));
+				pic.setCount(rs.getInt("count"));
+				pic.setPrice(rs.getInt("price"));
+				pic.setFrame(rs.getString("frame"));
+				pic.setMain_img(rs.getString("main_img"));
+				pic.setImg_comment(rs.getString("img_comment"));
+				pic.setPic_num(rs.getString("pic_num"));
+				pic.setMember_id(rs.getString("member_id"));
+				pic.setPost_time(rs.getDate("post_time"));
+				pic.setSale_time(rs.getDate("sale_time"));
+					//pic.setSale_end_time(sdf.parse(rs.getString("sale_end_time")));
+				if(rs.getString("sale_end_time")!=null) {
+					pic.setSale_end_time(rs.getDate("sale_end_time"));
+				}
+				
+				pic.setState(rs.getByte("state"));
+				pic.setCate_num(rs.getInt("cate_num"));
+				pic_list.add(pic);
+			}
+		}
+		return pic_list;
+	}
 
 	/*
 	 * public static void main(String[] args) { try { System.out.println(new
