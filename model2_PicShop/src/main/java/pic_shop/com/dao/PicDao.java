@@ -127,8 +127,13 @@ public class PicDao implements picDaoAble{
 
 	public PicVo detail_num(int num) throws ClassNotFoundException, SQLException {
 		Connection conn=SqlConnection.getConnection();
-		PreparedStatement ps=conn.prepareStatement(detail_sql_num);
-		ps.setInt(1, num);
+		PreparedStatement ps= null;
+		if(num==-1) {
+			ps=conn.prepareStatement("select * from pic order by rand() limit 1");
+		}else {
+			ps=conn.prepareStatement(detail_sql_num);
+			ps.setInt(1, num);
+		}
 		ResultSet rs=ps.executeQuery();
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		PicVo pic = new PicVo();
@@ -155,7 +160,6 @@ public class PicDao implements picDaoAble{
 			}
 			pic.setState(rs.getByte("state"));
 			pic.setCate_num(rs.getInt("cate_num"));
-
 		}
 		return pic;
 	}

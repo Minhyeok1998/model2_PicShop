@@ -17,7 +17,7 @@ public class PicDetailU extends HttpServlet{
 	private PicDao picDao= new PicDao();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int num=Integer.parseInt(req.getParameter("num"));
+		int num=(req.getParameter("num")!=null)?Integer.parseInt(req.getParameter("num")):-1;
 		PicVo pic=new PicVo();
 		try {
 			pic=picDao.detail_num(num);

@@ -27,7 +27,12 @@
 		display:flex;
 		justify-content: flex-end;
 	}
-	
+	.pic_top_top{
+		display:flex;
+	}
+	.pic_top_top>h3{
+		
+	}
 </style>
 </head>
 <%
@@ -54,29 +59,38 @@ PicVo pic=(PicVo)request.getAttribute("pic");
 							<li><a class="nav-link" href="#">인물</a></li>
 							<li><a class="nav-link" href="#">인물</a></li>
 						</ul>
-				</li>
+					</li>
 				<li class="nav-item"><a class="nav-link" href="#">인물</a></li>
 			</ul>		
 		</div>
 		<div class="picture_side">
 			<div class="detail_main">
+				<div class="pic_top">
+					<div class="pic_top_top">
+						<h3>글번호: <%=pic.getNum()%></h3>
+						<h3>타이틀 : <%=pic.getTitle()%></h3>
+					</div>
+					<div>
+						<h3>그림 : <%=pic.getName()%></h3>
+					</div>
+				</div>
 				<div>
 					<img class="card-img-top  main_img" src="<%=request.getContextPath()%>/public/image/<%=pic.getMain_img()%>" alt="Card image cap">
 				</div>
 				<div class="pic_detail">
-					<h3>타이틀 : <%=pic.getTitle()%></h3>
-					<h3>그림 : <%=pic.getName()%></h3>
 					<p>그림설명 : <%=pic.getImg_comment()%></p>
 					<p>작가 : <%=pic.getMember_id()%></p>
 					<p>카테고리 : <%=pic.getCate_num()%></p>
 					<p>가격 : <%=pic.getPrice()%></p>
 					<p>게시날짜 : <%=pic.getPost_time()%></p>
 				</div>
-				<div>코멘트</div>
+				<div>
+					
+				</div>
 				<div class="btn_div">
-					<button>담기</button>
-					<button>수정하기</button>
-					<button>뒤로가기</button>
+					<button type="button">담기</button>
+					<button type="button">수정하기</button>
+					<button type="button" onclick="window.history.back()">뒤로가기</button>
 				</div>
 			</div>
 		</div>
