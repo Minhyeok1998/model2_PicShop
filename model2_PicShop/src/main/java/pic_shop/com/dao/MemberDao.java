@@ -8,6 +8,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import pic_shop.com.vo.MemberVo;
 public class MemberDao implements memberDaoAble{
 
@@ -206,6 +208,8 @@ public class MemberDao implements memberDaoAble{
 		return mem_list;
 	}
 	
+	
+	
 	public boolean login(String id, String pwd) throws SQLException,ClassNotFoundException {
 		
 		Connection conn  =SqlConnection.getConnection();
@@ -240,5 +244,27 @@ public class MemberDao implements memberDaoAble{
 			}
 		}
 		return grade;
+	}
+
+	//일괄삭제용
+	public boolean delete_jsonArr(JSONArray ar) throws ClassNotFoundException,SQLException{
+		String query = "delete from member where id in ";
+		String where_query ="(";
+		for(int i = 0; i<ar.length(); i++) {
+			where_query+="'"+String.valueOf(ar.get(i))+"'";
+			if(i != ar.length()-1) {
+				where_query +=",";
+			}
+		}
+		where_query+=")";
+		query += where_query;
+		System.out.println(query);
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(query);
+		int delete = ps.executeUpdate();
+		if(delete >0) {
+			return true;
+		}
+		return false;
 	}
 }
