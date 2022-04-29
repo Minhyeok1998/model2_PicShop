@@ -1,4 +1,4 @@
-package pic_shop.com.controller.login;
+package pic_shop.com.etc;
 
 import java.sql.SQLException;
 import java.util.List;

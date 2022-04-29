@@ -4,10 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="/user_header_nav.jsp" %>
-<h1>그림그리기 페이지 입니다.</h1>
+<%@ include file="/user_header_nav1.jsp" %>
+<%@ include file="/user_header_nav2.jsp" %>
+<%@ include file="app.jsp" %>
 </body>
 </html>
