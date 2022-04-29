@@ -49,6 +49,7 @@ public class MemberUpdateA extends HttpServlet{
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+		req.getSession().setAttribute("update", update);
 		if(update) {
 			if(req.getRequestURI().equals("/model2_PicShop/admin/mem/update.do")) {
 				resp.sendRedirect("./list.do?page=1");	

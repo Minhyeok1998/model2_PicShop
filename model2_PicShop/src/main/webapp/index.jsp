@@ -44,10 +44,10 @@
 </style>
 </head>
 <body>
-	<%@ include file="service_header_nav.jsp" %>
+	<%@ include file="user_header_nav.jsp" %>
 
 	
-	
+	<div class="main-container">
 	<div class="my_container">
 		<div class="category_side">
 			<ul class="nav flex-column">
@@ -85,6 +85,6 @@
 			
 		</div>
 	</div>
-
+	</div>
 </body>
 </html>
