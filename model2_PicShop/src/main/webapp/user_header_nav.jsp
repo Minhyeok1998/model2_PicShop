@@ -5,7 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 
+=======
+<script link="<%=request.getContextPath()%>/public/js/user_header_nav.js"></script>
+>>>>>>> refs/heads/master
 <!-- CSS only -->
 
 <link

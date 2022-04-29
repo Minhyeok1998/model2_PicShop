@@ -16,6 +16,9 @@ public class PicDao implements picDaoAble{
 	private String list_sql_All = "Select * from pic";
 	private String list_sql = "select p.*, c.name from pic p inner join category c on p.cate_num = c.cate_num ";
 	private String detail_sql_num="select * from pic where num=?";
+	private String insert_sql =
+			"insert into pic(title,name,count,price,frame,main_img,img_comment,pic_num,member_id,post_time,sale_time,sale_end_time,state,cate_num)"
+			+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	public List<PicVo> list() throws ClassNotFoundException,SQLException{
 		List<PicVo> pic_list= new ArrayList<>();
 		Connection conn = SqlConnection.getConnection();
@@ -161,8 +164,38 @@ public class PicDao implements picDaoAble{
 	}
 
 	@Override
-	public boolean insert(PicVo mem) throws ClassNotFoundException, SQLException {
+	public boolean insert(PicVo pic) throws ClassNotFoundException, SQLException {
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(insert_sql);
+//		title,name,count,price,frame,main_img,img_comment,pic_num,member_id,post_time,sale_time,sale_end_time,state,cate_num
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		ps.setString(1, pic.getTitle());
+		ps.setString(2, pic.getName());
+		ps.setInt(3, pic.getCount());
+		ps.setInt(4, pic.getPrice());
+		ps.setString(5, pic.getFrame());
+		ps.setString(6, pic.getMain_img());
+		ps.setString(7, pic.getImg_comment());
+		ps.setString(8, pic.getPic_num());
+		ps.setString(9, pic.getMember_id());
+		ps.setString(10, sdf.format(pic.getPost_time()));
+		ps.setString(11, sdf.format(pic.getSale_time()));
+		
+		if(pic.getSale_end_time() == null) {
+			ps.setString(12,null);
+		}else {
+			
+			ps.setString(12, sdf.format(pic.getSale_end_time()));
+		}
+		ps.setInt(13,pic.getState());
+		ps.setInt(14, pic.getCate_num());
+		int insert = ps.executeUpdate();
+		if(insert >0) {
+			return true;
+		}
 		return false;
+		
+		
 	}
 
 	@Override

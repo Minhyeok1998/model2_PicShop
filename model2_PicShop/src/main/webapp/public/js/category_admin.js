@@ -7,6 +7,18 @@ const listT = new bootstrap.Tab(list_tab);
 const insertT = new bootstrap.Tab(insert_tab);
 const modifyT = new bootstrap.Tab(modify_tab);
 
+const top_second_nav = document.getElementById("top_second_nav");
+const top_nav_list = top_second_nav.querySelectorAll("a.nav-link");
+
+top_nav_list.forEach((nav)=>{
+		if(nav.href== "http://localhost:8080/model2_PicShop/admin/category/list.do")
+			nav.classList.add("active");
+		else
+			nav.classList.remove("active");
+})
+
+
+
 list_tab.addEventListener("click",()=>{listT.show()});
 insert_tab.addEventListener("click",()=>{insertT.show()});
 
