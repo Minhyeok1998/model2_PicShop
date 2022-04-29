@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import pic_shop.com.vo.MemberVo;
 
-public interface MemberDaoAble {
+public interface memberDaoAble {
 
 	public List<MemberVo> list(int page) throws ClassNotFoundException, SQLException;	//占쏙옙占쏙옙占쏙옙 占쏙옙占� 占쏙옙占쏙옙트
 	public MemberVo detail_id(String id) throws ClassNotFoundException, SQLException;	//占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙, 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙占쏙옙, 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙占쏙옙占쏙옙占쏙옙 
