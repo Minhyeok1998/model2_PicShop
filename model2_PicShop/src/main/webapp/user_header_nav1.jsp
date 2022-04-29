@@ -181,15 +181,6 @@ if (session.getAttribute("insert") != null) {
 		</ul>
 	</nav>
 
-	<nav id="top_second_nav">
-		<ul class="nav justify-content-center  nav-pills nav-fill">
-			<li class="nav-item"><a class="nav-link active" href="<%=request.getContextPath()%>/">그림 list</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/draw/draw.jsp">그림 그리기</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/pic_list/detail.do?num=1015">그림 평가하기</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/board/board.jsp">자유 게시판</a></li>
-		</ul>
-	</nav>
-
 	<div class="modal" id="LoginModal" tabindex="-1"
 		aria-labelledby="LoginModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">

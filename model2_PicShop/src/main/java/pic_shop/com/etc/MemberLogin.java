@@ -1,4 +1,4 @@
-package pic_shop.com.controller.login;
+package pic_shop.com.etc;
 
 import java.io.IOException;
 import java.io.PrintWriter;
