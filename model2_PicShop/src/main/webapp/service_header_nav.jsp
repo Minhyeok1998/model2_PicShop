@@ -124,7 +124,7 @@ if(session.getAttribute("insert")!=null){
 
 	<nav  >
 		<ul id="top_first_nav" class="nav justify-content-space-evenly align-items-center" style="padding:10px;">
-			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link"><img src="./public/image/draw.png" width=100px></a></li>
+			<li class="nav-item"> <a href="<%=request.getContextPath()%>/" class="big_logo nav-link"><img src="public/image/draw.png" width=100px></a></li>
 			<li class="nav-item"> <!-- searc_form_li -->
 				<form class="form-group" action="" name="nav_search">
 					<input class="form-control" type="text" name="nav_search_input" placeholder="검색어 입력~" style="width:500px; padding:10px;">

@@ -79,7 +79,7 @@
 				    	<br>
 				    	<span>카테고리 : <b class="cate_name">etc</b></span>
 				    </p>
-				    <a href="<%=request.getContextPath()%>/user/pic/detail.do?num=" class="btn btn-primary detail">더 자세히 보기</a>
+				    <a href="<%=request.getContextPath()%>/user/pic_list/detail.do?num=" class="btn btn-primary detail">더 자세히 보기</a>
 				  </div>
 			</div>		
 			

@@ -185,7 +185,7 @@ public class MemberDao implements memberDaoAble{
 		List<MemberVo> mem_list=new ArrayList<>();
 		Connection conn=SqlConnection.getConnection();
 		String list_sort_sql=list_sql+" ORDER BY "+sortCol+((sortHow==1)?" ASC":" DESC");
-		System.out.println(list_sort_sql);
+		
 		PreparedStatement ps=conn.prepareStatement(list_sort_sql);
 		ResultSet rs=ps.executeQuery();
 		MemberVo mem;
