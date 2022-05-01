@@ -24,27 +24,37 @@ public class PicAjaxManagerA extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("application/json; charset=UTF-8");
 		PicDao picdao = new PicDao();
-		if(req.getParameter("num") == null) {
-			
-			ArrayList<PicVo> pic_list = new ArrayList<PicVo>();
-		
-			
+		ArrayList<PicVo> pic_list = new ArrayList<PicVo>();
+		if(req.getParameter("sort")!=null) {
 			try {
-				pic_list = (ArrayList<PicVo>) picdao.list();
-			} catch (ClassNotFoundException | SQLException e) {
+				
+				pic_list = (ArrayList<PicVo>) picdao.list(req.getParameter("sort"),Integer.parseInt(req.getParameter("order")));
+			} catch (NumberFormatException | ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
+			
 			resp.getWriter().append(pic_list.toString());
 		}else {
-			int num = Integer.parseInt(req.getParameter("num"));
-			PicVo picture = new PicVo();
-			try {
-				picture = picdao.detail(num);
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
+			
+			if(req.getParameter("num") == null) {
+				try {
+					pic_list = (ArrayList<PicVo>) picdao.list();
+				} catch (ClassNotFoundException | SQLException e) {
+					e.printStackTrace();
+				}
+				resp.getWriter().append(pic_list.toString());
+			}else {
+				int num = Integer.parseInt(req.getParameter("num"));
+				PicVo picture = new PicVo();
+				try {
+					picture = picdao.detail(num);
+				} catch (ClassNotFoundException | SQLException e) {
+					e.printStackTrace();
+				}
+				resp.getWriter().append(picture.toString());
 			}
-			resp.getWriter().append(picture.toString());
 		}
+		
 		
 		
 		

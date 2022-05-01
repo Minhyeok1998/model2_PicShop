@@ -35,21 +35,21 @@
 	  		<table class="table table-bordered table-striped  table-primary align-middle">
   				<thead class="thead-success">
   					<tr>
-  						<th  class="md-1">num</th>
-						<th  class="md-2">name</th>
-  						<th class="md-2">title</th>
-						<th class="md-1 ">count</th>
-						<th class="md-1">price</th>
-						<th class="md-3">main_img</th>
-						<th class="md-3">img_comment</th>
-						<th class="md-2">pic_num</th>
-						<th class="md-2">member_id</th>
-						<th class="md-4">post_time</th>
-						<th class="md-4">sale_time</th>
-						<th class="md-1 ">state</th>
-						<th class="md-1">cate_num</th>
-						<th class="md-1">modify</th>
-						<th class="mb-3">delete</th>
+  						<th  class="md-1 sort">num</th>
+						<th  class="md-2 sort">name</th>
+  						<th class="md-2 sort">title</th>
+						<th class="md-1 sort">count</th>
+						<th class="md-1 sort">price</th>
+						<th class="md-3 sort">main_img</th>
+						<th class="md-3 sort">img_comment</th>
+						<th class="md-2 sort">pic_num</th>
+						<th class="md-2 sort">member_id</th>
+						<th class="md-4 sort">post_time</th>
+						<th class="md-4 sort">sale_time</th>
+						<th class="md-1 sort">state</th>
+						<th class="md-1 sort">cate_num</th>
+						<th class="md-1 sort">modify</th>
+						<th class="mb-3 sort">delete</th>
   					</tr>
   				</thead>
   				<tbody id="pic_tbody">

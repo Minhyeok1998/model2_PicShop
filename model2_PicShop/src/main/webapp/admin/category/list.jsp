@@ -29,11 +29,11 @@
 	  			<button id="delete_btn" class="btn btn-danger">선택 삭제</button>
 	  		</div>
 	  		<table class="table table-bordered table-striped  table-primary text-center">
-	  			<thead>
+	  			<thead class="thead-success">
 	  				<tr>
-	  					<th>cate_num</th>
-	  					<th>name</th>
-	  					<th>sub</th>
+	  					<th class="sort">cate_num</th>
+	  					<th class="sort">name</th>
+	  					<th class="sort">sub</th>
 	  					<th>수정</th>
 	  					<th>삭제</th>
 	  				</tr>
