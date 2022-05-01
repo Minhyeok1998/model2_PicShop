@@ -40,6 +40,6 @@ public class Login extends HttpServlet{
 			req.getSession().setAttribute("id", "없는 아이디");
 		}
 		
-		resp.sendRedirect(req.getContextPath()+"/service_header_nav.jsp");
+		resp.sendRedirect(req.getContextPath()+"/user_header_nav.jsp");
 	}
 }

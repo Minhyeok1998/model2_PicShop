@@ -186,7 +186,7 @@ if (session.getAttribute("insert") != null) {
 	<nav id="top_second_nav">
 		<ul class="nav justify-content-center  nav-pills nav-fill">
 			<li class="nav-item"><a class="nav-link active" href="<%=request.getContextPath()%>/">그림 list</a></li>
-			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/draw/draw.jsp">그림 그리기</a></li>
+			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/draw/draw.do">그림 그리기</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/pic_list/detail.do?num=1">그림 평가하기</a></li>
 			<li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/user/board/board.jsp">자유 게시판</a></li>
 		</ul>
@@ -229,7 +229,7 @@ if (session.getAttribute("insert") != null) {
 					<button type="button" class="btn btn-secondary" id="join_btn2"
 						data-bs-toggle="modal" data-bs-target="#JoinModal">회원가입</button>
 
-					<button type="submit" form="login_form" class="btn btn-primary">login</button>
+					<button type="submit" form="login_form" class="btn btn-primary" >login</button>
 				</div>
 			</div>
 		</div>
@@ -332,7 +332,8 @@ if (session.getAttribute("insert") != null) {
 				<div class="modal-footer">
 					<button type="submit" class="btn btn-secondary" form="join_form">Sign
 						up</button>
-					<button type="button" class="btn btn-primary">login</button>
+					<button type="button" class="btn btn-primary">Sign
+						up & Login</button>
 				</div>
 			</div>
 		</div>
