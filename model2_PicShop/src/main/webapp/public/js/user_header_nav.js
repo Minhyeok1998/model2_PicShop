@@ -1,4 +1,4 @@
-const join_form = document.forms.join_form;
+/*const join_form = document.forms.join_form;*/
 
 function is_checked() {
   // 1. checkbox element를 찾습니다.
@@ -103,10 +103,8 @@ join_form.email.addEventListener("input",async(e)=>{
 	
 
 	
-	
-	
-	
-	
+
+
 	
 	
 	

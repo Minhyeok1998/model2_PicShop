@@ -19,6 +19,7 @@ public class Login extends HttpServlet{
 		String id = req.getParameter("id");
 		String pwd = req.getParameter("pwd");
 		System.out.println("login Post 들어왔다");
+		System.out.println("id : "+ id+ "pwd:"+ pwd);
 		MemberDao memDao = new MemberDao();
 		boolean login_result = false;
 		try {
@@ -35,11 +36,11 @@ public class Login extends HttpServlet{
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
+			System.out.println("grade : "+ grade);
 			req.getSession().setAttribute("grade",grade);
 		}else {
-			req.getSession().setAttribute("id", "없는 아이디");
+			req.getSession().setAttribute("id", "로그인 할 수 없음!(ID 또는 Password를 확인하여 주세요!)");
 		}
-		
-		resp.sendRedirect(req.getContextPath()+"/user_header_nav.jsp");
+		resp.sendRedirect(req.getContextPath()+"/index.jsp");
 	}
 }

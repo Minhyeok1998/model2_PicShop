@@ -60,7 +60,7 @@ public class PicDao implements picDaoAble{
 		List<PicVo> pic_list= new ArrayList<>();
 		int limit_count = (page != 0)?9*page:page;
 		list_sql = list_sql.concat("limit "+limit_count+", 9");
-		System.out.println("list_sql :" + list_sql);
+//		System.out.println("list_sql :" + list_sql);
 		Connection conn = SqlConnection.getConnection();
 		PreparedStatement ps = conn.prepareStatement(list_sql);
 		ResultSet rs = ps.executeQuery();

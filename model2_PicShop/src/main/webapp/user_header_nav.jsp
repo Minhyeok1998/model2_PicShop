@@ -6,8 +6,6 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script link="<%=request.getContextPath()%>/public/js/user_header_nav.js"></script>
-
 <!-- CSS only -->
 
 <link
@@ -26,7 +24,7 @@
 </script>
 
 <script defer
-	src="<%=request.getContextPath()%>/public/js/user_header_nav.js"></script>
+	src="<%=request.getContextPath()%>/public/js/user_header_nav.js?v=<%=System.currentTimeMillis() %>"></script>
 <%
 if (session.getAttribute("insert") != null) {
 	boolean insert = (boolean) session.getAttribute("insert");
@@ -65,54 +63,6 @@ if (session.getAttribute("insert") != null) {
 	text-decoration: none;
 }
 
-/* .header_nav{
-		padding:20px 14px;
-		text-decoration: none;
-		font-family:'YUniverse-B';
-		display:flex;
-		list-style: none;
-		justify-content:space-between;
-		align-items: center;
-		background-color:yellow;
-	}
-
-	
-	.search_form_li{
-		position:relative;
-		left:200px;
-	}
-	.header_nav input{
-		height :50px;
-	}
-	.header_nav input[type="text"]{
-		width:300px;
-		font-size:20px;
-		padding:8px 10px;
-	}
-	.login_nav{
-		position:relative;
-		left:300px;
-		display:flex;
-		list-style:none;
-		justify-content:center;
-		align-items:center;
-	}
-	.login_nav li{
-		padding:8px 10px;
-	}
-	.a_btn{
-		text-decoration:none;
-		color:black;
-		font-family:'YUniverse-B';
-		padding:4px;
-		background-color:rgb(208,208,208);
-		border-radius:5px;
-		border:1px solid black;
-	}
-	.a_btn:hover{
-		background-color:whitesmoke;
-	}
-	 */
 #top_first_nav {
 	font-family: 'YUniverse-B';
 }
@@ -131,13 +81,20 @@ if (session.getAttribute("insert") != null) {
 <body>
 	<%
 	String login_id = "";
-	//int grade = (int)request.getSession().getAttribute("grade");
+	int grade = 0;
 
-	if (!String.valueOf(request.getSession().getAttribute("id")).equals("없는 아이디")
-			&& request.getSession().getAttribute("id") != null) {
-		login_id = String.valueOf(request.getSession().getAttribute("id"));
-	} else {
-		login_id = "로그인 해주세요!";
+	if(request.getSession().getAttribute("id")!=null){
+		String value = String.valueOf(request.getSession().getAttribute("id"));
+		if(value.equals("로그인 할 수 없음!(ID 또는 Password를 확인하여 주세요!)")){
+			out.append("<script>alert('로그인 할 수 없음!(ID 또는 Password를 확인하여 주세요!)')</script>");
+		}else{
+			login_id= value;
+			grade = (int)request.getSession().getAttribute("grade");
+			out.append("<script>const login_user_grade = "+grade+"</script>");
+// 			out.append("<script>const login_id = "+login_id+"</script>");
+		}
+	}else{
+		login_id="login 해주세요";
 	}
 	%>
 
@@ -145,7 +102,7 @@ if (session.getAttribute("insert") != null) {
 		<ul id="top_first_nav"
 			class="nav justify-content-space-evenly align-items-center"
 			style="padding: 10px;">
-			<li class="nav-item"><a href="<%=request.getContextPath()%>/"
+			<li class="nav-item"><a href="<%=request.getContextPath()%>/index.jsp"
 				class="big_logo nav-link"><img
 					src="<%=request.getContextPath()%>/public/image/draw.webp"
 					width=100px></a></li>
@@ -156,21 +113,21 @@ if (session.getAttribute("insert") != null) {
 						placeholder="검색어 입력~" style="width: 500px; padding: 10px;">
 				</form>
 			</li>
-			<li class="nav-item">
+			<li class="nav-item"></li>
 				<ul class="nav justify-content-space-evenly align-items-center">
 					<!-- 					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li> -->
 					<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals("")) ? "로그인해주세요" : login_id%></span></li>
-					<li class="nav-item"><a class="  btn btn-primary"
+					<li class="nav-item" id="login_li"><a class="  btn btn-primary"
 						href="javacript:void(0)" id="login_btn" data-bs-toggle="modal"
 						data-bs-target="#LoginModal">login</a></li>
-					<!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
-					<li class="nav-item"><a class="  btn btn-primary"
+					<li class="nav-item" id="logout_li"><a class="btn btn-danger" href="<%=request.getContextPath()%>/user/logOut.do">로그아웃</a></li>
+					<li class="nav-item" id="join_li"><a class="  btn btn-primary"
 						href="javascript:void(0)" id="join_btn" data-bs-toggle="modal"
 						data-bs-target="#JoinModal">회원가입</a></li>
 					<!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
-					<li class="nav-item"><a class="  btn btn-primary"
+					<li class="nav-item" id="adminPg_li"><a class="  btn btn-primary"
 						href="<%=request.getContextPath()%>/admin/mem/list.do">관리자 페이지</a></li>
-					<li id="user_info" class='nav-item display_None'>
+					<li id="user_info" class='nav-item '>
 						<!--로그인 되어있을때 display_None을 지워준다.-->
 						<ul class="nav">
 							<li class="nav-item"><a class="nav-link" href="#"
