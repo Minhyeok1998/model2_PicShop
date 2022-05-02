@@ -10,6 +10,7 @@ const modifyT = new bootstrap.Tab(modify_tab);
 const top_second_nav = document.getElementById("top_second_nav");
 const top_nav_list = top_second_nav.querySelectorAll("a.nav-link");
 
+const insert_form = document.forms.insert_form;
 top_nav_list.forEach((nav)=>{
 		if(nav.href== "http://localhost:8080/model2_PicShop/admin/category/list.do")
 			nav.classList.add("active");
@@ -43,8 +44,10 @@ async function showCategoryList(){
 		}
 		cate_body.append(clone);
 	})
+	showInsertForm_cateList(cate_list);
 }
 showCategoryList();
+
 const update_form = document.forms.update_form;
 
 async function cateDetail(cate_num){ //수정페이지로 갈섯
@@ -53,11 +56,13 @@ async function cateDetail(cate_num){ //수정페이지로 갈섯
 	optTg.setAttribute("value",0);
 	optTg.label=`최상위(0)`;
 	update_form.sub.append(optTg);
+	
 	cate_list.forEach((item)=>{
 		const optionTg = document.createElement("option");
 		optionTg.setAttribute("value",item['cate_num']);
 		optionTg.label=`${item['name']}(${item['cate_num']})`;
 		update_form.sub.append(optionTg);
+		
 	})
 	const res = await fetch("./ajax.do?cate_num="+cate_num);
 	const detail = await res.json();
@@ -77,6 +82,20 @@ async function cateDetail(cate_num){ //수정페이지로 갈섯
 	})
 	
 }
+function showInsertForm_cateList(cate_list){
+	const optTg = document.createElement("option");
+	optTg.setAttribute("value",0);
+	optTg.label=`최상위(0)`;
+	insert_form.sub.append(optTg);
+	cate_list.forEach((item)=>{
+		const optionTg = document.createElement("option");
+		optionTg.setAttribute("value",item['cate_num']);
+		optionTg.label=`${item['name']}(${item['cate_num']})`;
+		insert_form.sub.append(optionTg);
+		
+	})
+}
+
 
 delete_btn.addEventListener('click',async ()=>{
 	const check_list = new Array();
@@ -151,3 +170,4 @@ async function sortFunc(txt){
 	})
 	
 }
+

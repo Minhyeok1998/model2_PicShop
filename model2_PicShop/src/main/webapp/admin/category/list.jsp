@@ -52,6 +52,27 @@
 	  </div>
 	  <div class="tab-pane fade" id="pills-insert" role="tabpanel" aria-labelledby="pills-insert-tab">
 	  		<h3>카테고리 추가</h3>
+	  		<form name="insert_form">
+	  			<p class="form-group">
+	  				<label for="cate_num">cate_num</label>
+	  				<input name='cate_num' type="number" class="form-control" id="cate_num">
+	  				<span id="cate_num_check">중복 체크</span>
+	  			</p>
+	  			<p class="form-group">
+	  				<label for="name">name</label>
+	  				<input name="name" class='form-control' id="name">
+	  				<span id="name_check">중복 체크</span>
+	  			</p>
+	  			<p class="form-group">
+	  				<select name="sub" class="form-control">
+	  				
+	  				
+	  				</select>
+	  			</p>
+	  			<p class="form-group">
+	  				<input type="submit" class="form-control btn btn-warning" value="업데이트">
+	  			</p>
+	  		</form>
 	  </div>
 	  <div class="tab-pane fade" id="pills-modify" role="tabpanel" aria-labelledby="pills-modify-tab">
 	  		<h3>카테고리 수정</h3>
