@@ -13,14 +13,14 @@
 </head>
 
 <%
-if(session.getAttribute("insert")!=null){
-	boolean insert=(boolean)session.getAttribute("insert");
-	String msg="";
-	if(insert){ 
-		msg="<script>alert(\"등록 성공\");</script>";
-	}else{ 
-		msg="<script>alert(\"등록 실패\");</script>";
-	} 
+if (session.getAttribute("insert") != null) {
+	boolean insert = (boolean) session.getAttribute("insert");
+	String msg = "";
+	if (insert) {
+		msg = "<script>alert(\"등록 성공\");</script>";
+	} else {
+		msg = "<script>alert(\"등록 실패\");</script>";
+	}
 	out.append(msg);
 	session.removeAttribute("insert");
 }
@@ -36,7 +36,7 @@ if(session.getAttribute("insert")!=null){
 .leftside {
 	grid-area: left;
 	display: grid;
-	grid-template-rows: 2fr 7fr 3fr;
+	grid-template-rows: 2fr 5fr 5fr;
 	grid-template-columns: 1fr 7fr 4fr;
 	grid-template-areas: "range range range" "color canvas stroke"
 		"color canvas save";
@@ -67,7 +67,9 @@ if(session.getAttribute("insert")!=null){
 }
 </style>
 <body>
-	<% List<CategoryVo> cate_list = (List<CategoryVo>)request.getAttribute("cate_list"); %>
+	<%
+	List<CategoryVo> cate_list = (List<CategoryVo>) request.getAttribute("cate_list");
+	%>
 	<%@ include file="/user_header_nav.jsp"%>
 
 	<div class='mycontainer'>
@@ -103,95 +105,107 @@ if(session.getAttribute("insert")!=null){
 			<div class='canvas'>
 				<canvas id="jsCanvas" class="canvas"></canvas>
 			</div>
-			<div class='stroke'></div>
-			<div class='save'>
+			<div class='stroke'>
 				<div class="controls_btns">
-					<button id="jsMode">Fill</button>
+					<button id="jsMode">Color</button>
+					<button id="jsLine">Line</button>
+					<button id="jsFill">Fill</button>
 					<button id="jsSave">Save</button>
 				</div>
 			</div>
+			<div class='save'></div>
 
 		</div>
 		<div class=rightside>
+
 			<form name="pic_insert_form" action="./draw.do" method="post">
-				<p class="form-group">
-					<label for="title">title</label> <input name="title" id="title"
-						class="form-control" type="text" value="test 사진" required>
+				<p class="input-group">
+					<label for="title" class="input-group-text">게시타이틀</label> <input
+						name="title" type="text" class="form-control" id="title"
+						value="test 사진" required>
 				</p>
-				<p class="form-group">
-					<label for="name">name</label> <input name="name" id="name"
-						class="form-control" type="text" value="testPic" required>
-				</p>
-				<p class="form-group">
-					<label for="count">count</label> <input name="count" id="count"
-						class="form-control" type="number" value="2000" required>
-				</p>
-				<p class="form-group">
-					<label for="price">price</label> <input name="price" id="price"
-						class="form-control" type="number" value="300000" required>
-				</p>
-				<p class="form-group">
-					<label class="form-label" for="frame">frame</label> <input
-						name="frame" id="frame" class="form-control" type="text"
-						value="빈티지">
-				</p>
-				<p class="form-group">
-					<label for="main_img">main_img</label> <input name="main_img"
-						id="main_img" class="form-control" type="text" value="test.jpg">
-				</p>
-				<p class="form-group">
-					<label for="img_comment">img_comment</label> <input
-						name="img_comment" id="img_comment" class="form-control"
-						type="text" value="test 사진입니다.">
-				</p>
-				<p class="form-group">
-					<label for="pic_num">pic_num</label> <input name="pic_num"
-						id="pic_num" class="form-control" type="text" value="test123123">
-				</p>
-				<p class="form-group">
-					<label for="member_id">member_id</label> <input name="member_id"
-						id="member_id" class="form-control" type="text" value="admin"
-						required>
-				</p>
-				<p class="form-group">
-					<label for="post_time">post_time</label> <input name="post_time"
-						id="post_time" class="form-control" type="date" value="2022-04-29">
-				</p>
-				<p class="form-group">
-					<label for="sale_time">sale_time</label> <input name="sale_time"
-						id="sale_time" class="form-control" type="date" value="2022-05-05">
-				</p>
-				<p class="form-group">
-					<label for="sale_end_time">sale_end_time</label> <input
-						name="sale_end_time" id="sale_end_time" class="form-control"
-						type="date" value="">
-				</p>
-				<p class="form-group">
-					<label for="state">state</label> <select class="form-control"
-						name="state" id="state">
-						<option value="0">게시(0)</option>
-						<option value="1">비공개(1)</option>
-					</select>
-				</p>
-				<p class="form-group">
-					<label for="cate_num">cate_num</label> <select class="form-control"
-						name="cate_num" id="cate_num">
-						<% for(CategoryVo cate : cate_list){ %>
+				<p class="input-group">
+					<label for="cate_num" class="input-group-text">카테고리</label> <select
+						name="cate_num" class="form-control" id="cate_num">
+						<%
+						for (CategoryVo cate : cate_list) {
+						%>
 						<option value="<%=cate.getCate_num()%>"><%=cate.getName()%>(<%=cate.getCate_num()%>)
 						</option>
-						<%} %>
+						<%
+						}
+						%>
 					</select>
 				</p>
+				<p class="input-group">
+					<label for="name" class="input-group-text">작품이름</label> <input
+						name="name" type="text" class="form-control" id="name"
+						value="testPic" required>
+				</p>
+				<p class="input-group">
+					<label for="pic_num" class="input-group-text">일련번호</label> <input
+						name="pic_num" type="text" class="form-control" id="pic_num"
+						value="MX1322F3">
+				</p>
+
+				<p class="input-group">
+					<label for="price" class="input-group-text">판매가격</label> <input
+						name="price" type="number" class="form-control" id="price"
+						value="300000000" required>
+				</p>
+
+				<p class="input-group">
+					<label for="main_img" class="input-group-text">작품이미지</label> <input
+						name="main_img" type="text" class="form-control" id="main_img"
+						value="test.jpg">
+				</p>
+				<p class="input-group">
+					<label for="img_comment" class="input-group-text">작가의한마디</label> <input
+						name="img_comment" type="text" class="form-control"
+						id="img_comment" value="작품설명:...">
+				</p>
+
+				<p class="input-group">
+					<label for="member_id" class="input-group-text">작가명</label> <input
+						name="member_id" type="text" class="form-control" id="member_id"
+						value="admin" required readonly>
+				</p>
+				<p class="input-group">
+					<label for="post_time" class="input-group-text">작품게시일</label> <input
+						name="post_time" type="date" class="form-control" id="post_time"
+						value="2022-05-05" readonly>
+				</p>
+				<p class="input-group">
+					<label for="sale_time" class="input-group-text">작품판매시작일</label> <input
+						name="sale_time" type="date" class="form-control" id="sale_time"
+						value="2022-05-05">
+				</p>
+				<p class="input-group">
+					<label for="sale_end_time" class="input-group-text">작품판매종료일</label>
+					<input name="sale_end_time" type="date" class="form-control"
+						id="sale_end_time" value="">
+				</p>
+				<p class="input-group">
+					<label for="frame" class="input-group-text">액자색상</label> <input
+						name="frame" type="color" class="form-control form-control-color"
+						id="frame" value="#ffd700" title="Choose your color"> <label
+						for="state" class="input-group-text">상태</label> <select
+						name="state" id="state" class="form-control">
+						<option value="0" selected>공개</option>
+						<option value="1">비공개</option>
+					</select> <label for="count" class="input-group-text">작품판매수량</label> <input
+						name="count" id="count" type="number" class="form-control"
+						value="100" required>
+				</p>
+
 				<p class="form-group">
 					<input class="form-control btn btn-primary" type="submit"
-						value="등록하기">
+						value="등록하기"> <input
+						class="form-control btn btn-secondary" type="reset" value="리셋하기">
 				</p>
 			</form>
 		</div>
-
-
-
 	</div>
-	<script src="app.js"></script>
+	<script src="draw.js"></script>
 </body>
 </html>
