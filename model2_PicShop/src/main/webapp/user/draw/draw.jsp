@@ -176,12 +176,12 @@ if (session.getAttribute("insert") != null) {
 						value="2022-05-05" readonly>
 				</p>
 				<p class="input-group">
-					<label for="sale_time" class="input-group-text">작품판매시작일</label> <input
+					<label for="sale_time" class="input-group-text">판매시작일</label> <input
 						name="sale_time" type="date" class="form-control" id="sale_time"
 						value="2022-05-05">
 				</p>
 				<p class="input-group">
-					<label for="sale_end_time" class="input-group-text">작품판매종료일</label>
+					<label for="sale_end_time" class="input-group-text">판매종료일</label>
 					<input name="sale_end_time" type="date" class="form-control"
 						id="sale_end_time" value="">
 				</p>
