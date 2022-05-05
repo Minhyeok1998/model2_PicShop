@@ -56,7 +56,7 @@ public class PicDrawInsert extends HttpServlet{
 		picture.setPic_num(req.getParameter("pic_num"));
 		picture.setMember_id(req.getParameter("member_id"));
 		//문자열을 데이트로 형변환 
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-mm-DD");
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			picture.setPost_time(sdf.parse(req.getParameter("post_time")));
 			picture.setSale_time(sdf.parse(req.getParameter("sale_time")));

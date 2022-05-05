@@ -173,16 +173,16 @@ if (session.getAttribute("insert") != null) {
 				<p class="input-group">
 					<label for="post_time" class="input-group-text">작품게시일</label> <input
 						name="post_time" type="date" class="form-control" id="post_time"
-						value="2022-05-05" readonly>
+						value="" readonly>
 				</p>
 				<p class="input-group">
 					<label for="sale_time" class="input-group-text">판매시작일</label> <input
 						name="sale_time" type="date" class="form-control" id="sale_time"
-						value="2022-05-05">
+						value="2022-05-06">
 				</p>
 				<p class="input-group">
-					<label for="sale_end_time" class="input-group-text">판매종료일</label>
-					<input name="sale_end_time" type="date" class="form-control"
+					<label for="sale_end_time" class="input-group-text">판매종료일</label> <input
+						name="sale_end_time" type="date" class="form-control"
 						id="sale_end_time" value="">
 				</p>
 				<p class="input-group">
@@ -207,5 +207,16 @@ if (session.getAttribute("insert") != null) {
 		</div>
 	</div>
 	<script src="draw.js"></script>
+	<script>
+	const todayUTC = new Date().toISOString().substr(0,10);
+	const todayLocal = new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60 * 1000).toISOString().substr(0,10);
+	const tomorrowLocal = new Date(new Date().getTime() + 24 * 60 * 60 * 1000 - new Date().getTimezoneOffset() * 60 * 1000).toISOString().substr(0,10);
+	document.getElementById('post_time').value = todayUTC;
+	document.getElementById('sale_time').value = todayLocal;
+	document.getElementById('sale_end_time').value = tomorrowLocal;
+
+	document.getElementById('pic_draw').classList.add('active');
+
+	</script>
 </body>
 </html>

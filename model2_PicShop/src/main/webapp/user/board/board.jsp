@@ -8,6 +8,7 @@
 </head>
 <body>
 <%@ include file="/user_header_nav.jsp" %>
+<!-- <script>document.getElementById('pic_board').classList.add('active');</script> -->
 <h1>게시판 페이지 입니다.</h1>
 </body>
 </html>

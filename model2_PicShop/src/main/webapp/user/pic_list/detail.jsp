@@ -37,6 +37,7 @@ PicVo pic=(PicVo)request.getAttribute("pic");
 %>
 <body>
 	<%@ include file="/user_header_nav.jsp" %>
+	<script>document.getElementById('pic_rating').classList.add('active');</script>
 
 	<h1>서비스화면 시작 페이지</h1>
 	<h2>Picture 리스트가 보이게 구현 하겠습니다!</h2>
