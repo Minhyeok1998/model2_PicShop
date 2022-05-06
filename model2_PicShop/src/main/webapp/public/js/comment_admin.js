@@ -5,7 +5,7 @@ const top_second_nav = document.getElementById("top_second_nav");
 const top_nav_list = top_second_nav.querySelectorAll("a.nav-link");
 
 top_nav_list.forEach((nav) => {
-	if (nav.href == "http://localhost:8080/model2_PicShop/admin/picture/list.do")
+	if (nav.href == "http://localhost:8080/model2_PicShop/admin/comment/list.do")
 		nav.classList.add("active");
 	else
 		nav.classList.remove("active");
@@ -27,7 +27,7 @@ async function showPicList() {
 	const pic_list = await res.json();
 	console.log(pic_list);
 
-	pic_tbody.innerHTML = "";
+	pic_comment_tbody.innerHTML = "";
 	pic_list.forEach((pic) => {
 		const clone = clone_tr.cloneNode(true);
 		const table_list = clone.querySelectorAll("[class]");
@@ -43,7 +43,7 @@ async function showPicList() {
 
 		})
 
-		pic_tbody.append(clone);
+		pic_comment_tbody.append(clone);
 		listT.show();
 	});
 }
@@ -166,7 +166,7 @@ async function sortFunc(txt) {
 	}
 
 	const pic_list = await res.json();
-	pic_tbody.innerHTML = "";
+	pic_comment_tbody.innerHTML = "";
 	pic_list.forEach((pic) => {
 		const clone = clone_tr.cloneNode(true);
 		const table_list = clone.querySelectorAll("[class]");
@@ -182,7 +182,7 @@ async function sortFunc(txt) {
 
 		})
 
-		pic_tbody.append(clone);
+		pic_comment_tbody.append(clone);
 		listT.show();
 	});
 
