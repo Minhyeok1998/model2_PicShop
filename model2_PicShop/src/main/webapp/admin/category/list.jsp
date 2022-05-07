@@ -29,7 +29,7 @@
 				role="tabpanel" aria-labelledby="pills-list-tab">
 				<h3>리스트 출력</h3>
 				<div class="nav justify-content-end">
-					<button id="delete_btn" class="btn btn-danger">선택 삭제</button>
+					<button id="deleteBtn" class="btn btn-danger">선택 삭제</button>
 				</div>
 				<table
 					class="table table-bordered table-striped  table-primary text-center">
