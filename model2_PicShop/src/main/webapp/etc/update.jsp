@@ -8,21 +8,22 @@
 <title>회원가입</title>
 <link rel="stylesheet" href="insert.css">
 </head>
+<%MemberVo mem= (MemberVo)request.getAttribute("mem");%>
 <%
-if(session.getAttribute("insert")!=null){
-	boolean insert=(boolean)session.getAttribute("insert");
+if(session.getAttribute("update")!=null){
+	boolean insert=(boolean)session.getAttribute("update");
 	String msg="";
 	if(insert){ 
-		msg="<script>alert(\"등록 성공\");</script>";
+		msg="<script>alert(\"업데이트 성공\");</script>";
 	}else{ 
-		msg="<script>alert(\"등록 실패\");</script>";
+		msg="<script>alert(\"업데이트 실패\");</script>";
 	} 
 	out.append(msg);
-	session.removeAttribute("insert");
+	session.removeAttribute("update");
 }
 %>
 <body>
-<%@ include file="/nav_header.jsp" %>
+<%-- <%@ include file="/nav_header.jsp" %> --%>
 <script>
 window.onload=function(){	
 	const MemInsert=document.forms.MemInsert;

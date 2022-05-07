@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script defer src="<%=request.getContextPath()%>/public/js/index.js"></script>
+<script defer src="<%=request.getContextPath()%>/public/js/index.js?v=<%=System.currentTimeMillis() %>"></script>
 <style>
 	.my_container{
 		display:grid;

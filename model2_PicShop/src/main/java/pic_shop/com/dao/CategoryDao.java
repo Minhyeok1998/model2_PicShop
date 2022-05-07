@@ -1,12 +1,15 @@
 package pic_shop.com.dao;
 
-import java.sql.SQLException;
 import java.util.*;
 import java.sql.*;
 import pic_shop.com.vo.CategoryVo;
+import pic_shop.com.vo.PicVo;
+
 import org.json.*;
 public class CategoryDao implements categoryDaoAble{
 	private String list_sql = "SELECT * FROM CATEGORY";
+	private String detail_sql = "SELECT * FROM CATEGORY WHERE CATE_NUM =?";
+	private String update_sql = "Update category set name=?,sub=? where cate_num =?";
 	@Override
 	public List<CategoryVo> list(int page) throws ClassNotFoundException, SQLException {
 		List<CategoryVo> cate_list = new ArrayList<>();
@@ -27,10 +30,47 @@ public class CategoryDao implements categoryDaoAble{
 		
 		return cate_list;
 	}
+	public List<CategoryVo> list(String sortColumn,int order) throws SQLException,ClassNotFoundException{
+		List<CategoryVo> cate_list = new ArrayList<>();
+		Connection conn = SqlConnection.getConnection();
+		String sort_query ="";
+		if(order == 0) {
+			sort_query = "SELECT * FROM category ORDER BY "+sortColumn+" DESC";
+		}else {
+			sort_query="SELECT * FROM category ORDER BY "+sortColumn;
+		}
+		PreparedStatement ps = conn.prepareStatement(sort_query);
+		ResultSet rs = ps.executeQuery();
+		if(rs != null) {
+			while(rs.next()) {
+				CategoryVo cate = new CategoryVo();
+				cate.setCate_num(rs.getInt("cate_num"));
+				cate.setName(rs.getString("name"));
+				cate.setSub(rs.getInt("sub"));
+				cate_list.add(cate);
+				
+			}
+		}
+		return cate_list;
+	}
 
 	@Override
 	public CategoryVo detail(int cate_num) throws ClassNotFoundException, SQLException {
-		return null;
+		CategoryVo cate = new CategoryVo();
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(detail_sql);
+		ps.setInt(1, cate_num);
+		ResultSet rs = ps.executeQuery();
+		if(rs != null) {
+			while(rs.next()) {
+				cate.setCate_num(rs.getInt("cate_num"));
+				cate.setName(rs.getString("name"));
+				cate.setSub(rs.getInt("sub"));
+			}
+		}
+		
+		
+		return cate;
 	}
 
 	@Override
@@ -40,6 +80,14 @@ public class CategoryDao implements categoryDaoAble{
 
 	@Override
 	public boolean update(CategoryVo cate) throws ClassNotFoundException, SQLException {
+		
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(update_sql);
+		ps.setString(1, cate.getName());
+		ps.setInt(2, cate.getSub());
+		ps.setInt(3, cate.getCate_num());
+		int update = ps.executeUpdate();
+		if(update > 0 )return true;
 		return false;
 	}
 
@@ -67,5 +115,7 @@ public class CategoryDao implements categoryDaoAble{
 		}
 		return false;
 	}
+	
+	
 
 }

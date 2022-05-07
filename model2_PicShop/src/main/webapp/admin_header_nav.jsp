@@ -4,11 +4,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
 <title>Insert title here</title>
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script defer src="<%=request.getContextPath()%>/public/js/admin_header_nav.js?v=<%=System.currentTimeMillis() %>"></script>
 <style>
 
 	*{
@@ -30,55 +32,7 @@
 		font-size:50px;
 		text-decoration:none;
 	}
-	
-	/* .header_nav{
-		padding:20px 14px;
-		text-decoration: none;
-		font-family:'YUniverse-B';
-		display:flex;
-		list-style: none;
-		justify-content:space-between;
-		align-items: center;
-		background-color:yellow;
-	}
 
-	
-	.search_form_li{
-		position:relative;
-		left:200px;
-	}
-	.header_nav input{
-		height :50px;
-	}
-	.header_nav input[type="text"]{
-		width:300px;
-		font-size:20px;
-		padding:8px 10px;
-	}
-	.login_nav{
-		position:relative;
-		left:300px;
-		display:flex;
-		list-style:none;
-		justify-content:center;
-		align-items:center;
-	}
-	.login_nav li{
-		padding:8px 10px;
-	}
-	.a_btn{
-		text-decoration:none;
-		color:black;
-		font-family:'YUniverse-B';
-		padding:4px;
-		background-color:rgb(208,208,208);
-		border-radius:5px;
-		border:1px solid black;
-	}
-	.a_btn:hover{
-		background-color:whitesmoke;
-	}
-	 */
 	#top_first_nav{
 		font-family:'YUniverse-B';
 	}
@@ -96,17 +50,23 @@
 </head>
 <body>
 	<%
-		String login_id = String.valueOf(request.getSession().getAttribute("login_id")); // session 에 저장된 id
-		
+		String login_id = "";
+		if(request.getSession().getAttribute("id") != null){
+			login_id = String.valueOf(request.getSession().getAttribute("id"));
+		}else{
+			
+			String goBack = "<script>location.replace('"+request.getContextPath()+"/index.jsp')</script>";
+			out.append(goBack);
+		}
 	%>
 	<!-- <div class="fixed-top"> -->
-	<nav  >
+	<nav >
 		<ul id="top_first_nav" class="nav justify-content-space-evenly align-items-center" style="padding:10px;">
 			<li class="nav-item"> <a href="<%=request.getContextPath()%>/admin/mem/list.do" class="big_logo nav-link">Draw</a></li>
 			<li class="nav-item">
 				<ul class="nav justify-content-space-evenly align-items-center">
-					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li>
-					<li class="nav-item"><a class=" nav-link" href="#" id="login_value">logout</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
+					<li class="nav-item"><span class="span" id="logoin_id"><%=login_id %></span></li>
+					<li class="nav-item"><a class="  btn btn-danger" href="<%=request.getContextPath()%>/user/logOut.do" id="logout_btn">logout</a></li> <!-- 로그인이 되어있다면 logout  OR 로그인이 되어 있지않다면 Login -->
 					<li class="nav-item"><a class=" nav-link" href="<%=request.getContextPath() %>/">서비스화면 이동</a></li>
 					<li id="user_info" class='nav-item display_None'> <!--로그인 되어있을때 display_None을 지워준다.-->
 						<ul class="nav">

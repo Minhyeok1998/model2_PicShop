@@ -22,13 +22,13 @@ public class PicList extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		PicDao picdao = new PicDao();
 		int page = 0;
-		System.out.println(req.getParameter("page"));
+//		System.out.println(req.getParameter("page"));
 		String member_id = null;
 		String category = null;
 		if (req.getParameter("page") != null) {
 			page = Integer.parseInt(req.getParameter("page"));
 		}
-		System.out.println("page : "+ page);
+//		System.out.println("page : "+ page);
 		try {
 			if (req.getParameter("category") != null) {
 				category = req.getParameter("category");

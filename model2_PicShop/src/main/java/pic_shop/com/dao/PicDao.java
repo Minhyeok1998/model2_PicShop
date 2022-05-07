@@ -16,6 +16,9 @@ public class PicDao implements picDaoAble{
 	private String list_sql_All = "Select * from pic";
 	private String list_sql = "select p.*, c.name from pic p inner join category c on p.cate_num = c.cate_num ";
 	private String detail_sql_num="select * from pic where num=?";
+	private String insert_sql =
+			"insert into pic(title,name,count,price,frame,main_img,img_comment,pic_num,member_id,post_time,sale_time,sale_end_time,state,cate_num)"
+			+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	public List<PicVo> list() throws ClassNotFoundException,SQLException{
 		List<PicVo> pic_list= new ArrayList<>();
 		Connection conn = SqlConnection.getConnection();
@@ -57,7 +60,7 @@ public class PicDao implements picDaoAble{
 		List<PicVo> pic_list= new ArrayList<>();
 		int limit_count = (page != 0)?9*page:page;
 		list_sql = list_sql.concat("limit "+limit_count+", 9");
-		System.out.println("list_sql :" + list_sql);
+//		System.out.println("list_sql :" + list_sql);
 		Connection conn = SqlConnection.getConnection();
 		PreparedStatement ps = conn.prepareStatement(list_sql);
 		ResultSet rs = ps.executeQuery();
@@ -165,8 +168,38 @@ public class PicDao implements picDaoAble{
 	}
 
 	@Override
-	public boolean insert(PicVo mem) throws ClassNotFoundException, SQLException {
+	public boolean insert(PicVo pic) throws ClassNotFoundException, SQLException {
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(insert_sql);
+//		title,name,count,price,frame,main_img,img_comment,pic_num,member_id,post_time,sale_time,sale_end_time,state,cate_num
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		ps.setString(1, pic.getTitle());
+		ps.setString(2, pic.getName());
+		ps.setInt(3, pic.getCount());
+		ps.setInt(4, pic.getPrice());
+		ps.setString(5, pic.getFrame());
+		ps.setString(6, pic.getMain_img());
+		ps.setString(7, pic.getImg_comment());
+		ps.setString(8, pic.getPic_num());
+		ps.setString(9, pic.getMember_id());
+		ps.setString(10, sdf.format(pic.getPost_time()));
+		ps.setString(11, sdf.format(pic.getSale_time()));
+		
+		if(pic.getSale_end_time() == null) {
+			ps.setString(12,null);
+		}else {
+			
+			ps.setString(12, sdf.format(pic.getSale_end_time()));
+		}
+		ps.setInt(13,pic.getState());
+		ps.setInt(14, pic.getCate_num());
+		int insert = ps.executeUpdate();
+		if(insert >0) {
+			return true;
+		}
 		return false;
+		
+		
 	}
 
 	@Override
@@ -240,6 +273,50 @@ public class PicDao implements picDaoAble{
 		}
 		
 		return cate_list;
+	}
+	
+	public List<PicVo> list(String sortColumn,int order) throws SQLException,ClassNotFoundException{
+		List<PicVo> pic_list = new ArrayList<>();
+		Connection conn = SqlConnection.getConnection();
+		String sort_query ="";
+		if(order == 0) {
+			sort_query = "SELECT * FROM PIC ORDER BY "+sortColumn+" DESC";
+		}else {
+			sort_query="SELECT * FROM PIC ORDER BY "+sortColumn;
+		}
+		PreparedStatement ps = conn.prepareStatement(sort_query);
+		/*
+		 * PreparedStatement ps =
+		 * conn.prepareStatement("SELECT * FROM PIC ORDER BY ? desc"); ps.setString(1,
+		 * sortColumn);
+		 *이거 왜 안먹힘? 그래서 그냥 보안 신경 안쓰거 구현함*/
+		ResultSet rs = ps.executeQuery();
+		if(rs!=null) {
+			while(rs.next()) {
+				PicVo pic = new PicVo();
+				pic.setNum(rs.getInt("num"));
+				pic.setName(rs.getString("name"));
+				pic.setTitle(rs.getString("title"));
+				pic.setCount(rs.getInt("count"));
+				pic.setPrice(rs.getInt("price"));
+				pic.setFrame(rs.getString("frame"));
+				pic.setMain_img(rs.getString("main_img"));
+				pic.setImg_comment(rs.getString("img_comment"));
+				pic.setPic_num(rs.getString("pic_num"));
+				pic.setMember_id(rs.getString("member_id"));
+				pic.setPost_time(rs.getDate("post_time"));
+				pic.setSale_time(rs.getDate("sale_time"));
+					//pic.setSale_end_time(sdf.parse(rs.getString("sale_end_time")));
+				if(rs.getString("sale_end_time")!=null) {
+					pic.setSale_end_time(rs.getDate("sale_end_time"));
+				}
+				
+				pic.setState(rs.getByte("state"));
+				pic.setCate_num(rs.getInt("cate_num"));
+				pic_list.add(pic);
+			}
+		}
+		return pic_list;
 	}
 
 	/*
