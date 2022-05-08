@@ -18,7 +18,7 @@
 		background-color:green;
 	}
 	.picture_side{
-
+		width:1200px;
 	}
 	.detail_main>div{
 		border:1px solid black;
@@ -27,12 +27,15 @@
 		display:flex;
 		justify-content: flex-end;
 	}
-	.pic_top_top{
+	.pic_top_top, .pic_top_bot{
 		display:flex;
+		justify-content: center;
 	}
-	.pic_top_top>h3{
-		
+	.pic_top_bot{
+		display:flex;
+		justify-content: center;
 	}
+
 </style>
 </head>
 <%
@@ -67,10 +70,10 @@ PicVo pic=(PicVo)request.getAttribute("pic");
 			<div class="detail_main">
 				<div class="pic_top">
 					<div class="pic_top_top">
-						<h3>글번호: <%=pic.getNum()%></h3>
+						<h3>&nbsp;<%=pic.getNum()%> &nbsp;&nbsp;</h3>
 						<h3>타이틀 : <%=pic.getTitle()%></h3>
 					</div>
-					<div>
+					<div class="pic_top_bot">
 						<h3>그림 : <%=pic.getName()%></h3>
 					</div>
 				</div>
@@ -85,7 +88,7 @@ PicVo pic=(PicVo)request.getAttribute("pic");
 					<p>게시날짜 : <%=pic.getPost_time()%></p>
 				</div>
 				<div>
-					
+					여기 코멘트
 				</div>
 				<div class="btn_div">
 					<button type="button">담기</button>
