@@ -5,7 +5,7 @@ const top_second_nav = document.getElementById("top_second_nav");
 const top_nav_list = top_second_nav.querySelectorAll("a.nav-link");
 
 top_nav_list.forEach((nav) => {
-	if (nav.href == "http://localhost:8080/model2_PicShop/admin/picture/list.do")
+	if (nav.href == "http://localhost:8080/model2_PicShop/admin/comment/list.do")
 		nav.classList.add("active");
 	else
 		nav.classList.remove("active");

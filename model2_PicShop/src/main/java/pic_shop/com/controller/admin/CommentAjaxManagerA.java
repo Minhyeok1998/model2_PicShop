@@ -18,8 +18,8 @@ import pic_shop.com.vo.PicVo;
 import java.util.*;
 import org.json.*;
 
-@WebServlet("/admin/picture/ajax.do")
-public class PicAjaxManagerA extends HttpServlet {
+@WebServlet("/admin/comment/ajax.do")
+public class CommentAjaxManagerA extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
