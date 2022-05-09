@@ -6,9 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Picture 관리자 페이지 입니다.</title>
+<title>Comment 관리자 페이지 입니다.</title>
 <script defer
-	src="<%=request.getContextPath()%>/public/js/picture_admin.js"></script>
+	src="<%=request.getContextPath()%>/public/js/comment_admin.js"></script>
 <style>
 </style>
 </head>
@@ -20,13 +20,13 @@
 		<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
 			<li class="nav-item"><a class="nav-link active"
 				id="pills-list-tab" data-toggle="pill" href="#pills-list" role="tab"
-				aria-controls="pills-list" aria-selected="true">Picture List</a></li>
+				aria-controls="pills-list" aria-selected="true">Comment List</a></li>
 			<li class="nav-item"><a class="nav-link" id="pills-insert-tab"
 				data-toggle="pill" href="#pills-insert" role="tab"
-				aria-controls="pills-insert" aria-selected="false">Picture 추가</a></li>
+				aria-controls="pills-insert" aria-selected="false">Comment 추가</a></li>
 			<li class="nav-item"><a class="nav-link" id="pills-modify-tab"
 				data-toggle="pill" href="#pills-modify" role="tab"
-				aria-controls="pills-modify" aria-selected="false" disabled>Picture
+				aria-controls="pills-modify" aria-selected="false" disabled>Comment
 					수정</a></li>
 		</ul>
 		<div class="tab-content" id="pills-tabContent">
@@ -79,7 +79,7 @@
 			</div>
 			<div class="tab-pane fade" id="pills-insert" role="tabpanel"
 				aria-labelledby="pills-insert-tab">
-				<h3>Picture 추가</h3>
+				<h3>Comment 추가</h3>
 				<form name="pic_insert_form">
 					<p class="form-group">
 						<label for="title">title</label> <input name="title" id="title"
@@ -160,7 +160,7 @@
 			</div>
 			<div class="tab-pane fade" id="pills-modify" role="tabpanel"
 				aria-labelledby="pills-modify-tab">
-				<h3>Picture 수정</h3>
+				<h3>Comment 수정</h3>
 				<form name="pic_modify_form">
 					<p class="form-group">
 						<label for="num">Num</label> <input name="num" id="num"

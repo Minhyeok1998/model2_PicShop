@@ -45,7 +45,9 @@
 </head>
 <body>
 	<%@ include file="user_header_nav.jsp" %>
-
+	<script>	
+	document.getElementById('pic_list').classList.add('active');
+	</script>
 	
 	<div class="main-container">
 	<div class="my_container">

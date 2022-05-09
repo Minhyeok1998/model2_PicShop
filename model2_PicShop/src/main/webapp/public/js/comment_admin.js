@@ -5,7 +5,7 @@ const top_second_nav = document.getElementById("top_second_nav");
 const top_nav_list = top_second_nav.querySelectorAll("a.nav-link");
 
 top_nav_list.forEach((nav) => {
-	if (nav.href == "http://localhost:8080/model2_PicShop/admin/picture/list.do")
+	if (nav.href == "http://localhost:8080/model2_PicShop/admin/comment/list.do")
 		nav.classList.add("active");
 	else
 		nav.classList.remove("active");
@@ -33,7 +33,6 @@ async function showPicList() {
 		const table_list = clone.querySelectorAll("[class]");
 		table_list.forEach((td) => {
 			td.innerText = pic[td.classList[0]];
-			
 			if (td.classList[0] == "num") {
 				clone.querySelector(".delete").value = pic[td.classList[0]];
 				clone.querySelector(".update").addEventListener('click', () => {
