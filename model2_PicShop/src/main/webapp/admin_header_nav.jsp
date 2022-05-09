@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@page import="pic_shop.com.vo.MemberVo"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,14 +62,12 @@
 </head>
 <body>
 	<%
-	String login_id = "";
-	if (request.getSession().getAttribute("id") != null) {
-		login_id = String.valueOf(request.getSession().getAttribute("id"));
-	} else {
-
-		String goBack = "<script>location.replace('" + request.getContextPath() + "/index.jsp')</script>";
-		out.append(goBack);
-	}
+		Object login_result = request.getSession().getAttribute("login_result")!= null?request.getSession().getAttribute("login_result"):null;//boolean
+		MemberVo member = null;
+		if(login_result != null && (boolean)login_result){
+			member =(MemberVo)request.getSession().getAttribute("member");
+		}
+		
 	%>
 	<!-- <div class="fixed-top"> -->
 	<nav>
@@ -80,7 +79,7 @@
 				class="big_logo nav-link">Draw</a></li>
 			<li class="nav-item">
 				<ul class="nav justify-content-space-evenly align-items-center">
-					<li class="nav-item"><span class="span" id="logoin_id"><%=login_id%></span></li>
+					<li class="nav-item"><span class="span" id="logoin_id"><%=member.getId()%></span></li>
 					<li class="nav-item"><a class="  btn btn-danger"
 						href="<%=request.getContextPath()%>/user/logOut.do"
 						id="logout_btn">logout</a></li>

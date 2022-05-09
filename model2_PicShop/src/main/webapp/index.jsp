@@ -44,6 +44,14 @@
 </style>
 </head>
 <body>
+	<%
+		Object GradeExcept = request.getSession().getAttribute("adminGradeExp");
+		if(GradeExcept != null){
+			String msg = "<script>alert('권한 없음!')</script>";
+			out.append(msg);
+			request.getSession().removeAttribute("adminGradeExp");
+		}
+	%>
 	<%@ include file="user_header_nav.jsp" %>
 	<script>	
 	document.getElementById('pic_list').classList.add('active');

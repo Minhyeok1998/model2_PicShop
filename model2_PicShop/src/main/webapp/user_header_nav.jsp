@@ -1,3 +1,4 @@
+<%@page import="pic_shop.com.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -80,22 +81,12 @@ if (session.getAttribute("insert") != null) {
 </head>
 <body>
 	<%
-	String login_id = "";
-	int grade = 0;
-
-	if (request.getSession().getAttribute("id") != null) {
-		String value = String.valueOf(request.getSession().getAttribute("id"));
-		if (value.equals("로그인 할 수 없음!(ID 또는 Password를 확인하여 주세요!)")) {
-			out.append("<script>alert('로그인 할 수 없음!(ID 또는 Password를 확인하여 주세요!)')</script>");
-		} else {
-			login_id = value;
-			grade = (int) request.getSession().getAttribute("grade");
-			out.append("<script>const login_user_grade = " + grade + "</script>");
-			// 			out.append("<script>const login_id = "+login_id+"</script>");
+		Object login_result = request.getSession().getAttribute("login_result")!= null?request.getSession().getAttribute("login_result"):null;//boolean
+		MemberVo member = null;
+		if(login_result != null && (boolean)login_result){
+			member =(MemberVo)request.getSession().getAttribute("member");
 		}
-	} else {
-		login_id = "login 해주세요";
-	}
+		
 	%>
 
 	<nav>
@@ -117,27 +108,32 @@ if (session.getAttribute("insert") != null) {
 			<li class="nav-item"></li>
 			<ul class="nav justify-content-space-evenly align-items-center">
 				<!-- 					<li class="nav-item"><span class="span" id="logoin_id">로그인 해주세요!</span></li> -->
-				<li class="nav-item"><span class="span" id="logoin_id"><%=(login_id.equals("")) ? "로그인해주세요" : login_id%></span></li>
-				<li class="nav-item" id="login_li"><a class="  btn btn-primary"
-					href="javacript:void(0)" id="login_btn" data-bs-toggle="modal"
-					data-bs-target="#LoginModal">login</a></li>
-				<li class="nav-item" id="logout_li"><a class="btn btn-danger"
-					href="<%=request.getContextPath()%>/user/logOut.do">로그아웃</a></li>
-				<li class="nav-item" id="join_li"><a class="  btn btn-primary"
-					href="javascript:void(0)" id="join_btn" data-bs-toggle="modal"
-					data-bs-target="#JoinModal">회원가입</a></li>
-				<!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
-				<li class="nav-item" id="adminPg_li"><a
-					class="  btn btn-primary"
-					href="<%=request.getContextPath()%>/admin/mem/list.do">관리자 페이지</a></li>
-				<li id="user_info" class='nav-item '>
+				<%if(member == null){%>
+					<li class="nav-item"><span class="span">로그인해주세요</span></li>
+					<li class="nav-item" ><a class=" btn btn-primary" href="<%=request.getContextPath()%>/user/login.do">login</a></li>
+					<li class="nav-item"><a class="  btn btn-primary" href="javascript:void(0)" id="join_btn" data-bs-toggle="modal" data-bs-target="#JoinModal">회원가입</a></li>
+				<%}else{ %>
+						<li class="nav-item"><span class="span"><%=member.getId()%> 님</span></li>
+					<%if(member.getGrade() == 1){ %>
+						<li class="nav-item" id="adminPg_li"><a class="  btn btn-primary" href="<%=request.getContextPath()%>/admin/mem/list.do">관리자 페이지</a></li>
+					<%}else{%>
+					
+					<li id="user_info" class='nav-item '>
 					<!--로그인 되어있을때 display_None을 지워준다.-->
-					<ul class="nav">
-						<li class="nav-item"><a class="nav-link" href="#"
-							id="user_write_Atg">내가 작성한 글</a></li>
-						<li class="nav-item"><a class="nav-link" href="#">장바구니</a></li>
-					</ul>
-				</li>
+						<ul class="nav">
+							<li class="nav-item"><a class="nav-link" href="#" id="user_write_Atg">내가 작성한 글</a></li>
+							<li class="nav-item"><a class="nav-link" href="#">장바구니</a></li>
+						</ul>
+					</li>
+					<%} %>
+				<li class="nav-item" ><a class="btn btn-danger"href="<%=request.getContextPath()%>/user/logOut.do">로그아웃</a></li>
+				<%} %>
+				
+				
+				
+				<!-- login 되어 있지 않을때만 보이게 한다. 로그인 되어있을 경우 class="display_None" 을 추가해준다. -->
+				
+				
 			</ul>
 			<li>
 		</ul>
@@ -157,48 +153,6 @@ if (session.getAttribute("insert") != null) {
 		</ul>
 	</nav>
 	
-	<div class="modal" id="LoginModal" tabindex="-1"
-		aria-labelledby="LoginModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="LoginModalLabel">로그인 해주세요</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<!-- loging form 시작 -->
-					<form action="<%=request.getContextPath()%>/user/login.do"
-						method="POST" name="login_form" id="login_form">
-						<div class="form-group">
-							<label for="InputID1">ID</label> <input name="id" type="id"
-								class="form-control" id="InputID1" aria-describedby="idHelp"
-								placeholder="Enter ID"> <small id="idHelp"
-								class="form-text text-muted">아이디를 입력해주세요</small>
-						</div>
-						<div class="form-group">
-							<label for="InputPassword1">Password</label> <input name="pwd"
-								type="password" class="form-control" id="InputPassword1"
-								placeholder="Password">
-						</div>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input" id="LoginCheck1">
-							<label class="form-check-label" for="LoginCheck1">Check
-								me out</label>
-						</div>
-					</form>
-
-				</div>
-				<div class="modal-footer">
-
-					<button type="button" class="btn btn-secondary" id="join_btn2"
-						data-bs-toggle="modal" data-bs-target="#JoinModal">회원가입</button>
-
-					<button type="submit" form="login_form" class="btn btn-primary">login</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 
 	<div class="modal" id="JoinModal" tabindex="-1"

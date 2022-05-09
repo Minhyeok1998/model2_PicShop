@@ -10,37 +10,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import pic_shop.com.dao.MemberDao;
-
+import pic_shop.com.vo.MemberVo;
 @WebServlet("/user/login.do")
 public class Login extends HttpServlet{
 
 	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher(".././login.jsp").forward(req, resp);
+	}
+	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id = req.getParameter("id");
 		String pwd = req.getParameter("pwd");
-		System.out.println("login Post 들어왔다");
-		System.out.println("id : "+ id+ "pwd:"+ pwd);
+//		System.out.println("login Post 들어왔다");
+//		System.out.println("id : "+ id+ "pwd:"+ pwd);
 		MemberDao memDao = new MemberDao();
-		boolean login_result = false;
+		MemberVo member = new MemberVo();
 		try {
-			login_result = memDao.login(id,pwd);
-			System.out.println("login_result : "+ login_result);
+			member = memDao.login(id,pwd);
+			if(member == null) {
+				req.getSession().setAttribute("login_result",false);
+				req.getSession().setAttribute("canTLogin", false);
+				resp.sendRedirect(req.getContextPath()+"/user/login.do");
+			}else {
+				req.getSession().setAttribute("login_result", true);
+				req.getSession().setAttribute("member", member);
+				resp.sendRedirect(req.getContextPath()+"/index.jsp");
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		int grade = 0;
-		if(login_result) {
-			req.getSession().setAttribute("id", id);
-			try {
-				grade = memDao.getGrade(id);
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
-			System.out.println("grade : "+ grade);
-			req.getSession().setAttribute("grade",grade);
-		}else {
-			req.getSession().setAttribute("id", "로그인 할 수 없음!(ID 또는 Password를 확인하여 주세요!)");
-		}
-		resp.sendRedirect(req.getContextPath()+"/index.jsp");
+		
+		
 	}
 }
