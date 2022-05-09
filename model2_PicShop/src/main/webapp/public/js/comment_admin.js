@@ -1,4 +1,4 @@
-//text
+
 const pic_tbody = document.getElementById("pic_tbody");
 const clone_tr = document.getElementById("clone_tr");
 const top_second_nav = document.getElementById("top_second_nav");
@@ -27,7 +27,7 @@ async function showPicList() {
 	const pic_list = await res.json();
 	console.log(pic_list);
 
-	pic_comment_tbody.innerHTML = "";
+	pic_tbody.innerHTML = "";
 	pic_list.forEach((pic) => {
 		const clone = clone_tr.cloneNode(true);
 		const table_list = clone.querySelectorAll("[class]");
@@ -43,7 +43,7 @@ async function showPicList() {
 
 		})
 
-		pic_comment_tbody.append(clone);
+		pic_tbody.append(clone);
 		listT.show();
 	});
 }
@@ -166,7 +166,7 @@ async function sortFunc(txt) {
 	}
 
 	const pic_list = await res.json();
-	pic_comment_tbody.innerHTML = "";
+	pic_tbody.innerHTML = "";
 	pic_list.forEach((pic) => {
 		const clone = clone_tr.cloneNode(true);
 		const table_list = clone.querySelectorAll("[class]");
@@ -182,7 +182,7 @@ async function sortFunc(txt) {
 
 		})
 
-		pic_comment_tbody.append(clone);
+		pic_tbody.append(clone);
 		listT.show();
 	});
 

@@ -9,24 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pic_shop.com.dao.CommentDao;
-import pic_shop.com.vo.CommentVo;
+import pic_shop.com.dao.PicDao;
 import java.util.*;
-
+import pic_shop.com.vo.CategoryVo;
 @WebServlet("/admin/comment/list.do")
 public class CommentPageA extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		CommentDao commentdao = new CommentDao();
-		List<CommentVo> comment_list = new ArrayList<>();
+		PicDao picdao = new PicDao();
+		List<CategoryVo> cate_list = new ArrayList<>();
 		
 		try {
-			comment_list = commentdao.commentList();
+			cate_list = picdao.cateList();
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		req.setAttribute("comment_list", comment_list);
+		req.setAttribute("cate_list", cate_list);
 		req.getRequestDispatcher("./list.jsp").forward(req, resp);
 	}
 	
