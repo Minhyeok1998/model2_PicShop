@@ -118,7 +118,7 @@ if (session.getAttribute("insert") != null) {
 		</div>
 		<div class=rightside>
 
-			<form name="pic_insert_form" action="./draw.do" method="post">
+			<form name="pic_insert_form" action="./draw.do" method="post" enctype="multipart/form-data">
 				<p class="input-group">
 					<label for="title" class="input-group-text">게시타이틀</label> <input
 						name="title" type="text" class="form-control" id="title"

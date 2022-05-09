@@ -47,8 +47,7 @@ public class PicDrawInsert extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		boolean insert = false;
 		boolean fileUp = true;
@@ -74,10 +73,8 @@ public class PicDrawInsert extends HttpServlet {
 			mainImgFile = multiReq.getFile("main_img");
 			detailImgFile = multiReq.getFile("detail_img");
 			String mainImgType = multiReq.getContentType("main_img").split("/")[0]; // "image/jpeg" =>image
-			String detailImgType = multiReq.getContentType("detail_img").split("/")[0];
 			String mainImgExt = multiReq.getContentType("main_img").split("/")[1]; // "image/jpeg" =>jpeg
-			String detailImgExt = multiReq.getContentType("detail_img").split("/")[1];
-			if (mainImgType.equals("image") && detailImgType.equals("image")) {
+			if (mainImgType.equals("image")) {
 				// 메인이미지만 썸네일 생성
 				BufferedImage main_img = ImageIO.read(mainImgFile);
 				BufferedImage mainImgThumb = new BufferedImage(100, 100, BufferedImage.TYPE_3BYTE_BGR);
@@ -93,52 +90,55 @@ public class PicDrawInsert extends HttpServlet {
 			// 파일이 커서 등록 실패
 			fileUp = false;
 			e.printStackTrace();
+			System.out.println("파일용량을 확인해주세요");
 		}
-		PicVo picture = new PicVo();
+		if (fileUp) {
 
-		picture.setTitle(req.getParameter("title"));
-		picture.setName(req.getParameter("name"));
-		picture.setCount(Integer.parseInt(req.getParameter("count")));
-		picture.setPrice(Integer.parseInt(req.getParameter("price")));
-		picture.setFrame(req.getParameter("frame"));
-		picture.setMain_img(req.getParameter("main_img"));
-		picture.setImg_comment(req.getParameter("img_comment"));
-		picture.setPic_num(req.getParameter("pic_num"));
-		picture.setMember_id(req.getParameter("member_id"));
-		//문자열을 데이트로 형변환 
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			picture.setPost_time(sdf.parse(req.getParameter("post_time")));
-			picture.setSale_time(sdf.parse(req.getParameter("sale_time")));
-			if(!req.getParameter("sale_end_time").equals(""))
-				picture.setSale_end_time(sdf.parse(req.getParameter("sale_end_time")));
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			PicVo picture = new PicVo();
+
+			picture.setTitle(multiReq.getParameter("title"));
+			picture.setName(multiReq.getParameter("name"));
+			picture.setCount(Integer.parseInt(multiReq.getParameter("count")));
+			picture.setPrice(Integer.parseInt(multiReq.getParameter("price")));
+			picture.setFrame(multiReq.getParameter("frame"));
+			picture.setMain_img(mainImgFile.getName());
+			picture.setImg_comment(multiReq.getParameter("img_comment"));
+			picture.setPic_num(multiReq.getParameter("pic_num"));
+			picture.setMember_id(multiReq.getParameter("member_id"));
+			// 문자열을 데이트로 형변환
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			try {
+				picture.setPost_time(sdf.parse(multiReq.getParameter("post_time")));
+				picture.setSale_time(sdf.parse(multiReq.getParameter("sale_time")));
+				if (!multiReq.getParameter("sale_end_time").equals(""))
+					picture.setSale_end_time(sdf.parse(multiReq.getParameter("sale_end_time")));
+
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			picture.setState(Byte.parseByte(multiReq.getParameter("state")));
+			picture.setCate_num(Integer.parseInt(multiReq.getParameter("cate_num")));
+
+			System.out.println(picture);
+			// 성공시 list.do 등록 성공 alert!
+			// 실패시 insert.do 등록 실패 alert!
+
+			PicDao picdao = new PicDao();
+
+			try {
+				insert = picdao.insert(picture);
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		picture.setState(Byte.parseByte(req.getParameter("state")));
-		picture.setCate_num(Integer.parseInt(req.getParameter("cate_num")));
-
-		System.out.println(picture);
-		//성공시 list.do 등록 성공 alert!
-		//실패시 insert.do 등록 실패 alert!
-		
-		PicDao picdao = new PicDao();
-		boolean insert=false;
-		try {
-			insert=picdao.insert(picture);
-		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
 //		HttpSession session=req.getSession();
 //		session.setAttribute("insert", insert);
 		req.getSession().setAttribute("insert", insert);
-		if(insert) {
+		if (insert) {
 			resp.sendRedirect("./draw.do");
-		}else {
+		} else {
 			resp.sendRedirect("./draw.do");
 		}
 
