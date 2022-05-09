@@ -33,7 +33,9 @@
 			<div class="tab-pane fade show active" id="pills-list"
 				role="tabpanel" aria-labelledby="pills-list-tab">
 				<h3>리스트 출력</h3>
-				<button id="deleteBtn">일괄 삭제</button>
+				<div class="nav justify-content-end">
+					<button id="deleteBtn" class="btn btn-danger">선택 삭제</button>
+				</div>
 				<table
 					class="table table-bordered table-striped  table-primary align-middle">
 					<thead class="thead-success">
@@ -51,8 +53,8 @@
 							<th class="md-4 sort">sale_time</th>
 							<th class="md-1 sort">state</th>
 							<th class="md-1 sort">cate_num</th>
-							<th class="md-1 sort">modify</th>
-							<th class="mb-3 sort">delete</th>
+							<th class="md-1">modify</th>
+							<th class="mb-3">delete</th>
 						</tr>
 					</thead>
 					<tbody id="pic_tbody">

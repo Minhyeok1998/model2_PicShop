@@ -48,6 +48,7 @@ async function showPicList() {
 		listT.show();
 	});
 }
+const modify_list = document.querySelectorAll(".update");
 list_tab.addEventListener('click', () => {
 	listT.show();
 })
