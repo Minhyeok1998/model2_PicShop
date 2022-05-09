@@ -230,6 +230,7 @@ public class CommentDao implements picDaoAble{
 	public boolean delete(int num) throws ClassNotFoundException, SQLException {
 		return false;
 	}
+
 	
 	public boolean delete(JSONArray ar) throws ClassNotFoundException,SQLException{
 		String query = "delete from pic where num in";
@@ -238,6 +239,7 @@ public class CommentDao implements picDaoAble{
 			where_query+=String.valueOf(ar.get(i));
 			if(i != ar.length()-1) {
 				where_query +=",";
+
 			}
 		}
 		

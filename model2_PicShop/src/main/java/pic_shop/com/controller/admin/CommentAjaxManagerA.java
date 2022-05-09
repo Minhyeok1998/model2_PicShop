@@ -40,7 +40,9 @@ public class CommentAjaxManagerA extends HttpServlet {
 
 			if (req.getParameter("num") == null) {
 				try {
+
 					pic_list = (ArrayList<PicVo>) picdao.list();
+
 				} catch (ClassNotFoundException | SQLException e) {
 					e.printStackTrace();
 				}
@@ -49,13 +51,16 @@ public class CommentAjaxManagerA extends HttpServlet {
 				int num = Integer.parseInt(req.getParameter("num"));
 				PicVo picture = new PicVo();
 				try {
+
 					picture = picdao.detail(num);
+
 				} catch (ClassNotFoundException | SQLException e) {
 					e.printStackTrace();
 				}
 				resp.getWriter().append(picture.toString());
 			}
 		}
+
 
 	}
 
@@ -172,3 +177,4 @@ public class CommentAjaxManagerA extends HttpServlet {
 
 	}
 }
+

@@ -33,6 +33,7 @@ async function showPicList() {
 		const table_list = clone.querySelectorAll("[class]");
 		table_list.forEach((td) => {
 			td.innerText = pic[td.classList[0]];
+			
 			if (td.classList[0] == "num") {
 				clone.querySelector(".delete").value = pic[td.classList[0]];
 				clone.querySelector(".update").addEventListener('click', () => {
