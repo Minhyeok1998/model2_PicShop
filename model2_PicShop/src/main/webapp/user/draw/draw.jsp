@@ -156,7 +156,7 @@ if (session.getAttribute("insert") != null) {
 
 				<p class="input-group">
 					<label for="main_img" class="input-group-text">작품이미지</label> <input
-						name="main_img" type="text" class="form-control" id="main_img"
+						name="main_img" type="file" class="form-control" id="main_img"
 						value="test.jpg">
 				</p>
 				<p class="input-group">
