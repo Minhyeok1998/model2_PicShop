@@ -52,7 +52,7 @@ public class PicDrawInsert extends HttpServlet {
 		boolean insert = false;
 		boolean fileUp = true;
 		String savePath = req.getServletContext().getRealPath("public/image");
-		int maxSize = 1024 * 1024 * 1;
+		int maxSize = 1024 * 1024 * 10;
 		MultipartRequest multiReq = null;
 		File mainImgFile = null;
 		File detailImgFile = null;
