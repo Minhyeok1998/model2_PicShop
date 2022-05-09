@@ -1,4 +1,3 @@
-
 const pic_tbody = document.getElementById("pic_tbody");
 const clone_tr = document.getElementById("clone_tr");
 const top_second_nav = document.getElementById("top_second_nav");

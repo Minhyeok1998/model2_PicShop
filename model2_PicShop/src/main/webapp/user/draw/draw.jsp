@@ -118,7 +118,7 @@ if (session.getAttribute("insert") != null) {
 		</div>
 		<div class=rightside>
 
-			<form name="pic_insert_form" action="./draw.do" method="post">
+			<form name="pic_insert_form" action="./draw.do" method="post" enctype="multipart/form-data">
 				<p class="input-group">
 					<label for="title" class="input-group-text">게시타이틀</label> <input
 						name="title" type="text" class="form-control" id="title"
@@ -156,7 +156,7 @@ if (session.getAttribute("insert") != null) {
 
 				<p class="input-group">
 					<label for="main_img" class="input-group-text">작품이미지</label> <input
-						name="main_img" type="text" class="form-control" id="main_img"
+						name="main_img" type="file" class="form-control" id="main_img"
 						value="test.jpg">
 				</p>
 				<p class="input-group">
