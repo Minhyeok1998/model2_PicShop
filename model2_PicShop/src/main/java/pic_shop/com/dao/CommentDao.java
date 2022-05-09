@@ -29,7 +29,7 @@ public class CommentDao implements commentDaoAble{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	public List<CommentVo> commentList() throws SQLException,ClassNotFoundException {
+	public  List<CommentVo> commentList() throws SQLException,ClassNotFoundException {
 		String commentList_sql = "SELECT * FROM pic_comment";
 		List<CommentVo> comment_list = new ArrayList<>();
 		Connection conn = SqlConnection.getConnection();
