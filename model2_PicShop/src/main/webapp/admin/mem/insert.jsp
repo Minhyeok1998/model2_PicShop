@@ -9,22 +9,20 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <!-- Bootstrap Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-</head>
-<%
-if(session.getAttribute("insert")!=null){
-	boolean insert=(boolean)session.getAttribute("insert");
-	String msg="";
-	if(insert){ 
-		msg="<script>alert(\"등록 성공\");</script>";
-	}else{ 
-		msg="<script>alert(\"등록 실패\");</script>";
-	} 
-	out.append(msg);
-	session.removeAttribute("insert");
+<style>
+.h1Cl{
+	width:500px;
+	text-align : center;
+	margin: 0 auto;
 }
-%>
-<body>
+.memDiv{
+	display: flex;
+	justify-content: center;
+}
+.memDiv>div>div{
+	margin:5px;
+}
+</style>
 <script>
 window.onload=function(){	//이메일체크
 	const MemInsert=document.forms.MemInsert;
@@ -78,78 +76,94 @@ window.onload=function(){	//이메일체크
 	});
 }
 </script>
+</head>
+<%
+if(session.getAttribute("insert")!=null){
+	boolean insert=(boolean)session.getAttribute("insert");
+	String msg="";
+	if(insert){ 
+		msg="<script>alert(\"등록 성공\");</script>";
+	}else{ 
+		msg="<script>alert(\"등록 실패\");</script>";
+	} 
+	out.append(msg);
+	session.removeAttribute("insert");
+}
+%>
+<body>
 <%@ include file="/admin_header_nav.jsp" %>
-	<h1>멤버 등록 페이지</h1>
+	<h1 class="h1Cl">멤버 등록 페이지</h1>
 	<form action="./insert.do" method="post" name="MemInsert">
-		<div>
-			<div>
-	        	<div>
-	            	<label for="laId">아이디: </label>
-					<input type="text" id="laId" name="id" value="" placeholder="아이디 입력">
+		<div class="memDiv">
+			<div class="memDivDe">
+				<div>
+		        	<div>
+		            	<label for="laId">아이디: </label>
+						<input type="text" id="laId" name="id" value="" placeholder="아이디 입력">
+		            </div>
+		            <span id="checkId">중복체크중입니다.</span>
+				</div>
+	            <div>
+	            	<div>
+		             	<label for="laPw">비밀번호: </label>
+						<input type="text" id="laPw" name="pw" value="">
+	            	</div>
+	           		<span id="checkPw">길이가 4이상</span>
 	            </div>
-	            <span id="checkId">중복체크중입니다.</span>
+	            <div>
+	            	<div>
+	            		<label for="laPhone">핸드폰번호: </label>
+	            		<input type="text" id="laPhone" name="phone" value="" placeholder="휴대폰 번호 입력 (123-456-7890)">
+	            	</div>
+					<span id="checkPhone">중복체크중입니다.</span>
+	            </div>
+	            <div>
+	            	<div>
+	            		<label for="laEmail">이메일: </label>
+						<input type="email" id="laEmail" name="email" value="" placeholder="이메일 입력">
+	            	</div>
+	           		<span id="checkEmail">중복체크중입니다.</span>
+	            </div>
+	            <div>
+	            	<div>
+	            		<label for="laName">이름: </label>
+						<input type="text" id="laName" name="name" value="">
+					</div>
+	            </div>
+	            <div>
+	            	<div>
+	            		<label for="laAddress">주소: </label>
+						<input type="text" id="laAddress" name="address" value="">
+	           		</div>
+	            </div>
+	            <div>
+	            	<div>
+	             		<label for="laAddress_detail">주소: </label>
+						<input type="text" id="laAddress_detail" name="address_detail" value="">
+	            	</div>
+	            </div>
+	            <div>
+	            	<div>
+	             		<label for="laGrade">등급: </label>
+						<select id="laGrade" size="1" name="grade">
+							<option value="0">관리자(0)</option>
+							<option value="1">일반사용자(1)</option>
+						</select>
+					</div>
+	            </div>
+	            <div>
+	            	<div>
+	             		<label for="laBrith">생일: </label>
+						<input type="date" id="laBrith" name="birth" value="" pattern="yyyy-mm-dd">
+					</div>
+	            </div>
+	            <p>
+					<button type="reset">리셋</button>
+                    <button type="button" onclick="location.href='./list.do'">뒤로가기</button>
+					<button type="submit">등록하기</button>
+				</p>
 			</div>
-            <div>
-            	<div>
-	             	<label for="laPw">비밀번호: </label>
-					<input type="text" id="laPw" name="pw" value="">
-            	</div>
-           		<span id="checkPw">길이가 4이상</span>
-            </div>
-            <div>
-            	<div>
-            		<label for="laPhone">핸드폰번호: </label>
-            		<input type="text" id="laPhone" name="phone" value="" placeholder="휴대폰 번호 입력 (123-456-7890)">
-            	</div>
-				<span id="checkPhone">중복체크중입니다.</span>
-            </div>
-            <div>
-            	<div>
-            		<label for="laEmail">이메일: </label>
-					<input type="email" id="laEmail" name="email" value="" placeholder="이메일 입력">
-            	</div>
-           		<span id="checkEmail">중복체크중입니다.</span>
-            </div>
-            <div>
-            	<div>
-            		<label for="laName">이름: </label>
-					<input type="text" id="laName" name="name" value="">
-				</div>
-            </div>
-            <div>
-            	<div>
-            		<label for="laAddress">주소: </label>
-					<input type="text" id="laAddress" name="address" value="">
-           		</div>
-            </div>
-            <div>
-            	<div>
-             		<label for="laAddress_detail">주소: </label>
-					<input type="text" id="laAddress_detail" name="address_detail" value="">
-            	</div>
-            </div>
-            <div>
-            	<div>
-             		<label for="laGrade">등급: </label>
-					<select id="laGrade" size="1" name="grade">
-						<option value="0">관리자(0)</option>
-						<option value="1">일반사용자(1)</option>
-					</select>
-				</div>
-            </div>
-            <div>
-            	<div>
-             		<label for="laBrith">생일: </label>
-					<input type="date" id="laBrith" name="birth" value="" pattern="yyyy-mm-dd">
-				</div>
-            </div>
 		</div>
-		<p>
-			<button type="reset">리셋</button>
-			<button type="submit">제출</button>
-		</p>
-	
 	</form>
-	
 </body>
 </html>

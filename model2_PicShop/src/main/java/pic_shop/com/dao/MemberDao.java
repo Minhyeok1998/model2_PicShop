@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONArray;
+
 import pic_shop.com.vo.MemberVo;
-public class MemberDao implements memberDaoAble{
+public class MemberDao implements MemberDaoAble{
 
 	
 	private String list_sql="SELECT * FROM MEMBER";
@@ -186,7 +188,7 @@ public class MemberDao implements memberDaoAble{
 		List<MemberVo> mem_list=new ArrayList<>();
 		Connection conn=SqlConnection.getConnection();
 		String list_sort_sql=list_sql+" ORDER BY "+sortCol+((sortHow==1)?" ASC":" DESC");
-		System.out.println(list_sort_sql);
+		
 		PreparedStatement ps=conn.prepareStatement(list_sort_sql);
 		ResultSet rs=ps.executeQuery();
 		MemberVo mem;
@@ -207,9 +209,16 @@ public class MemberDao implements memberDaoAble{
 		return mem_list;
 	}
 	
+<<<<<<< HEAD
 	public MemberVo login(String id, String pwd) throws SQLException,ClassNotFoundException {
 		String check_member_sql = "SELECT count(*) from member where id=? and pw=?";
 		String login_sql = "SELECT * from member where id=? and pw=?";
+=======
+	
+	
+	public boolean login(String id, String pwd) throws SQLException,ClassNotFoundException {
+		
+>>>>>>> 3317156c741483c490964f090347051d07dfc946
 		Connection conn  =SqlConnection.getConnection();
 		PreparedStatement check_ps = conn.prepareStatement(check_member_sql);
 		PreparedStatement ps = conn.prepareStatement(login_sql);
@@ -251,6 +260,7 @@ public class MemberDao implements memberDaoAble{
 		
 	}
 	
+<<<<<<< HEAD
 //	public int getGrade(String id) throws SQLException,ClassNotFoundException{
 //		int grade = 0;
 //		String grade_sql = "SELECT grade FROM MEMBER WHERE ID=?";
@@ -265,4 +275,42 @@ public class MemberDao implements memberDaoAble{
 //		}
 //		return grade;
 //	}
+=======
+	public int getGrade(String id) throws SQLException,ClassNotFoundException{
+		int grade = 0;
+		String grade_sql = "SELECT grade FROM MEMBER WHERE ID=?";
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(grade_sql);
+		ps.setString(1, id);
+		ResultSet rs = ps.executeQuery();
+		if(rs!=null) {
+			while(rs.next()) {
+				grade = rs.getInt("grade");
+			}
+		}
+		return grade;
+	}
+
+	//일괄삭제용
+	public boolean delete_jsonArr(JSONArray ar) throws ClassNotFoundException,SQLException{
+		String query = "delete from member where id in ";
+		String where_query ="(";
+		for(int i = 0; i<ar.length(); i++) {
+			where_query+="'"+String.valueOf(ar.get(i))+"'";
+			if(i != ar.length()-1) {
+				where_query +=",";
+			}
+		}
+		where_query+=")";
+		query += where_query;
+		System.out.println(query);
+		Connection conn = SqlConnection.getConnection();
+		PreparedStatement ps = conn.prepareStatement(query);
+		int delete = ps.executeUpdate();
+		if(delete >0) {
+			return true;
+		}
+		return false;
+	}
+>>>>>>> 3317156c741483c490964f090347051d07dfc946
 }

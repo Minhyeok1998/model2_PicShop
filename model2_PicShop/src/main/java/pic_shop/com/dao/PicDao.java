@@ -12,7 +12,7 @@ import java.util.*;
 import pic_shop.com.vo.CategoryVo;
 import pic_shop.com.vo.PicVo;
 import org.json.*;
-public class PicDao implements picDaoAble{
+public class PicDao implements PicDaoAble{
 	private String list_sql_All = "Select * from pic";
 	private String list_sql = "select p.*, c.name from pic p inner join category c on p.cate_num = c.cate_num ";
 	private String detail_sql_num="select * from pic where num=?";
@@ -130,8 +130,13 @@ public class PicDao implements picDaoAble{
 
 	public PicVo detail_num(int num) throws ClassNotFoundException, SQLException {
 		Connection conn=SqlConnection.getConnection();
-		PreparedStatement ps=conn.prepareStatement(detail_sql_num);
-		ps.setInt(1, num);
+		PreparedStatement ps= null;
+		if(num==-1) {
+			ps=conn.prepareStatement("select * from pic order by rand() limit 1");
+		}else {
+			ps=conn.prepareStatement(detail_sql_num);
+			ps.setInt(1, num);
+		}
 		ResultSet rs=ps.executeQuery();
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		PicVo pic = new PicVo();
@@ -158,7 +163,6 @@ public class PicDao implements picDaoAble{
 			}
 			pic.setState(rs.getByte("state"));
 			pic.setCate_num(rs.getInt("cate_num"));
-
 		}
 		return pic;
 	}
@@ -285,7 +289,7 @@ public class PicDao implements picDaoAble{
 		 * PreparedStatement ps =
 		 * conn.prepareStatement("SELECT * FROM PIC ORDER BY ? desc"); ps.setString(1,
 		 * sortColumn);
-		 *ÀÌ°Å ¿Ö ¾È¸ÔÈû? ±×·¡¼­ ±×³É º¸¾È ½Å°æ ¾È¾²°Å ±¸ÇöÇÔ*/
+		 *ï¿½Ì°ï¿½ ï¿½ï¿½ ï¿½È¸ï¿½ï¿½ï¿½? ï¿½×·ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½È¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 		ResultSet rs = ps.executeQuery();
 		if(rs!=null) {
 			while(rs.next()) {

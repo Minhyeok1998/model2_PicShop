@@ -6,7 +6,7 @@ import pic_shop.com.vo.CategoryVo;
 import pic_shop.com.vo.PicVo;
 
 import org.json.*;
-public class CategoryDao implements categoryDaoAble{
+public class CategoryDao implements CategoryDaoAble{
 	private String list_sql = "SELECT * FROM CATEGORY";
 	private String detail_sql = "SELECT * FROM CATEGORY WHERE CATE_NUM =?";
 	private String update_sql = "Update category set name=?,sub=? where cate_num =?";
