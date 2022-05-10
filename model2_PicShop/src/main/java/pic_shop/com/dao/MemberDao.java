@@ -11,7 +11,7 @@ import java.util.List;
 import org.json.JSONArray;
 
 import pic_shop.com.vo.MemberVo;
-public class MemberDao implements memberDaoAble{
+public class MemberDao implements MemberDaoAble{
 
 	
 	private String list_sql="SELECT * FROM MEMBER";

@@ -12,7 +12,7 @@ import java.util.*;
 import pic_shop.com.vo.CategoryVo;
 import pic_shop.com.vo.PicVo;
 import org.json.*;
-public class PicDao implements picDaoAble{
+public class PicDao implements PicDaoAble{
 	private String list_sql_All = "Select * from pic";
 	private String list_sql = "select p.*, c.name from pic p inner join category c on p.cate_num = c.cate_num ";
 	private String detail_sql_num="select * from pic where num=?";
@@ -289,7 +289,7 @@ public class PicDao implements picDaoAble{
 		 * PreparedStatement ps =
 		 * conn.prepareStatement("SELECT * FROM PIC ORDER BY ? desc"); ps.setString(1,
 		 * sortColumn);
-		 *ÀÌ°Å ¿Ö ¾È¸ÔÈû? ±×·¡¼­ ±×³É º¸¾È ½Å°æ ¾È¾²°Å ±¸ÇöÇÔ*/
+		 *ï¿½Ì°ï¿½ ï¿½ï¿½ ï¿½È¸ï¿½ï¿½ï¿½? ï¿½×·ï¿½ï¿½ï¿½ ï¿½×³ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ ï¿½È¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 		ResultSet rs = ps.executeQuery();
 		if(rs!=null) {
 			while(rs.next()) {

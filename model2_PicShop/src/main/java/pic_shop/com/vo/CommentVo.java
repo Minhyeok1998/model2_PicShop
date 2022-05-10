@@ -2,6 +2,18 @@ package pic_shop.com.vo;
 
 import java.util.Date;
 
+/*+-------------+--------------+------+-----+-------------------+-------------------+
+| Field       | Type         | Null | Key | Default           | Extra             |
++-------------+--------------+------+-----+-------------------+-------------------+
+| comment_num | int          | NO   | PRI | NULL              | auto_increment    |
+| title       | varchar(255) | YES  |     |                   |                   |
+| contents    | varchar(255) | YES  |     |                   |                   |
+| post_time   | datetime     | YES  |     | CURRENT_Date | DEFAULT_GENERATED |
+| pic_grade   | tinyint      | NO   |     | 6                 |                   |
+| pic_num     | int          | NO   | MUL | NULL              |                   |
+| member_id   | varchar(255) | NO   | MUL | NULL              |                   |
+| state       | tinyint      | NO   |     | 0                 |                   |
++-------------+--------------+------+-----+-------------------+-------------------+*/
 public class CommentVo {
 	private int comment_num;
 	private String title;

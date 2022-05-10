@@ -5,7 +5,7 @@ import java.util.List;
 
 import pic_shop.com.vo.CategoryVo;
 
-public interface categoryDaoAble {
+public interface CategoryDaoAble {
 	public List<CategoryVo> list(int page) throws ClassNotFoundException, SQLException ; 
 	public CategoryVo detail(int cate_num) throws ClassNotFoundException, SQLException ; 
 	public boolean insert(CategoryVo cate) throws ClassNotFoundException, SQLException ; 
