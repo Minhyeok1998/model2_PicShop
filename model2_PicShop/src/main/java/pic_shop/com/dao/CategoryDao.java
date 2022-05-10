@@ -74,10 +74,24 @@ public class CategoryDao implements categoryDaoAble{
 	}
 
 	@Override
-	public boolean insert(CategoryVo cate) throws ClassNotFoundException, SQLException {
-		return false;
-	}
-
+	   public boolean insert(CategoryVo cate) throws ClassNotFoundException, SQLException {
+	      String insert_query = "insert into category(name,sub) values(?,?)";
+	      Connection conn = SqlConnection.getConnection();
+	      PreparedStatement ps = conn.prepareStatement(insert_query);
+	      ps.setString(1,cate.getName());
+	      if(cate.getSub() == 0) {
+	         ps.setObject(2, null);
+	      }else {
+	         
+	         ps.setInt(2, cate.getSub());
+	      }
+	      int insert = ps.executeUpdate();
+	      if(insert >0) {
+	         return true;
+	      }else {
+	         return false;
+	      }
+	   }
 	@Override
 	public boolean update(CategoryVo cate) throws ClassNotFoundException, SQLException {
 		

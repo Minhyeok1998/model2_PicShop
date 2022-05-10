@@ -103,4 +103,28 @@ public class CategoryAjaxManagerA extends HttpServlet{
 		resp.setContentType("application/json; charset=UTF-8");
 		resp.getWriter().append("{\"update\": "+update+"}");
 	}
+	@Override
+	   protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	      req.setCharacterEncoding("UTF-8");
+	      BufferedReader br = req.getReader();
+	      StringBuffer sb = new StringBuffer();
+	      String line = "";
+	      while((line = br.readLine())!=null) {
+	         sb.append(line);
+	      }
+	      JSONObject json = new JSONObject(sb.toString());
+	      CategoryVo cate = new CategoryVo();
+	      CategoryDao catedao = new CategoryDao();
+	      cate.setName(json.getString("name"));
+	      cate.setSub(json.getInt("sub"));
+	      
+	      boolean insert = false;
+	      try {
+	         insert = catedao.insert(cate);
+	      } catch (ClassNotFoundException | SQLException e) {
+	         e.printStackTrace();
+	      }
+	      resp.setContentType("application/json; charset=UTF-8");
+	      resp.getWriter().append("{\"insert\" : "+insert+"}");
+	   }
 }

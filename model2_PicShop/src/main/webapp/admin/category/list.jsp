@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <script defer
-	src="<%=request.getContextPath()%>/public/js/category_admin.js"></script>
+	src="<%=request.getContextPath()%>/public/js/category_admin.js?v=<%=System.currentTimeMillis() %>"></script>
 <title>Category 관리자 페이지 입니다.</title>
 </head>
 <body>
@@ -60,11 +60,7 @@
 				aria-labelledby="pills-insert-tab">
 				<h3>카테고리 추가</h3>
 				<form name="insert_form">
-					<p class="form-group">
-						<label for="cate_num">cate_num</label> <input name='cate_num'
-							type="number" class="form-control" id="cate_num"> <span
-							id="cate_num_check">중복 체크</span>
-					</p>
+					
 					<p class="form-group">
 						<label for="name">name</label> <input name="name"
 							class='form-control' id="name"> <span id="name_check">중복
@@ -78,7 +74,7 @@
 					</p>
 					<p class="form-group">
 						<input type="submit" class="form-control btn btn-warning"
-							value="업데이트">
+							value="추가하기">
 					</p>
 				</form>
 			</div>

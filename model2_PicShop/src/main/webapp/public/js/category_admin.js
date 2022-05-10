@@ -97,7 +97,7 @@ function showInsertForm_cateList(cate_list){
 }
 
 
-delete_btn.addEventListener('click',async ()=>{
+deleteBtn.addEventListener('click',async ()=>{
 	const check_list = new Array();
 	document.querySelectorAll('input[type="checkbox"]').forEach((item)=>{
 		if(item.checked){
@@ -170,4 +170,23 @@ async function sortFunc(txt){
 	})
 	
 }
+insert_form.addEventListener("submit",async (e)=>{
+   e.preventDefault();
+   const obj = new Object();
+   const input_list = insert_form.querySelectorAll("[name]");
+   input_list.forEach((item)=>{
+      obj[`${item.name}`] = item.value;
+   })
+   console.log(obj);
+   const res = await fetch("./ajax.do",{method:"POST",headers:{"Content-Type":"application/json; charset=UFT-8"},body:JSON.stringify(obj)});
+   const result = await res.json();
+   if(result['insert']){
+      alert("등록 성공");
+      listT.show();
+      showCategoryList();
+   }else{
+      alert("등록 실패");
+   }
+})
+
 
